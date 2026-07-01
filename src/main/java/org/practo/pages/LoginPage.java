@@ -1,56 +1,38 @@
 package org.practo.pages;
 
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.By;
 
 public class LoginPage {
 
-    WebDriver driver;
+    public By mobileNumberField = By.xpath(
+            "//input[contains(@placeholder,'Mobile') or contains(@name,'mobile')]"
+    );
 
-    // Constructor
-    public LoginPage(WebDriver driver) {
-        this.driver = driver;
-        PageFactory.initElements(driver, this);
-    }
+    public By passwordField = By.xpath(
+            "//input[@type='password']"
+    );
 
-    // Login Elements
-    @FindBy(xpath = "//a[text()='Login / Signup']")
-    WebElement signInBtn;
+    public By loginSubmitButton = By.xpath(
+            "//button[contains(text(),'Login') or contains(text(),'Continue')]"
+    );
 
-    @FindBy(id = "username")
-    WebElement mobileField;
+    // Header username
+    public By headerUserName = By.xpath(
+            "//span[contains(@class,'user_info_top')]"
+    );
 
-    @FindBy(id = "password")
-    WebElement passwordField;
+    // ✅ FINAL DOWN ARROW LOCATOR (your XPath)
+    public By profileDownArrow = By.xpath(
+            "//span[contains(@class,'user_info_top')]/following-sibling::span[contains(@class,'downarrow')]"
+    );
 
-    @FindBy(xpath = "//button[@type='submit']")
-    WebElement loginBtn;
+    // Dropdown panel (after click)
+    public By profileDropdownPanel = By.xpath(
+            "//div[contains(@class,'nav-dropdown')]"
+    );
 
-    // Success indicator (after login)
-    @FindBy(xpath = "//div[contains(@class,'nav-bar')]")
-    WebElement homePageHeader;
+    public By errorMessage = By.xpath(
+            "//*[contains(text(),'Invalid') or contains(text(),'incorrect') or contains(text(),'wrong') or contains(text(),'Try again')]"
+    );
 
-    // Actions
-    public void clickSignIn() {
-        signInBtn.click();
-    }
-
-    public void enterMobile(String mobile) {
-        mobileField.sendKeys(mobile);
-    }
-
-    public void enterPassword(String password) {
-        passwordField.sendKeys(password);
-    }
-
-    public void clickLogin() {
-        loginBtn.click();
-    }
-
-    // Validation
-    public boolean isLoginSuccessful() {
-        return homePageHeader.isDisplayed();
-    }
 }

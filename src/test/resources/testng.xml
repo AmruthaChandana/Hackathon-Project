@@ -1,7 +1,11 @@
-<suite name="Practo Suite">
-    <test name="Hospital Search Test">
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="Practo Hackathon Automation Suite">
+
+    <test name="TC_002 Invalid Login Test">
         <classes>
-            <class name="org.practo.tests.TC_1LoginValidation"/>
+            <class name="org.practo.tests.TC_016_ExtractTop5FAQs"/>
         </classes>
     </test>
-</suite>
+
+

@@ -1,0 +1,7 @@
+<suite name="Practo Suite">
+    <test name="Hospital Search Test">
+        <classes>
+            <class name="org.practo.tests.TC_1LoginValidation"/>
+        </classes>
+    </test>
+</suite>

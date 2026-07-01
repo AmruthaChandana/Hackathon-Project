@@ -13,4 +13,23 @@ public class HomePage {
     public By medicinesLink = By.xpath("//a[contains(text(),'Medicines') or contains(text(),'medicine')]");
 
     public By corporateWellnessLink = By.xpath("//*[contains(text(),'Corporate Wellness') or contains(text(),'For Corporates')]");
+
+    //From this position onwards TC11 to TC15 variables are included
+    public By hospitalLocationBox = By.xpath("//input[@data-qa-id='omni-searchbox-locality']");
+
+    public By hospitalSearchBox = By.xpath("//input[@data-qa-id='omni-searchbox-keyword']");
+
+
+
+    public By locationOption(String location) {
+        return By.xpath("//div[contains(text(),'" + location + "')]");
+    }
+
+    public By searchOption(String searchKeyword) {
+        return By.xpath("//div[@data-qa-id='omni-suggestion-main' and text()='" + searchKeyword + "']");
+    }
+
+    public By searchOptionContains(String searchKeyword) {
+        return By.xpath("//div[@data-qa-id='omni-suggestion-main' and contains(text(),'" + searchKeyword + "')]");
+    }
 }

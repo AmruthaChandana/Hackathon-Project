@@ -17,7 +17,6 @@ public class ConfigReader {
         } catch (IOException e) {
             throw new RuntimeException("Unable to load config.properties file: " + e.getMessage());
         }
-
         return properties;
     }
 
@@ -25,7 +24,6 @@ public class ConfigReader {
         if (properties == null) {
             initProperties();
         }
-
         return properties.getProperty(key);
     }
 }

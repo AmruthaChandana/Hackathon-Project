@@ -32,7 +32,6 @@ public class BaseTest {
     @BeforeClass
     public void loadConfiguration() {
         prop = ConfigReader.initProperties();
-
         ExcelUtils.loadExcel(
                 prop.getProperty("excelPath"),
                 prop.getProperty("sheetName")
@@ -42,17 +41,13 @@ public class BaseTest {
     @BeforeMethod
     public void setup() {
         String browser = prop.getProperty("browser");
-
         if (browser.equalsIgnoreCase("chrome")) {
-
             WebDriverManager.chromedriver().setup();
             driver = new ChromeDriver();
 
         } else if (browser.equalsIgnoreCase("edge")) {
-
             WebDriverManager.edgedriver().setup();
             driver = new EdgeDriver();
-
         } else {
             throw new RuntimeException("Invalid browser name in config.properties: " + browser);
         }
@@ -130,7 +125,6 @@ public class BaseTest {
 
     public void switchToNewWindow(String parentWindow) {
         Set<String> windowHandles = driver.getWindowHandles();
-
         for (String window : windowHandles) {
             if (!window.equals(parentWindow)) {
                 driver.switchTo().window(window);
@@ -154,11 +148,9 @@ public class BaseTest {
 
     @AfterMethod
     public void tearDown(ITestResult result) {
-
         if (result.getStatus() == ITestResult.FAILURE) {
             ScreenshotUtil.captureScreenshot(driver, result.getName());
         }
-
         if (driver != null) {
             driver.quit();
         }

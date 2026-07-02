@@ -18,16 +18,8 @@ public class LabTestsPage {
         PageFactory.initElements(driver, this);
     }
 
-    // ==========================
-    // TC_009 - Lab Tests Navigation
-    // ==========================
-
     @FindBy(xpath = "//a[@title='tests']")
     private WebElement labTestsMenu;
-
-    // ==========================
-    // Existing Elements
-    // ==========================
 
     @FindBy(xpath = "//*[contains(text(),'Select City') or contains(@class,'city')]")
     private WebElement cityDropdown;
@@ -50,19 +42,10 @@ public class LabTestsPage {
     @FindBy(xpath = "//*[contains(text(),'Health') or contains(text(),'package') or contains(text(),'Package')]")
     private List<WebElement> healthPackages;
 
-    // ==========================
-    // NEW LOCATOR FOR TC_010
-    // ==========================
-
     @FindBy(xpath = "//img[contains(@src,'topcities')]")
     private List<WebElement> topCityIcons;
 
-    // ==========================
-    // TC_009 Methods
-    // ==========================
-
     public void clickLabTestsMenu() {
-
         try {
             labTestsMenu.click();
         } catch (Exception e) {
@@ -73,9 +56,7 @@ public class LabTestsPage {
     }
 
     public boolean isLabTestsPageOpened() {
-
         try {
-
             String currentUrl = driver.getCurrentUrl().toLowerCase();
             String pageTitle = driver.getTitle().toLowerCase();
 
@@ -87,10 +68,6 @@ public class LabTestsPage {
             return false;
         }
     }
-
-    // ==========================
-    // Existing Actions
-    // ==========================
 
     public void clickCityDropdown() {
         cityDropdown.click();
@@ -105,10 +82,6 @@ public class LabTestsPage {
         labSearchField.clear();
         labSearchField.sendKeys(testName);
     }
-
-    // ==========================
-    // Validation Methods
-    // ==========================
 
     public boolean isTopCitiesDisplayed() {
 
@@ -136,12 +109,7 @@ public class LabTestsPage {
         return healthPackages.size() > 0;
     }
 
-    // ==========================
-    // NEW METHOD FOR TC_010
-    // ==========================
-
     public boolean isTopCitiesSectionVisible() {
-
         try {
             return topCityIcons.size() > 0;
         } catch (Exception e) {
@@ -150,7 +118,6 @@ public class LabTestsPage {
     }
 
     public int getTopCityIconsCount() {
-
         try {
             return topCityIcons.size();
         } catch (Exception e) {
@@ -158,16 +125,11 @@ public class LabTestsPage {
         }
     }
 
-    // ==========================
-    // Data Retrieval Methods
-    // ==========================
-
     public int getTopCitiesCount() {
         return topCityNames.size();
     }
 
     public List<String> getTopCityNames() {
-
         return topCityNames.stream()
                 .map(WebElement::getText)
                 .map(String::trim)

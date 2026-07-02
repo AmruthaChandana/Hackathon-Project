@@ -32,10 +32,6 @@ public class LoginPage {
     @FindBy(xpath = "//div[contains(@class,'nav-dropdown')]")
     private WebElement profileDropdownPanel;
 
-    // ==========================
-    // Actions
-    // ==========================
-
     public void enterMobile(String mobile) {
         mobileNumberField.clear();
         mobileNumberField.sendKeys(mobile);
@@ -53,10 +49,6 @@ public class LoginPage {
     public void clickProfileArrow() {
         profileDownArrow.click();
     }
-
-    // ==========================
-    // Validation Methods
-    // ==========================
 
     public boolean isUserLoggedIn() {
         try {
@@ -82,16 +74,9 @@ public class LoginPage {
         }
     }
 
-    // ==========================
-    // Business Method
-    // ==========================
-
     public void login(String mobile, String password) {
-
         enterMobile(mobile);
-
         enterPassword(password);
-
         clickLogin();
     }
 }

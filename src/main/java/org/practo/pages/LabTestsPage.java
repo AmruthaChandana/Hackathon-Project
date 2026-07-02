@@ -17,6 +17,17 @@ public class LabTestsPage {
         PageFactory.initElements(driver, this);
     }
 
+    // ==========================
+    // Lab Tests Navigation
+    // ==========================
+
+    @FindBy(xpath = "//a[@title='tests']")
+    private WebElement labTestsMenu;
+
+    // ==========================
+    // Existing Elements
+    // ==========================
+
     @FindBy(xpath = "//*[contains(text(),'Select City') or contains(@class,'city')]")
     private WebElement cityDropdown;
 
@@ -39,7 +50,31 @@ public class LabTestsPage {
     private List<WebElement> healthPackages;
 
     // ==========================
-    // Actions
+    // Navigation Methods
+    // ==========================
+
+    public void clickLabTestsMenu() {
+        labTestsMenu.click();
+    }
+
+    public boolean isLabTestsPageOpened() {
+
+        try {
+
+            String currentUrl = driver.getCurrentUrl().toLowerCase();
+            String pageTitle = driver.getTitle().toLowerCase();
+
+            return currentUrl.contains("tests")
+                    || currentUrl.contains("lab")
+                    || pageTitle.contains("lab");
+
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    // ==========================
+    // Existing Actions
     // ==========================
 
     public void clickCityDropdown() {

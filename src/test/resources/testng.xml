@@ -1,11 +1,13 @@
-<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<?xml version="1.0" encoding="UTF-8"?>
 
-<suite name="Practo Hackathon Automation Suite">
+<suite name="Practo Suite">
 
-    <test name="TC_002 Invalid Login Test">
+    <test name="Navigation Test">
+
         <classes>
-            <class name="org.practo.tests.TC_016_ExtractTop5FAQs"/>
+            <class name="org.practo.tests.TC_009_Navigation"/>
         </classes>
+
     </test>
 
-
+</suite>

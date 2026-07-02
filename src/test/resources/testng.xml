@@ -5,7 +5,9 @@
     <test name="Navigation Test">
 
         <classes>
+            <class name="org.practo.tests.TC_002_LoginWithInvalidPassword"/>
             <class name="org.practo.tests.TC_009_Navigation"/>
+            <class name="org.practo.tests.TC_016_ExtractTop5FAQs"/>
         </classes>
 
     </test>

@@ -1,38 +1,97 @@
 package org.practo.pages;
 
-import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 public class LoginPage {
 
-    public By mobileNumberField = By.xpath(
-            "//input[contains(@placeholder,'Mobile') or contains(@name,'mobile')]"
-    );
+    private WebDriver driver;
 
-    public By passwordField = By.xpath(
-            "//input[@type='password']"
-    );
+    public LoginPage(WebDriver driver) {
+        this.driver = driver;
+        PageFactory.initElements(driver, this);
+    }
 
-    public By loginSubmitButton = By.xpath(
-            "//button[contains(text(),'Login') or contains(text(),'Continue')]"
-    );
+    @FindBy(xpath = "//input[contains(@placeholder,'Mobile') or contains(@name,'mobile')]")
+    private WebElement mobileNumberField;
 
-    // Header username
-    public By headerUserName = By.xpath(
-            "//span[contains(@class,'user_info_top')]"
-    );
+    @FindBy(xpath = "//input[@type='password']")
+    private WebElement passwordField;
 
-    // ✅ FINAL DOWN ARROW LOCATOR (your XPath)
-    public By profileDownArrow = By.xpath(
-            "//span[contains(@class,'user_info_top')]/following-sibling::span[contains(@class,'downarrow')]"
-    );
+    @FindBy(xpath = "//button[contains(text(),'Login') or contains(text(),'Continue')]")
+    private WebElement loginSubmitButton;
 
-    // Dropdown panel (after click)
-    public By profileDropdownPanel = By.xpath(
-            "//div[contains(@class,'nav-dropdown')]"
-    );
+    @FindBy(xpath = "//span[contains(@class,'user_info_top')]")
+    private WebElement headerUserName;
 
-    public By errorMessage = By.xpath(
-            "//*[contains(text(),'Invalid') or contains(text(),'incorrect') or contains(text(),'wrong') or contains(text(),'Try again')]"
-    );
+    @FindBy(xpath = "//span[contains(@class,'user_info_top')]/following-sibling::span[contains(@class,'downarrow')]")
+    private WebElement profileDownArrow;
 
+    @FindBy(xpath = "//div[contains(@class,'nav-dropdown')]")
+    private WebElement profileDropdownPanel;
+
+    // ==========================
+    // Actions
+    // ==========================
+
+    public void enterMobile(String mobile) {
+        mobileNumberField.clear();
+        mobileNumberField.sendKeys(mobile);
+    }
+
+    public void enterPassword(String password) {
+        passwordField.clear();
+        passwordField.sendKeys(password);
+    }
+
+    public void clickLogin() {
+        loginSubmitButton.click();
+    }
+
+    public void clickProfileArrow() {
+        profileDownArrow.click();
+    }
+
+    // ==========================
+    // Validation Methods
+    // ==========================
+
+    public boolean isUserLoggedIn() {
+        try {
+            return headerUserName.isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public boolean isProfileDropdownDisplayed() {
+        try {
+            return profileDropdownPanel.isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public String getLoggedInUserName() {
+        try {
+            return headerUserName.getText().trim();
+        } catch (Exception e) {
+            return "";
+        }
+    }
+
+    // ==========================
+    // Business Method
+    // ==========================
+
+    public void login(String mobile, String password) {
+
+        enterMobile(mobile);
+
+        enterPassword(password);
+
+        clickLogin();
+    }
 }

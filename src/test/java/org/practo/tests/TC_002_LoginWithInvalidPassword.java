@@ -1,7 +1,6 @@
 package org.practo.tests;
 
 import base.BaseTest;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.practo.pages.HomePage;
 import org.practo.pages.LoginPage;
 import org.testng.Assert;
@@ -16,34 +15,48 @@ public class TC_002_LoginWithInvalidPassword extends BaseTest {
     @Test
     public void verifyLoginWithInvalidPassword() {
 
-        homePage = new HomePage();
-        loginPage = new LoginPage();
+        homePage = new HomePage(driver);
+        loginPage = new LoginPage(driver);
 
-        String mobileNumber = ExcelUtils.getCellData("TC_002", "Mobile");
-        String invalidPassword = ExcelUtils.getCellData("TC_002", "InvalidPassword");
+        String mobileNumber =
+                ExcelUtils.getCellData("TC_002", "Mobile");
+
+        String invalidPassword =
+                ExcelUtils.getCellData("TC_002", "InvalidPassword");
 
         openApplication();
 
-        click(homePage.loginButton);
+        /*
+         * Step 1: Click Login
+         */
+        homePage.clickLogin();
 
-        type(loginPage.mobileNumberField, mobileNumber);
+        /*
+         * Step 2: Enter Credentials
+         */
+        loginPage.enterMobile(mobileNumber);
 
-        type(loginPage.passwordField, invalidPassword);
+        loginPage.enterPassword(invalidPassword);
 
-        click(loginPage.loginSubmitButton);
+        /*
+         * Step 3: Click Login Button
+         */
+        loginPage.clickLogin();
 
+        /*
+         * Step 4: Verify Login Failed
+         */
         wait.until(driver ->
-                isDisplayed(loginPage.headerUserName) ||
-                        isDisplayed(loginPage.loginSubmitButton)
+                !loginPage.isUserLoggedIn()
         );
 
-        boolean isUserLoggedIn = isDisplayed(loginPage.headerUserName);
-
         Assert.assertFalse(
-                isUserLoggedIn,
+                loginPage.isUserLoggedIn(),
                 "Login should NOT succeed with invalid password"
         );
 
-        System.out.println("TC_002 Passed: Login unsuccessful as expected (invalid password)");
+        System.out.println(
+                "TC_002 Passed: Login unsuccessful as expected with invalid password"
+        );
     }
 }

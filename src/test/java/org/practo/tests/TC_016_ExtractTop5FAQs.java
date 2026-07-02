@@ -1,125 +1,122 @@
 package org.practo.tests;
 
 import base.BaseTest;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.practo.pages.HomePage;
 import org.practo.pages.VideoConsultPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class TC_016_ExtractTop5FAQs extends BaseTest {
 
-    HomePage homePage;
-    VideoConsultPage videoConsultPage;
+    private HomePage homePage;
+    private VideoConsultPage videoConsultPage;
 
     @Test
     public void verifyTop5FAQsExtraction() {
 
-        homePage = new HomePage();
-        videoConsultPage = new VideoConsultPage();
+        homePage = new HomePage(driver);
+        videoConsultPage = new VideoConsultPage(driver);
 
         openApplication();
 
         /*
-         * Step 1: Navigate to Video Consult
+         * Step 1: Navigate to Video Consult Page
          */
         scrollDown();
 
         try {
-            wait.until(ExpectedConditions.elementToBeClickable(homePage.videoConsultLink));
-            click(homePage.videoConsultLink);
+            wait.until(
+                    ExpectedConditions.elementToBeClickable(
+                            homePage.getVideoConsultLink()
+                    )
+            );
+
+            homePage.clickVideoConsult();
+
         } catch (Exception e) {
+
             scrollDown();
-            clickUsingJS(homePage.videoConsultLink);
+            homePage.clickVideoConsultUsingJS();
         }
 
         System.out.println("Navigated to Video Consult page");
 
         /*
-         * Step 2: Wait for FAQ section
+         * Step 2: Scroll to FAQ Section
          */
-        wait.until(ExpectedConditions.presenceOfElementLocated(videoConsultPage.faqSection));
-
-        // bring section into view
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 5; i++) {
             scrollDown();
         }
+
+        Assert.assertTrue(
+                videoConsultPage.isFaqSectionDisplayed(),
+                "FAQ section not displayed"
+        );
 
         System.out.println("FAQ section found");
 
         /*
-         * Step 3: DYNAMIC SCROLL (MOST IMPORTANT FIX )
+         * Step 3: Wait until at least one FAQ is loaded
          */
-
         wait.until(driver ->
-                driver.findElements(videoConsultPage.faqQuestions).size() > 0
+                videoConsultPage.getFaqCount() > 0
         );
 
-        int previousCount = 0;
-        int currentCount = 0;
+        /*
+         * Step 4: Scroll dynamically until all FAQs are loaded
+         */
+        int previousCount;
+        int currentCount;
 
         do {
-            previousCount = driver.findElements(videoConsultPage.faqQuestions).size();
+            previousCount = videoConsultPage.getFaqCount();
 
             scrollDown();
 
             try {
                 Thread.sleep(800);
-            } catch (Exception ignored) {}
+            } catch (Exception ignored) {
+            }
 
-            currentCount = driver.findElements(videoConsultPage.faqQuestions).size();
+            currentCount = videoConsultPage.getFaqCount();
 
         } while (currentCount > previousCount);
 
         /*
-         * Step 4: Extract FAQs
+         * Step 5: Extract Top 5 FAQs
          */
-        List<String> faqList = new ArrayList<>();
-
-        List<WebElement> elements =
-                driver.findElements(videoConsultPage.faqQuestions);
-
-        for (WebElement element : elements) {
-            try {
-                String text = element.getText().trim();
-
-                if (!text.isEmpty()) {
-                    faqList.add(text);
-                }
-
-            } catch (Exception ignored) {
-                // handles stale safely
-            }
-        }
+        List<String> topFaqs =
+                videoConsultPage.getTopFiveFaqQuestions();
 
         /*
-         * Step 5: Print Top 5 FAQs
+         * Step 6: Print FAQs
          */
         System.out.println("\nTop 5 FAQs:");
 
-        int count = Math.min(5, faqList.size());
-
-        for (int i = 0; i < count; i++) {
-            System.out.println((i + 1) + ". " + faqList.get(i));
+        for (int i = 0; i < topFaqs.size(); i++) {
+            System.out.println(
+                    (i + 1) + ". " + topFaqs.get(i)
+            );
         }
 
         /*
-         * Step 6: Validation (STRICT )
+         * Step 7: Validation
          */
         Assert.assertTrue(
-                faqList.size() >= 5,
+                topFaqs.size() >= 5,
                 "Less than 5 FAQs found"
         );
 
         /*
-         * Step 7: Navigate back
+         * Step 8: Navigate Back
          */
         driver.navigate().back();
 
-        System.out.println("\nTC_016 Passed: Extracted 5 FAQs successfully");
+        System.out.println(
+                "\nTC_016 Passed: Extracted 5 FAQs successfully"
+        );
     }
 }

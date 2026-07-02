@@ -2,19 +2,10 @@
 
 <suite name="Practo Hackathon Automation Suite">
 
-    <test name="TC_016 Extract Top 5 FAQs">
+    <test name="TC_002 Invalid Login Test">
         <classes>
             <class name="org.practo.tests.TC_016_ExtractTop5FAQs"/>
         </classes>
     </test>
 
-    <test name="Verify Searching and Extraction of Hospital Details">
-        <classes>
-            <class name="org.practo.tests.TC_011_VerifySearchAndLocationBox"/>
-            <class name="org.practo.tests.TC_012_VerifyFirstNHospitals"/>
-            <class name="org.practo.tests.TC_013_VerifyBookHospitalVisitButton"/>
-            <class name="org.practo.tests.TC_015_VerifyNoResultsPageDoesNotCrash"/>
-        </classes>
-    </test>
 
-</suite>

@@ -1,6 +1,8 @@
 package org.practo.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -9,6 +11,9 @@ import org.openqa.selenium.support.PageFactory;
 public class HomePage {
 
     private WebDriver driver;
+
+    public HomePage() {
+    }
 
     public HomePage(WebDriver driver) {
         this.driver = driver;
@@ -37,7 +42,39 @@ public class HomePage {
     private WebElement corporateWellnessLink;
 
     // ==========================
-    // Actions
+    // TC11 to TC15 PageFactory Elements
+    // Added for hospital search test cases
+    // ==========================
+
+    @FindBy(xpath = "//input[@data-qa-id='omni-searchbox-locality']")
+    private WebElement hospitalLocationBoxElement;
+
+    @FindBy(xpath = "//input[@data-qa-id='omni-searchbox-keyword']")
+    private WebElement hospitalSearchBoxElement;
+
+    // ==========================
+    // TC11 to TC15 By Locators
+    // Kept so existing TC11-TC15 test classes do not break
+    // ==========================
+
+    public By hospitalLocationBox = By.xpath("//input[@data-qa-id='omni-searchbox-locality']");
+
+    public By hospitalSearchBox = By.xpath("//input[@data-qa-id='omni-searchbox-keyword']");
+
+    public By locationOption(String location) {
+        return By.xpath("//div[contains(text(),'" + location + "')]");
+    }
+
+    public By searchOption(String searchKeyword) {
+        return By.xpath("//div[@data-qa-id='omni-suggestion-main' and text()='" + searchKeyword + "']");
+    }
+
+    public By searchOptionContains(String searchKeyword) {
+        return By.xpath("//div[@data-qa-id='omni-suggestion-main' and contains(text(),'" + searchKeyword + "')]");
+    }
+
+    // ==========================
+    // Existing Actions
     // ==========================
 
     public void clickLogin() {
@@ -76,7 +113,42 @@ public class HomePage {
     }
 
     // ==========================
-    // Getters (for waits)
+    // TC11 to TC15 PageFactory Actions
+    // These are added for hospital search test cases
+    // Current test cases can still continue using By locators
+    // ==========================
+
+    public void enterHospitalLocation(String location) {
+        hospitalLocationBoxElement.click();
+        hospitalLocationBoxElement.clear();
+        hospitalLocationBoxElement.sendKeys(location);
+    }
+
+    public void triggerHospitalLocationSuggestion(String location) {
+        hospitalLocationBoxElement.sendKeys(Keys.BACK_SPACE);
+        hospitalLocationBoxElement.sendKeys(location.substring(location.length() - 1));
+    }
+
+    public void enterHospitalSearchKeyword(String searchKeyword) {
+        hospitalSearchBoxElement.click();
+        hospitalSearchBoxElement.clear();
+        hospitalSearchBoxElement.sendKeys(searchKeyword);
+    }
+
+    public void clickLocationOption(String location) {
+        driver.findElement(locationOption(location)).click();
+    }
+
+    public void clickSearchOption(String searchKeyword) {
+        driver.findElement(searchOption(searchKeyword)).click();
+    }
+
+    public void clickSearchOptionContains(String searchKeyword) {
+        driver.findElement(searchOptionContains(searchKeyword)).click();
+    }
+
+    // ==========================
+    // Existing Getters for waits
     // ==========================
 
     public WebElement getVideoConsultLink() {
@@ -89,5 +161,17 @@ public class HomePage {
 
     public WebElement getCorporateWellnessLink() {
         return corporateWellnessLink;
+    }
+
+    // ==========================
+    // TC11 to TC15 PageFactory Getters
+    // ==========================
+
+    public WebElement getHospitalLocationBoxElement() {
+        return hospitalLocationBoxElement;
+    }
+
+    public WebElement getHospitalSearchBoxElement() {
+        return hospitalSearchBoxElement;
     }
 }

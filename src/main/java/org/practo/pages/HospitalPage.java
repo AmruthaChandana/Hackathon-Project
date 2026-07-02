@@ -1,5 +1,6 @@
 package org.practo.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -11,6 +12,9 @@ import java.util.stream.Collectors;
 public class HospitalPage {
 
     private WebDriver driver;
+
+    public HospitalPage() {
+    }
 
     public HospitalPage(WebDriver driver) {
         this.driver = driver;
@@ -36,7 +40,38 @@ public class HospitalPage {
     private WebElement addressSection;
 
     // ==========================
-    // Actions
+    // TC11 to TC15 PageFactory Elements
+    // Added for hospital search test cases
+    // ==========================
+
+    @FindBy(xpath = "//h2[contains(@class,'line-1')]")
+    private List<WebElement> hospitalNamesForSearchResultsElements;
+
+    @FindBy(xpath = "//button[@class='c-book-cta' and text()='Book Hospital Visit']")
+    private WebElement bookHospitalVisitButtonElement;
+
+    @FindBy(xpath = "//div[@data-qa-id='no_results']")
+    private WebElement noResultsMessageElement;
+
+    // ==========================
+    // TC11 to TC15 By Locators
+    // Kept so existing TC11-TC15 test classes do not break
+    // ==========================
+
+    public By hospitalNamesForSearchResults = By.xpath("//h2[contains(@class,'line-1')]");
+
+    public By hospitalCardFromName = By.xpath("./ancestor::li");
+
+    public By open24x7Text = By.xpath(".//span[normalize-space()='Open 24x7']");
+
+    public By ratingText = By.xpath(".//div[contains(@class,'c-feedback')]//span[contains(@class,'u-bold')]");
+
+    public By bookHospitalVisitButton = By.xpath("//button[@class='c-book-cta' and text()='Book Hospital Visit']");
+
+    public By noResultsMessage = By.xpath("//div[@data-qa-id='no_results']");
+
+    // ==========================
+    // Existing Actions
     // ==========================
 
     public void clickOpen24x7Filter() {
@@ -48,7 +83,15 @@ public class HospitalPage {
     }
 
     // ==========================
-    // Data Retrieval Methods
+    // TC11 to TC15 PageFactory Actions
+    // ==========================
+
+    public void clickBookHospitalVisitButton() {
+        bookHospitalVisitButtonElement.click();
+    }
+
+    // ==========================
+    // Existing Data Retrieval Methods
     // ==========================
 
     public int getHospitalCount() {
@@ -83,7 +126,24 @@ public class HospitalPage {
     }
 
     // ==========================
-    // Validation Methods
+    // TC11 to TC15 PageFactory Data Retrieval Methods
+    // ==========================
+
+    public List<WebElement> getHospitalNamesForSearchResultsElements() {
+        return hospitalNamesForSearchResultsElements;
+    }
+
+    public String getNoResultsMessageText() {
+
+        try {
+            return noResultsMessageElement.getText().trim();
+        } catch (Exception e) {
+            return "";
+        }
+    }
+
+    // ==========================
+    // Existing Validation Methods
     // ==========================
 
     public boolean isOpen24x7FilterDisplayed() {
@@ -106,5 +166,36 @@ public class HospitalPage {
 
     public boolean hasHospitals() {
         return getHospitalCount() > 0;
+    }
+
+    // ==========================
+    // TC11 to TC15 PageFactory Validation Methods
+    // ==========================
+
+    public boolean isBookHospitalVisitButtonDisplayed() {
+
+        try {
+            return bookHospitalVisitButtonElement.isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public boolean isBookHospitalVisitButtonEnabled() {
+
+        try {
+            return bookHospitalVisitButtonElement.isEnabled();
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public boolean isNoResultsMessageDisplayed() {
+
+        try {
+            return noResultsMessageElement.isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
     }
 }

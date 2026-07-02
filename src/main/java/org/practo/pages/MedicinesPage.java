@@ -38,12 +38,7 @@ public class MedicinesPage {
     @FindBy(xpath = "//button[contains(text(),'Add') and @disabled]")
     private WebElement disabledAddToCart;
 
-    // ==========================
-    // Actions
-    // ==========================
-
     public void searchMedicine(String medicineName) {
-
         medicineSearchBox.clear();
         medicineSearchBox.sendKeys(medicineName);
     }
@@ -56,12 +51,7 @@ public class MedicinesPage {
         cartIcon.click();
     }
 
-    // ==========================
-    // Validation Methods
-    // ==========================
-
     public boolean isCartDisplayed() {
-
         try {
             return cartIcon.isDisplayed();
         } catch (Exception e) {
@@ -70,7 +60,6 @@ public class MedicinesPage {
     }
 
     public boolean isOutOfStockMessageDisplayed() {
-
         try {
             return outOfStockText.isDisplayed();
         } catch (Exception e) {
@@ -79,7 +68,6 @@ public class MedicinesPage {
     }
 
     public boolean isAddToCartDisabled() {
-
         try {
             return !disabledAddToCart.isEnabled();
         } catch (Exception e) {
@@ -91,16 +79,11 @@ public class MedicinesPage {
         return medicineList.size() > 0;
     }
 
-    // ==========================
-    // Data Retrieval Methods
-    // ==========================
-
     public int getMedicineCount() {
         return medicineList.size();
     }
 
     public List<String> getMedicineNames() {
-
         return medicineNames.stream()
                 .map(WebElement::getText)
                 .map(String::trim)
@@ -109,7 +92,6 @@ public class MedicinesPage {
     }
 
     public String getOutOfStockMessage() {
-
         try {
             return outOfStockText.getText().trim();
         } catch (Exception e) {
@@ -117,14 +99,8 @@ public class MedicinesPage {
         }
     }
 
-    // ==========================
-    // Business Method
-    // ==========================
-
     public void searchAndAddMedicine(String medicineName) {
-
         searchMedicine(medicineName);
-
         if (hasMedicines()) {
             clickAddToCart();
         }

@@ -19,10 +19,6 @@ public class VideoConsultPage {
         PageFactory.initElements(driver, this);
     }
 
-    // ============================
-    // Page Elements
-    // ============================
-
     @FindBy(xpath = "//*[contains(text(),'Consult Now') or contains(text(),'Start consultation')]")
     private WebElement consultNowButton;
 
@@ -41,17 +37,7 @@ public class VideoConsultPage {
     @FindBy(xpath = "//div[@id='FaqSection']")
     private WebElement faqSection;
 
-    /*
-     * Do NOT use @FindBy List<WebElement> for FAQ questions.
-     * Practo FAQ section refreshes dynamically and causes StaleElementReferenceException.
-     * So we are using fresh driver.findElements() inside methods.
-     */
-    private static final String FAQ_XPATH =
-            "//div[starts-with(@data-testid,'faq_')]//h3";
-
-    // ============================
-    // Consultation Actions
-    // ============================
+    private static final String FAQ_XPATH = "//div[starts-with(@data-testid,'faq_')]//h3";
 
     public void clickConsultNow() {
         consultNowButton.click();
@@ -79,10 +65,6 @@ public class VideoConsultPage {
         }
     }
 
-    // ============================
-    // FAQ Methods
-    // ============================
-
     public boolean isFaqSectionDisplayed() {
         try {
             return faqSection.isDisplayed();
@@ -100,31 +82,23 @@ public class VideoConsultPage {
     }
 
     public List<String> getAllFaqQuestions() {
-
         List<String> faqList = new ArrayList<>();
-
         List<WebElement> faqElements =
                 driver.findElements(By.xpath(FAQ_XPATH));
-
         for (WebElement faqElement : faqElements) {
-
             try {
                 String faqText = faqElement.getText().trim();
-
                 if (!faqText.isEmpty()) {
                     faqList.add(faqText);
                 }
-
             } catch (Exception ignored) {
                 // Handles StaleElementReferenceException safely
             }
         }
-
         return faqList;
     }
 
     public List<String> getTopFiveFaqQuestions() {
-
         return getAllFaqQuestions()
                 .stream()
                 .distinct()
@@ -132,18 +106,10 @@ public class VideoConsultPage {
                 .collect(Collectors.toList());
     }
 
-    // ============================
-    // Business Method
-    // ============================
-
     public void startConsultation(String symptom, String mobileNumber) {
-
         clickConsultNow();
-
         enterSymptom(symptom);
-
         selectSpecialist();
-
         enterMobileNumber(mobileNumber);
     }
 }

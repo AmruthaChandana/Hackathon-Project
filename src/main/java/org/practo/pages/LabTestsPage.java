@@ -1,5 +1,6 @@
 package org.practo.pages;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -17,16 +18,8 @@ public class LabTestsPage {
         PageFactory.initElements(driver, this);
     }
 
-    // ==========================
-    // Lab Tests Navigation
-    // ==========================
-
     @FindBy(xpath = "//a[@title='tests']")
     private WebElement labTestsMenu;
-
-    // ==========================
-    // Existing Elements
-    // ==========================
 
     @FindBy(xpath = "//*[contains(text(),'Select City') or contains(@class,'city')]")
     private WebElement cityDropdown;
@@ -49,18 +42,21 @@ public class LabTestsPage {
     @FindBy(xpath = "//*[contains(text(),'Health') or contains(text(),'package') or contains(text(),'Package')]")
     private List<WebElement> healthPackages;
 
-    // ==========================
-    // Navigation Methods
-    // ==========================
+    @FindBy(xpath = "//img[contains(@src,'topcities')]")
+    private List<WebElement> topCityIcons;
 
     public void clickLabTestsMenu() {
-        labTestsMenu.click();
+        try {
+            labTestsMenu.click();
+        } catch (Exception e) {
+
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            js.executeScript("arguments[0].click();", labTestsMenu);
+        }
     }
 
     public boolean isLabTestsPageOpened() {
-
         try {
-
             String currentUrl = driver.getCurrentUrl().toLowerCase();
             String pageTitle = driver.getTitle().toLowerCase();
 
@@ -72,10 +68,6 @@ public class LabTestsPage {
             return false;
         }
     }
-
-    // ==========================
-    // Existing Actions
-    // ==========================
 
     public void clickCityDropdown() {
         cityDropdown.click();
@@ -91,11 +83,8 @@ public class LabTestsPage {
         labSearchField.sendKeys(testName);
     }
 
-    // ==========================
-    // Validation Methods
-    // ==========================
-
     public boolean isTopCitiesDisplayed() {
+
         try {
             return topCitiesSection.isDisplayed();
         } catch (Exception e) {
@@ -104,6 +93,7 @@ public class LabTestsPage {
     }
 
     public boolean isCityDropdownDisplayed() {
+
         try {
             return cityDropdown.isDisplayed();
         } catch (Exception e) {
@@ -119,16 +109,27 @@ public class LabTestsPage {
         return healthPackages.size() > 0;
     }
 
-    // ==========================
-    // Data Retrieval Methods
-    // ==========================
+    public boolean isTopCitiesSectionVisible() {
+        try {
+            return topCityIcons.size() > 0;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public int getTopCityIconsCount() {
+        try {
+            return topCityIcons.size();
+        } catch (Exception e) {
+            return 0;
+        }
+    }
 
     public int getTopCitiesCount() {
         return topCityNames.size();
     }
 
     public List<String> getTopCityNames() {
-
         return topCityNames.stream()
                 .map(WebElement::getText)
                 .map(String::trim)

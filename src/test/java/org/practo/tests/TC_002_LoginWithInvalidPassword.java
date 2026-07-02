@@ -26,30 +26,20 @@ public class TC_002_LoginWithInvalidPassword extends BaseTest {
 
         openApplication();
 
-        /*
-         * Step 1: Click Login
-         */
+        // Step 1: Click Login
         homePage.clickLogin();
 
-        /*
-         * Step 2: Enter Credentials
-         */
+        // Step 2: Enter Credentials
         loginPage.enterMobile(mobileNumber);
-
         loginPage.enterPassword(invalidPassword);
 
-        /*
-         * Step 3: Click Login Button
-         */
+        //Step 3: Click Login Button
         loginPage.clickLogin();
-
-        /*
-         * Step 4: Verify Login Failed
-         */
         wait.until(driver ->
                 !loginPage.isUserLoggedIn()
         );
 
+        //Step 4: Verify Login Failed
         Assert.assertFalse(
                 loginPage.isUserLoggedIn(),
                 "Login should NOT succeed with invalid password"

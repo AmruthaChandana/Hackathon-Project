@@ -1,5 +1,6 @@
 package org.practo.pages;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -18,7 +19,7 @@ public class LabTestsPage {
     }
 
     // ==========================
-    // Lab Tests Navigation
+    // TC_009 - Lab Tests Navigation
     // ==========================
 
     @FindBy(xpath = "//a[@title='tests']")
@@ -50,11 +51,25 @@ public class LabTestsPage {
     private List<WebElement> healthPackages;
 
     // ==========================
-    // Navigation Methods
+    // NEW LOCATOR FOR TC_010
+    // ==========================
+
+    @FindBy(xpath = "//img[contains(@src,'topcities')]")
+    private List<WebElement> topCityIcons;
+
+    // ==========================
+    // TC_009 Methods
     // ==========================
 
     public void clickLabTestsMenu() {
-        labTestsMenu.click();
+
+        try {
+            labTestsMenu.click();
+        } catch (Exception e) {
+
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            js.executeScript("arguments[0].click();", labTestsMenu);
+        }
     }
 
     public boolean isLabTestsPageOpened() {
@@ -96,6 +111,7 @@ public class LabTestsPage {
     // ==========================
 
     public boolean isTopCitiesDisplayed() {
+
         try {
             return topCitiesSection.isDisplayed();
         } catch (Exception e) {
@@ -104,6 +120,7 @@ public class LabTestsPage {
     }
 
     public boolean isCityDropdownDisplayed() {
+
         try {
             return cityDropdown.isDisplayed();
         } catch (Exception e) {
@@ -117,6 +134,28 @@ public class LabTestsPage {
 
     public boolean hasHealthPackages() {
         return healthPackages.size() > 0;
+    }
+
+    // ==========================
+    // NEW METHOD FOR TC_010
+    // ==========================
+
+    public boolean isTopCitiesSectionVisible() {
+
+        try {
+            return topCityIcons.size() > 0;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public int getTopCityIconsCount() {
+
+        try {
+            return topCityIcons.size();
+        } catch (Exception e) {
+            return 0;
+        }
     }
 
     // ==========================

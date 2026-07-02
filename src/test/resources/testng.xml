@@ -6,6 +6,7 @@
 
         <classes>
             <class name="org.practo.tests.TC_009_Navigation"/>
+            <class name="org.practo.tests.TC_010_TopCitiesVisibility"/>
         </classes>
 
     </test>

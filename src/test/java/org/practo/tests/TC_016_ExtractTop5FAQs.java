@@ -22,9 +22,9 @@ public class TC_016_ExtractTop5FAQs extends BaseTest {
 
         openApplication();
 
-        /*
-         * Step 1: Navigate to Video Consult Page
-         */
+
+         //Step 1: Navigate to Video Consult Page
+
         scrollDown();
 
         try {
@@ -44,9 +44,9 @@ public class TC_016_ExtractTop5FAQs extends BaseTest {
 
         System.out.println("Navigated to Video Consult page");
 
-        /*
-         * Step 2: Scroll to FAQ Section
-         */
+
+         //Step 2: Scroll to FAQ Section
+
         for (int i = 0; i < 5; i++) {
             scrollDown();
         }
@@ -58,9 +58,9 @@ public class TC_016_ExtractTop5FAQs extends BaseTest {
 
         System.out.println("FAQ section found");
 
-        /*
-         * Step 3: Wait until at least one FAQ is loaded
-         */
+
+         //Step 3: Wait until at least one FAQ is loaded
+
         wait.until(driver ->
                 videoConsultPage.getFaqCount() > 0
         );

@@ -38,7 +38,7 @@ public class TC_001_LoginWithValidCredentials{
     @Test
     public void loginAndVerifyProfileDropdown() {
 
-        // ✅ Hardcoded credentials (temporary)
+
         String mobileNumber = "9346740043";
         String password = "Amruthayadav@30";
 
@@ -96,7 +96,7 @@ public class TC_001_LoginWithValidCredentials{
 
         Assert.assertTrue(myAppointments.isDisplayed());
 
-        System.out.println("✅ Login + dropdown verified");
+        System.out.println("Login + dropdown verified");
     }
 
 

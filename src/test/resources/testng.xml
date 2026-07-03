@@ -9,6 +9,7 @@
             <class name="org.practo.tests.TC_011_VerifySearchAndLocationBox"/>
             <class name="org.practo.tests.TC_012_VerifyFirstNHospitals"/>
             <class name="org.practo.tests.TC_013_VerifyBookHospitalVisitButton"/>
+            <class name="org.practo.tests.TC_014_VerifyHospitalAddress"/>
             <class name="org.practo.tests.TC_015_VerifyNoResultsPageDoesNotCrash"/>
            <class name="org.practo.tests.TC_016_ExtractTop5FAQs"/>
             <class name="org.practo.tests.TC_017_MedicineSearch"/>

@@ -1,12 +1,13 @@
 package org.practo.tests;
 
 import base.BaseTest;
+import base.CommonCode;
 import org.practo.pages.MedicinesPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import utilities.ExcelUtils;
 
-public class TC_017_MedicineSearch extends BaseTest {
+public class TC_017_MedicineSearch extends CommonCode {
     @Test
     public void verifyMedicineSearch() {
         loadMedicineSheet();

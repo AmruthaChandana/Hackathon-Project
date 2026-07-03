@@ -1,4 +1,5 @@
 package org.practo.tests;
+import base.CommonCode;
 import org.openqa.selenium.Keys;
 import base.BaseTest;
 import org.openqa.selenium.JavascriptExecutor;
@@ -17,7 +18,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
-public class TC_012_VerifyFirstNHospitals extends BaseTest {
+public class TC_012_VerifyFirstNHospitals extends CommonCode {
     HomePage homePage = new HomePage();
     HospitalPage hospitalPage = new HospitalPage();
     @DataProvider(name = "tc12Data")

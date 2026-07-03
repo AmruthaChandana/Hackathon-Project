@@ -1,6 +1,6 @@
 package org.practo.tests;
 import org.openqa.selenium.Keys;
-import base.BaseTest;
+import base.CommonCode;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.practo.pages.HomePage;
@@ -16,7 +16,7 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 
-public class TC_013_VerifyBookHospitalVisitButton extends BaseTest {
+public class TC_013_VerifyBookHospitalVisitButton extends CommonCode {
     HomePage homePage = new HomePage();
     HospitalPage hospitalPage = new HospitalPage();
     @DataProvider(name = "tc13Data")

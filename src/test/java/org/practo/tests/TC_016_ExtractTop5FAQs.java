@@ -1,6 +1,7 @@
 package org.practo.tests;
 
 import base.BaseTest;
+import base.CommonCode;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.practo.pages.HomePage;
 import org.practo.pages.VideoConsultPage;
@@ -9,7 +10,7 @@ import org.testng.annotations.Test;
 
 import java.util.List;
 
-public class TC_016_ExtractTop5FAQs extends BaseTest {
+public class TC_016_ExtractTop5FAQs extends CommonCode {
     private HomePage homePage;
     private VideoConsultPage videoConsultPage;
 

@@ -1,13 +1,14 @@
 package org.practo.tests;
 
 import base.BaseTest;
+import base.CommonCode;
 import org.practo.pages.HomePage;
 import org.practo.pages.LoginPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import utilities.ExcelUtils;
 
-public class TC_002_LoginWithInvalidPassword extends BaseTest {
+public class TC_002_LoginWithInvalidPassword extends CommonCode {
     HomePage homePage;
     LoginPage loginPage;
 

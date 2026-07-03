@@ -3,7 +3,7 @@ package org.practo.tests;
 import java.time.Duration;
 import java.util.List;
 
-import base.BaseTest;
+import base.CommonCode;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.practo.pages.LabTestsPage;
@@ -11,7 +11,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import utilities.ConfigReader;
 
-public class TC_010_TopCitiesVisibility extends BaseTest {
+public class TC_010_TopCitiesVisibility extends CommonCode {
 
     @Test
     public void verifyTopCitiesSectionVisible() {

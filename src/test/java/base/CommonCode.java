@@ -15,7 +15,6 @@ public class CommonCode extends BaseTest {
     public void openApplication() {
         driver.get(prop.getProperty("url"));
     }
-
     // Excel Sheet Loaders
     public void loadMedicineSheet() {
         ExcelUtils.loadExcel(
@@ -140,7 +139,6 @@ public class CommonCode extends BaseTest {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].click();", element);
     }
-
     // Scroll Methods
     public void scrollDown() {
         JavascriptExecutor js = (JavascriptExecutor) driver;

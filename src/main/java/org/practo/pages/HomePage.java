@@ -29,7 +29,12 @@ public class HomePage {
     @FindBy(xpath = "//input[contains(@placeholder,'Search') or contains(@placeholder,'doctor') or contains(@placeholder,'clinic')]")
     private WebElement searchBox;
 
-    @FindBy(xpath = "//div[contains(text(),'Video Consult')] | //a[contains(text(),'Video Consult')]")
+    /*
+     * Correct Video Consult clickable anchor.
+     * This clicks the actual link which navigates to:
+     * https://www.practo.com/consult
+     */
+    @FindBy(xpath = "(//a[contains(@href,'/consult') and (@title='chat' or contains(normalize-space(),'Video Consult'))])[1]")
     private WebElement videoConsultLink;
 
     @FindBy(xpath = "//a[contains(text(),'Lab Tests') or contains(text(),'Diagnostics')]")
@@ -45,6 +50,29 @@ public class HomePage {
     private WebElement hospitalSearchBoxElement;
 
     // Dynamic locator because value comes from Excel
+
+// ==========================
+// TC_014 Surgery Page Elements
+// ==========================
+
+    @FindBy(xpath = "//*[@id='root']/div/div/div[1]/div[1]/div[2]/div/div[2]/div[4]/a/div[1]")
+    private WebElement surgeriesButton;
+
+
+// ==========================
+// TC_018 Video Consult Exact Home Link
+// ==========================
+
+    @FindBy(xpath = "//*[@id='root']/div/div/div[1]/div[1]/div[2]/div/div[2]/div[2]/a/div[1]")
+    private WebElement videoConsultHomeButton;
+
+
+    public By hospitalLocationBox =
+            By.xpath("//input[@data-qa-id='omni-searchbox-locality']");
+
+    public By hospitalSearchBox =
+            By.xpath("//input[@data-qa-id='omni-searchbox-keyword']");
+
     public By locationOption(String location) {
         return By.xpath("//div[contains(text(),'" + location + "')]");
     }
@@ -143,5 +171,35 @@ public class HomePage {
 
     public WebElement getHospitalSearchBoxElement() {
         return hospitalSearchBoxElement;
+    }
+
+// ==========================
+// TC_014 Surgery Page Actions
+// ==========================
+
+    public void clickSurgeriesButton() {
+        surgeriesButton.click();
+    }
+
+    public void clickSurgeriesButtonUsingJS() {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].click();", surgeriesButton);
+    }
+
+    public WebElement getSurgeriesButton() {
+        return surgeriesButton;
+    }
+
+    public void clickVideoConsultHomeButton() {
+        videoConsultHomeButton.click();
+    }
+
+    public void clickVideoConsultHomeButtonUsingJS() {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].click();", videoConsultHomeButton);
+    }
+
+    public WebElement getVideoConsultHomeButton() {
+        return videoConsultHomeButton;
     }
 }

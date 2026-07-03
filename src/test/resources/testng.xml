@@ -4,7 +4,6 @@
 
     <test name="TC_002 Invalid Login Test">
         <classes>
-            <class name="org.practo.tests.TC_014_NavigateToSurgeryPage"/>
             <class name="org.practo.tests.TC_009_Navigation"/>
             <class name="org.practo.tests.TC_010_TopCitiesVisibility"/>
             <class name="org.practo.tests.TC_011_VerifySearchAndLocationBox"/>

@@ -41,10 +41,8 @@ public class HomePage {
     @FindBy(xpath = "//*[contains(text(),'Corporate Wellness') or contains(text(),'For Corporates')]")
     private WebElement corporateWellnessLink;
 
-    // ==========================
     // TC11 to TC15 PageFactory Elements
     // Added for hospital search test cases
-    // ==========================
 
     @FindBy(xpath = "//input[@data-qa-id='omni-searchbox-locality']")
     private WebElement hospitalLocationBoxElement;
@@ -52,10 +50,8 @@ public class HomePage {
     @FindBy(xpath = "//input[@data-qa-id='omni-searchbox-keyword']")
     private WebElement hospitalSearchBoxElement;
 
-    // ==========================
     // TC11 to TC15 By Locators
     // Kept so existing TC11-TC15 test classes do not break
-    // ==========================
 
     public By hospitalLocationBox = By.xpath("//input[@data-qa-id='omni-searchbox-locality']");
 
@@ -73,9 +69,7 @@ public class HomePage {
         return By.xpath("//div[@data-qa-id='omni-suggestion-main' and contains(text(),'" + searchKeyword + "')]");
     }
 
-    // ==========================
     // Existing Actions
-    // ==========================
 
     public void clickLogin() {
         loginButton.click();
@@ -112,11 +106,9 @@ public class HomePage {
         corporateWellnessLink.click();
     }
 
-    // ==========================
     // TC11 to TC15 PageFactory Actions
     // These are added for hospital search test cases
     // Current test cases can still continue using By locators
-    // ==========================
 
     public void enterHospitalLocation(String location) {
         hospitalLocationBoxElement.click();
@@ -147,9 +139,7 @@ public class HomePage {
         driver.findElement(searchOptionContains(searchKeyword)).click();
     }
 
-    // ==========================
     // Existing Getters for waits
-    // ==========================
 
     public WebElement getVideoConsultLink() {
         return videoConsultLink;
@@ -163,9 +153,7 @@ public class HomePage {
         return corporateWellnessLink;
     }
 
-    // ==========================
     // TC11 to TC15 PageFactory Getters
-    // ==========================
 
     public WebElement getHospitalLocationBoxElement() {
         return hospitalLocationBoxElement;

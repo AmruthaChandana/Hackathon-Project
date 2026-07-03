@@ -39,10 +39,8 @@ public class HospitalPage {
     @FindBy(xpath = "//*[contains(text(),'Address')]/following::*[1] | //*[contains(@class,'address')]")
     private WebElement addressSection;
 
-    // ==========================
     // TC11 to TC15 PageFactory Elements
     // Added for hospital search test cases
-    // ==========================
 
     @FindBy(xpath = "//h2[contains(@class,'line-1')]")
     private List<WebElement> hospitalNamesForSearchResultsElements;
@@ -53,26 +51,17 @@ public class HospitalPage {
     @FindBy(xpath = "//div[@data-qa-id='no_results']")
     private WebElement noResultsMessageElement;
 
-    // ==========================
     // TC11 to TC15 By Locators
     // Kept so existing TC11-TC15 test classes do not break
-    // ==========================
 
     public By hospitalNamesForSearchResults = By.xpath("//h2[contains(@class,'line-1')]");
-
     public By hospitalCardFromName = By.xpath("./ancestor::li");
-
     public By open24x7Text = By.xpath(".//span[normalize-space()='Open 24x7']");
-
     public By ratingText = By.xpath(".//div[contains(@class,'c-feedback')]//span[contains(@class,'u-bold')]");
-
     public By bookHospitalVisitButton = By.xpath("//button[@class='c-book-cta' and text()='Book Hospital Visit']");
-
     public By noResultsMessage = By.xpath("//div[@data-qa-id='no_results']");
 
-    // ==========================
     // Existing Actions
-    // ==========================
 
     public void clickOpen24x7Filter() {
         open247Filter.click();
@@ -82,17 +71,13 @@ public class HospitalPage {
         firstHospitalCard.click();
     }
 
-    // ==========================
     // TC11 to TC15 PageFactory Actions
-    // ==========================
 
     public void clickBookHospitalVisitButton() {
         bookHospitalVisitButtonElement.click();
     }
 
-    // ==========================
     // Existing Data Retrieval Methods
-    // ==========================
 
     public int getHospitalCount() {
         return hospitalCards.size();
@@ -125,9 +110,7 @@ public class HospitalPage {
         }
     }
 
-    // ==========================
     // TC11 to TC15 PageFactory Data Retrieval Methods
-    // ==========================
 
     public List<WebElement> getHospitalNamesForSearchResultsElements() {
         return hospitalNamesForSearchResultsElements;
@@ -142,9 +125,7 @@ public class HospitalPage {
         }
     }
 
-    // ==========================
     // Existing Validation Methods
-    // ==========================
 
     public boolean isOpen24x7FilterDisplayed() {
 
@@ -168,9 +149,7 @@ public class HospitalPage {
         return getHospitalCount() > 0;
     }
 
-    // ==========================
     // TC11 to TC15 PageFactory Validation Methods
-    // ==========================
 
     public boolean isBookHospitalVisitButtonDisplayed() {
 

@@ -26,6 +26,9 @@ public class MedicinesPage {
     @FindBy(className = "search-bar__results")
     private WebElement resultsBox;
 
+    @FindBy(xpath = "//span[contains(text(),'ADD TO CART')]")
+    private WebElement addToCartButton;
+
     public void searchMedicine(String medicineName) {
         wait.until(
                 ExpectedConditions.visibilityOf(searchBox)
@@ -115,4 +118,36 @@ public class MedicinesPage {
             System.out.println("Price         : " + price);
         }
     }
+    public void clickAddToCart() {
+
+        wait.until(
+                ExpectedConditions.elementToBeClickable(
+                        addToCartButton)
+        );
+
+        addToCartButton.click();
+    }
+
+    @FindBy(css = ".search-bar__results a")
+    private List<WebElement> medicineSuggestions;
+
+    public boolean isMedicinePresentInResults(String medicineName) {
+
+        wait.until(
+                ExpectedConditions.visibilityOf(resultsBox)
+        );
+
+        for (WebElement suggestion : medicineSuggestions) {
+
+            if (suggestion.getText()
+                    .toLowerCase()
+                    .contains(medicineName.toLowerCase())) {
+
+                return true;
+            }
+        }
+
+        return false;
+    }
+
 }

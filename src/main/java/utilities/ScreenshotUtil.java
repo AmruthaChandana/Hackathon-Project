@@ -17,7 +17,6 @@ public class ScreenshotUtil {
         if (!directory.exists()) {
             directory.mkdirs();
         }
-
         String screenshotPath = screenshotDir + testName + "_" + timestamp + ".png";
         try {
             File sourceFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);

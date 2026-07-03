@@ -10,9 +10,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class HospitalPage {
-
     private WebDriver driver;
-
     public HospitalPage() {
     }
 
@@ -39,11 +37,7 @@ public class HospitalPage {
     @FindBy(xpath = "//*[contains(text(),'Address')]/following::*[1] | //*[contains(@class,'address')]")
     private WebElement addressSection;
 
-    // ==========================
     // TC11 to TC15 PageFactory Elements
-    // Added for hospital search test cases
-    // ==========================
-
     @FindBy(xpath = "//h2[contains(@class,'line-1')]")
     private List<WebElement> hospitalNamesForSearchResultsElements;
 
@@ -70,10 +64,7 @@ public class HospitalPage {
 
     public By noResultsMessage = By.xpath("//div[@data-qa-id='no_results']");
 
-    // ==========================
     // Existing Actions
-    // ==========================
-
     public void clickOpen24x7Filter() {
         open247Filter.click();
     }
@@ -82,24 +73,17 @@ public class HospitalPage {
         firstHospitalCard.click();
     }
 
-    // ==========================
     // TC11 to TC15 PageFactory Actions
-    // ==========================
-
     public void clickBookHospitalVisitButton() {
         bookHospitalVisitButtonElement.click();
     }
 
-    // ==========================
     // Existing Data Retrieval Methods
-    // ==========================
-
-    public int getHospitalCount() {
+        public int getHospitalCount() {
         return hospitalCards.size();
     }
 
     public List<String> getHospitalNames() {
-
         return hospitalNames.stream()
                 .map(WebElement::getText)
                 .map(String::trim)
@@ -108,7 +92,6 @@ public class HospitalPage {
     }
 
     public List<String> getHospitalRatings() {
-
         return hospitalRatings.stream()
                 .map(WebElement::getText)
                 .map(String::trim)
@@ -117,24 +100,18 @@ public class HospitalPage {
     }
 
     public String getHospitalAddress() {
-
         try {
             return addressSection.getText().trim();
         } catch (Exception e) {
             return "";
         }
     }
-
-    // ==========================
     // TC11 to TC15 PageFactory Data Retrieval Methods
-    // ==========================
-
     public List<WebElement> getHospitalNamesForSearchResultsElements() {
         return hospitalNamesForSearchResultsElements;
     }
 
     public String getNoResultsMessageText() {
-
         try {
             return noResultsMessageElement.getText().trim();
         } catch (Exception e) {
@@ -142,12 +119,8 @@ public class HospitalPage {
         }
     }
 
-    // ==========================
     // Existing Validation Methods
-    // ==========================
-
     public boolean isOpen24x7FilterDisplayed() {
-
         try {
             return open247Filter.isDisplayed();
         } catch (Exception e) {
@@ -156,7 +129,6 @@ public class HospitalPage {
     }
 
     public boolean isAddressDisplayed() {
-
         try {
             return addressSection.isDisplayed();
         } catch (Exception e) {
@@ -168,12 +140,8 @@ public class HospitalPage {
         return getHospitalCount() > 0;
     }
 
-    // ==========================
     // TC11 to TC15 PageFactory Validation Methods
-    // ==========================
-
-    public boolean isBookHospitalVisitButtonDisplayed() {
-
+        public boolean isBookHospitalVisitButtonDisplayed() {
         try {
             return bookHospitalVisitButtonElement.isDisplayed();
         } catch (Exception e) {
@@ -182,7 +150,6 @@ public class HospitalPage {
     }
 
     public boolean isBookHospitalVisitButtonEnabled() {
-
         try {
             return bookHospitalVisitButtonElement.isEnabled();
         } catch (Exception e) {
@@ -191,7 +158,6 @@ public class HospitalPage {
     }
 
     public boolean isNoResultsMessageDisplayed() {
-
         try {
             return noResultsMessageElement.isDisplayed();
         } catch (Exception e) {

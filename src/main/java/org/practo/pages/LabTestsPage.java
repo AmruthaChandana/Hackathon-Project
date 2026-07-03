@@ -10,9 +10,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class LabTestsPage {
-
     private WebDriver driver;
-
     public LabTestsPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
@@ -83,7 +81,6 @@ public class LabTestsPage {
         try {
             labTestsMenu.click();
         } catch (Exception e) {
-
             JavascriptExecutor js = (JavascriptExecutor) driver;
             js.executeScript("arguments[0].click();", labTestsMenu);
         }
@@ -95,11 +92,9 @@ public class LabTestsPage {
 
             String currentUrl = driver.getCurrentUrl().toLowerCase();
             String pageTitle = driver.getTitle().toLowerCase();
-
             return currentUrl.contains("tests")
                     || currentUrl.contains("lab")
                     || pageTitle.contains("lab");
-
         } catch (Exception e) {
             return false;
         }
@@ -144,7 +139,6 @@ public class LabTestsPage {
     // ==========================
 
     public boolean isTopCitiesDisplayed() {
-
         try {
             return topCitiesSection.isDisplayed();
         } catch (Exception e) {
@@ -153,7 +147,6 @@ public class LabTestsPage {
     }
 
     public boolean isCityDropdownDisplayed() {
-
         try {
             return cityDropdown.isDisplayed();
         } catch (Exception e) {
@@ -251,7 +244,6 @@ public class LabTestsPage {
     }
 
     public List<String> getLabResultNames() {
-
         return labSearchResults.stream()
                 .map(WebElement::getText)
                 .map(String::trim)

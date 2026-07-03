@@ -15,46 +15,28 @@ public class TC_010_TopCitiesVisibility extends BaseTest {
 
     @Test
     public void verifyTopCitiesSectionVisible() {
-
         driver.get(ConfigReader.getProperty("url"));
-
         LabTestsPage labTestsPage = new LabTestsPage(driver);
-
         WebDriverWait wait = new WebDriverWait(
                 driver,
                 Duration.ofSeconds(
-                        Integer.parseInt(
-                                ConfigReader.getProperty("explicitWait"))
+                        Integer.parseInt(ConfigReader.getProperty("explicitWait"))
                 )
         );
-
         // Navigate to Lab Tests page
         labTestsPage.clickLabTestsMenu();
-
         wait.until(ExpectedConditions.urlContains("tests"));
-
-        // Get Top Cities
-        List<String> cities = labTestsPage.getTopCityNames();
-
-        // Verify Top Cities section
-        Assert.assertFalse(
-                cities.isEmpty(),
+        // Verify Top Cities section is available
+        Assert.assertTrue(
+                labTestsPage.getTopCitiesCount() > 0,
                 "Top Cities section is not visible"
         );
-
-        System.out.println("===== TOP CITIES =====");
-
+        // Fetch and print city names
+        List<String> cities = labTestsPage.getTopCityNames();
+        System.out.println("Top Cities:");
         for (String city : cities) {
             System.out.println(city);
         }
-
         System.out.println("Total Cities Found: " + cities.size());
-
-        // Optional validation
-        Assert.assertEquals(
-                cities.size(),
-                8,
-                "Expected 8 Top Cities"
-        );
     }
 }

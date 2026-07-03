@@ -49,6 +49,7 @@ public class HomePage {
     @FindBy(xpath = "//input[@data-qa-id='omni-searchbox-keyword']")
     private WebElement hospitalSearchBoxElement;
 
+    // Dynamic locator because value comes from Excel
 
 // ==========================
 // TC_014 Surgery Page Elements
@@ -76,16 +77,20 @@ public class HomePage {
         return By.xpath("//div[contains(text(),'" + location + "')]");
     }
 
+    // Dynamic locator because value comes from Excel
     public By searchOption(String searchKeyword) {
         return By.xpath(
                 "//div[@data-qa-id='omni-suggestion-main' and text()='"
-                        + searchKeyword + "']");
+                        + searchKeyword + "']"
+        );
     }
 
+    // Dynamic locator because value comes from Excel
     public By searchOptionContains(String searchKeyword) {
         return By.xpath(
                 "//div[@data-qa-id='omni-suggestion-main' and contains(text(),'"
-                        + searchKeyword + "')]");
+                        + searchKeyword + "')]"
+        );
     }
 
     public void clickLogin() {
@@ -133,8 +138,7 @@ public class HomePage {
 
     public void triggerHospitalLocationSuggestion(String location) {
         hospitalLocationBoxElement.sendKeys(Keys.BACK_SPACE);
-        hospitalLocationBoxElement.sendKeys(
-                location.substring(location.length() - 1));
+        hospitalLocationBoxElement.sendKeys(location.substring(location.length() - 1));
     }
 
     public void clickLocationOption(String location) {

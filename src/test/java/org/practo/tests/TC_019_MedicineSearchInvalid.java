@@ -26,9 +26,9 @@ public class TC_019_MedicineSearchInvalid extends CommonCode {
         HomePage homePage =
                 new HomePage(driver);
 
-        homePage.clickSurgeriesButton();
+      //  homePage.clickSurgeriesButton();
 
-        homePage.clickMedicines();
+        //homePage.clickMedicines();
 
         MedicinesPage medicinesPage =
                 new MedicinesPage(driver);

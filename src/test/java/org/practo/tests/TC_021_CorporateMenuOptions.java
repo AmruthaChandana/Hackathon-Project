@@ -14,7 +14,7 @@ public class TC_021_CorporateMenuOptions extends CommonCode {
         HomePage homePage =
                 new HomePage(driver);
 
-        homePage.clickForCorporates();
+       homePage.clickForCorporates();
 
         homePage.clickHealthAndWellnessPlans();
 

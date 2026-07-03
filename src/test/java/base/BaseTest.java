@@ -18,13 +18,11 @@ import org.testng.annotations.DataProvider;
 import utilities.ConfigReader;
 import utilities.ExcelUtils;
 import utilities.ScreenshotUtil;
-
 import java.time.Duration;
 import java.util.Properties;
 import java.util.Set;
 
 public class BaseTest {
-
     public static WebDriver driver;
     public static WebDriverWait wait;
     public static Properties prop;
@@ -44,33 +42,54 @@ public class BaseTest {
         if (browser.equalsIgnoreCase("chrome")) {
             WebDriverManager.chromedriver().setup();
             driver = new ChromeDriver();
-
         } else if (browser.equalsIgnoreCase("edge")) {
             WebDriverManager.edgedriver().setup();
             driver = new EdgeDriver();
         } else {
-            throw new RuntimeException("Invalid browser name in config.properties: " + browser);
+            throw new RuntimeException(
+                    "Invalid browser name in config.properties: " + browser);
         }
-
         driver.manage().window().maximize();
-
-        int implicitWait = Integer.parseInt(prop.getProperty("implicitWait"));
-        int explicitWait = Integer.parseInt(prop.getProperty("explicitWait"));
-
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(implicitWait));
-        wait = new WebDriverWait(driver, Duration.ofSeconds(explicitWait));
+        int implicitWait =
+                Integer.parseInt(prop.getProperty("implicitWait"));
+        int explicitWait =
+                Integer.parseInt(prop.getProperty("explicitWait"));
+        driver.manage().timeouts()
+                .implicitlyWait(Duration.ofSeconds(implicitWait));
+        wait = new WebDriverWait(
+                driver,
+                Duration.ofSeconds(explicitWait)
+        );
     }
 
     public void openApplication() {
         driver.get(prop.getProperty("url"));
     }
 
+    // Medicine Sheet Loader
+    public void loadMedicineSheet() {
+        ExcelUtils.loadExcel(
+                prop.getProperty("excelPath"),
+                prop.getProperty("medicineSheetName")
+        );
+    }
+
+    // Hospital Sheet Loader
+       public void loadHospitalSheet() {
+        ExcelUtils.loadExcel(
+                prop.getProperty("excelPath"),
+                prop.getProperty("hospitalSheetName")
+        );
+    }
+
     public WebElement waitForVisible(By locator) {
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+        return wait.until(
+                ExpectedConditions.visibilityOfElementLocated(locator));
     }
 
     public WebElement waitForClickable(By locator) {
-        return wait.until(ExpectedConditions.elementToBeClickable(locator));
+        return wait.until(
+                ExpectedConditions.elementToBeClickable(locator));
     }
 
     public void click(By locator) {
@@ -108,19 +127,28 @@ public class BaseTest {
     }
 
     public void scrollDown() {
-        JavascriptExecutor js = (JavascriptExecutor) driver;
+        JavascriptExecutor js =
+                (JavascriptExecutor) driver;
         js.executeScript("window.scrollBy(0,700)");
     }
 
     public void scrollToElement(WebElement element) {
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("arguments[0].scrollIntoView(true);", element);
+        JavascriptExecutor js =
+                (JavascriptExecutor) driver;
+        js.executeScript(
+                "arguments[0].scrollIntoView(true);",
+                element
+        );
     }
 
     public void clickUsingJS(By locator) {
         WebElement element = waitForVisible(locator);
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("arguments[0].click();", element);
+        JavascriptExecutor js =
+                (JavascriptExecutor) driver;
+        js.executeScript(
+                "arguments[0].click();",
+                element
+        );
     }
 
     public void switchToNewWindow(String parentWindow) {
@@ -149,7 +177,10 @@ public class BaseTest {
     @AfterMethod
     public void tearDown(ITestResult result) {
         if (result.getStatus() == ITestResult.FAILURE) {
-            ScreenshotUtil.captureScreenshot(driver, result.getName());
+            ScreenshotUtil.captureScreenshot(
+                    driver,
+                    result.getName()
+            );
         }
         if (driver != null) {
             driver.quit();

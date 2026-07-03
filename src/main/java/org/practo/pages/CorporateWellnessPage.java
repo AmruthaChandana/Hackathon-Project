@@ -6,14 +6,11 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class CorporateWellnessPage {
-
     WebDriver driver;
-
     public CorporateWellnessPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
-
     @FindBy(xpath = "//input[contains(@placeholder,'Name')]")
     private WebElement nameField;
 
@@ -67,7 +64,6 @@ public class CorporateWellnessPage {
             String organization,
             String email,
             String mobile) {
-
         enterName(name);
         enterOrganization(organization);
         enterEmail(email);

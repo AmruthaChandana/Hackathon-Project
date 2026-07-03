@@ -11,6 +11,7 @@
             <class name="org.practo.tests.TC_013_VerifyBookHospitalVisitButton"/>
             <class name="org.practo.tests.TC_015_VerifyNoResultsPageDoesNotCrash"/>
            <class name="org.practo.tests.TC_016_ExtractTop5FAQs"/>
+            <class name="org.practo.tests.TC_017_MedicineSearch"/>
         </classes>
     </test>
 </suite>

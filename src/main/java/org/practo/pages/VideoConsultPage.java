@@ -11,9 +11,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class VideoConsultPage {
-
     private WebDriver driver;
-
     public VideoConsultPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);

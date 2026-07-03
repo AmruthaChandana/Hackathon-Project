@@ -1,6 +1,5 @@
 package org.practo.tests;
 
-import base.BaseTest;
 import base.CommonCode;
 import org.practo.pages.HomePage;
 import org.practo.pages.LoginPage;
@@ -16,10 +15,8 @@ public class TC_002_LoginWithInvalidPassword extends CommonCode {
     public void verifyLoginWithInvalidPassword() {
         homePage = new HomePage(driver);
         loginPage = new LoginPage(driver);
-        String mobileNumber =
-                ExcelUtils.getCellData("TC_002", "Mobile");
-        String invalidPassword =
-                ExcelUtils.getCellData("TC_002", "InvalidPassword");
+        String mobileNumber = ExcelUtils.getCellData("TC_002", "Mobile");
+        String invalidPassword = ExcelUtils.getCellData("TC_002", "InvalidPassword");
         openApplication();
         // Step 1: Click Login
         homePage.clickLogin();

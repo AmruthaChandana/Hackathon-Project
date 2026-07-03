@@ -2,15 +2,20 @@
 
 <suite name="Practo Hackathon Automation Suite">
 
-    <test name="TC_002 Invalid Login Test">
+    <test name="Practo tests">
         <classes>
+            <class name="org.practo.tests.TC_001_LoginWithValidCredentials"/>
+            <class name="org.practo.tests.TC_002_LoginWithInvalidPassword"/>
+            <class name="org.practo.tests.TC_014_NavigateToSurgeryPage"/>
             <class name="org.practo.tests.TC_009_Navigation"/>
             <class name="org.practo.tests.TC_010_TopCitiesVisibility"/>
             <class name="org.practo.tests.TC_011_VerifySearchAndLocationBox"/>
             <class name="org.practo.tests.TC_012_VerifyFirstNHospitals"/>
             <class name="org.practo.tests.TC_013_VerifyBookHospitalVisitButton"/>
+            <class name="org.practo.tests.TC_014_VerifyHospitalAddress"/>
             <class name="org.practo.tests.TC_015_VerifyNoResultsPageDoesNotCrash"/>
            <class name="org.practo.tests.TC_016_ExtractTop5FAQs"/>
+            <class name="org.practo.tests.TC_018_InvalidMobileVideoConsult"/>
             <class name="org.practo.tests.TC_017_MedicineSearch"/>
             <class name="org.practo.tests.TC_018_MedicineAddToCart"/>
 

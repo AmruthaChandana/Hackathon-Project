@@ -1,7 +1,6 @@
 package org.practo.tests;
 
 import java.time.Duration;
-import java.util.List;
 
 import base.BaseTest;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -11,10 +10,12 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import utilities.ConfigReader;
 
-public class TC_010_TopCitiesVisibility extends BaseTest {
+public class TC_008_CitySearch extends BaseTest {
 
     @Test
-    public void verifyTopCitiesSectionVisible() {
+    public void verifyCitySearchFromDropdown() {
+
+        String cityName = "Bangalore";
 
         driver.get(ConfigReader.getProperty("url"));
 
@@ -33,28 +34,16 @@ public class TC_010_TopCitiesVisibility extends BaseTest {
 
         wait.until(ExpectedConditions.urlContains("tests"));
 
-        // Get Top Cities
-        List<String> cities = labTestsPage.getTopCityNames();
+        // Search city
+        labTestsPage.clickCityDropdown();
+        labTestsPage.searchCity(cityName);
 
-        // Verify Top Cities section
-        Assert.assertFalse(
-                cities.isEmpty(),
-                "Top Cities section is not visible"
+        // Verify search suggestions are displayed
+        Assert.assertTrue(
+                labTestsPage.isCitySuggestionAvailable(),
+                "City search is not working"
         );
 
-        System.out.println("===== TOP CITIES =====");
-
-        for (String city : cities) {
-            System.out.println(city);
-        }
-
-        System.out.println("Total Cities Found: " + cities.size());
-
-        // Optional validation
-        Assert.assertEquals(
-                cities.size(),
-                8,
-                "Expected 8 Top Cities"
-        );
+        System.out.println("City search is working successfully for: " + cityName);
     }
 }

@@ -18,8 +18,16 @@ public class LabTestsPage {
         PageFactory.initElements(driver, this);
     }
 
+    // ==========================
+    // TC_009 - Navigation
+    // ==========================
+
     @FindBy(xpath = "//a[@title='tests']")
     private WebElement labTestsMenu;
+
+    // ==========================
+    // Existing Elements
+    // ==========================
 
     @FindBy(xpath = "//*[contains(text(),'Select City') or contains(@class,'city')]")
     private WebElement cityDropdown;
@@ -27,7 +35,7 @@ public class LabTestsPage {
     @FindBy(xpath = "//*[contains(text(),'Top Cities') or contains(text(),'Popular Cities')]")
     private WebElement topCitiesSection;
 
-    @FindBy(xpath = "//*[contains(text(),'Bangalore') or contains(text(),'Mumbai') or contains(text(),'Delhi') or contains(text(),'Hyderabad') or contains(text(),'Pune')]")
+    @FindBy(xpath = "//li[contains(@class,'u-text--center')]//div[contains(@class,'o-f-color--primary')]")
     private List<WebElement> topCityNames;
 
     @FindBy(xpath = "//input[contains(@placeholder,'city') or contains(@placeholder,'City')]")
@@ -42,10 +50,36 @@ public class LabTestsPage {
     @FindBy(xpath = "//*[contains(text(),'Health') or contains(text(),'package') or contains(text(),'Package')]")
     private List<WebElement> healthPackages;
 
+    // ==========================
+    // TC_010 - Top Cities Icons
+    // ==========================
+
     @FindBy(xpath = "//img[contains(@src,'topcities')]")
     private List<WebElement> topCityIcons;
 
+    // ==========================
+    // TC_012 - City Suggestions
+    // ==========================
+
+    @FindBy(xpath = "//*[contains(@class,'suggestion') or contains(@class,'result')]")
+    private List<WebElement> citySuggestions;
+
+    // ==========================
+    // TC_013 - Delhi & Thyroid Search
+    // ==========================
+
+    @FindBy(xpath = "//img[contains(@src,'Delhi.svg')]")
+    private WebElement delhiCity;
+
+    @FindBy(xpath = "//*[contains(@class,'suggestion-container')]//*[contains(text(),'Thyroid')]")
+    private List<WebElement> thyroidSearchResults;
+
+    // ==========================
+    // TC_009 Methods
+    // ==========================
+
     public void clickLabTestsMenu() {
+
         try {
             labTestsMenu.click();
         } catch (Exception e) {
@@ -56,7 +90,9 @@ public class LabTestsPage {
     }
 
     public boolean isLabTestsPageOpened() {
+
         try {
+
             String currentUrl = driver.getCurrentUrl().toLowerCase();
             String pageTitle = driver.getTitle().toLowerCase();
 
@@ -68,6 +104,10 @@ public class LabTestsPage {
             return false;
         }
     }
+
+    // ==========================
+    // Actions
+    // ==========================
 
     public void clickCityDropdown() {
         cityDropdown.click();
@@ -82,6 +122,26 @@ public class LabTestsPage {
         labSearchField.clear();
         labSearchField.sendKeys(testName);
     }
+
+    public void searchCity(String cityName) {
+        citySearchField.clear();
+        citySearchField.sendKeys(cityName);
+    }
+
+    public void selectDelhiCity() {
+
+        try {
+            delhiCity.click();
+        } catch (Exception e) {
+
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            js.executeScript("arguments[0].click();", delhiCity);
+        }
+    }
+
+    // ==========================
+    // Validation Methods
+    // ==========================
 
     public boolean isTopCitiesDisplayed() {
 
@@ -110,6 +170,7 @@ public class LabTestsPage {
     }
 
     public boolean isTopCitiesSectionVisible() {
+
         try {
             return topCityIcons.size() > 0;
         } catch (Exception e) {
@@ -118,6 +179,7 @@ public class LabTestsPage {
     }
 
     public int getTopCityIconsCount() {
+
         try {
             return topCityIcons.size();
         } catch (Exception e) {
@@ -125,15 +187,58 @@ public class LabTestsPage {
         }
     }
 
+    public boolean isCitySuggestionAvailable() {
+
+        try {
+            return citySuggestions.size() > 0;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public boolean hasThyroidResults() {
+
+        try {
+            return thyroidSearchResults.size() > 0;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    // ==========================
+    // Data Retrieval Methods
+    // ==========================
+
+    public List<String> getCitySuggestions() {
+
+        return citySuggestions.stream()
+                .map(WebElement::getText)
+                .map(String::trim)
+                .filter(city -> !city.isEmpty())
+                .collect(Collectors.toList());
+    }
+
+    public List<String> getThyroidResults() {
+
+        return thyroidSearchResults.stream()
+                .map(WebElement::getText)
+                .map(String::trim)
+                .filter(result -> !result.isEmpty())
+                .distinct()
+                .collect(Collectors.toList());
+    }
+
     public int getTopCitiesCount() {
-        return topCityNames.size();
+        return getTopCityNames().size();
     }
 
     public List<String> getTopCityNames() {
+
         return topCityNames.stream()
                 .map(WebElement::getText)
                 .map(String::trim)
                 .filter(city -> !city.isEmpty())
+                .distinct()
                 .collect(Collectors.toList());
     }
 

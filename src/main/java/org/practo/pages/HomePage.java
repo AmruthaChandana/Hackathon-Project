@@ -110,8 +110,10 @@ public class HomePage {
     }
 
     public void triggerHospitalLocationSuggestion(String location) {
+
         hospitalLocationBoxElement.sendKeys(Keys.BACK_SPACE);
         hospitalLocationBoxElement.sendKeys(location.substring(location.length() - 1));
+
     }
 
     public void clickLocationOption(String location) {

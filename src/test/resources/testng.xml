@@ -2,7 +2,7 @@
 
 <suite name="Practo Hackathon Automation Suite">
 
-    <test name="TC_002 Invalid Login Test">
+    <test name="Practo tests">
         <classes>
             <class name="org.practo.tests.TC_009_Navigation"/>
             <class name="org.practo.tests.TC_010_TopCitiesVisibility"/>

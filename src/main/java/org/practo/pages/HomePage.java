@@ -9,9 +9,12 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class HomePage {
+
     private WebDriver driver;
+
     public HomePage() {
     }
+
     public HomePage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
@@ -41,26 +44,25 @@ public class HomePage {
     @FindBy(xpath = "//input[@data-qa-id='omni-searchbox-keyword']")
     private WebElement hospitalSearchBoxElement;
 
-    public By hospitalLocationBox =
-            By.xpath("//input[@data-qa-id='omni-searchbox-locality']");
-
-    public By hospitalSearchBox =
-            By.xpath("//input[@data-qa-id='omni-searchbox-keyword']");
-
+    // Dynamic locator because value comes from Excel
     public By locationOption(String location) {
         return By.xpath("//div[contains(text(),'" + location + "')]");
     }
 
+    // Dynamic locator because value comes from Excel
     public By searchOption(String searchKeyword) {
         return By.xpath(
                 "//div[@data-qa-id='omni-suggestion-main' and text()='"
-                        + searchKeyword + "']");
+                        + searchKeyword + "']"
+        );
     }
 
+    // Dynamic locator because value comes from Excel
     public By searchOptionContains(String searchKeyword) {
         return By.xpath(
                 "//div[@data-qa-id='omni-suggestion-main' and contains(text(),'"
-                        + searchKeyword + "')]");
+                        + searchKeyword + "')]"
+        );
     }
 
     public void clickLogin() {
@@ -108,8 +110,7 @@ public class HomePage {
 
     public void triggerHospitalLocationSuggestion(String location) {
         hospitalLocationBoxElement.sendKeys(Keys.BACK_SPACE);
-        hospitalLocationBoxElement.sendKeys(
-                location.substring(location.length() - 1));
+        hospitalLocationBoxElement.sendKeys(location.substring(location.length() - 1));
     }
 
     public void clickLocationOption(String location) {

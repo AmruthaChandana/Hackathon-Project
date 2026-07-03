@@ -11,83 +11,95 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class SurgeryPage {
+
     private WebDriver driver;
+
     public SurgeryPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
-    private static final String SURGERY_LIST_SECTION = "//div[@id='surgery-list']";
-    private static final String TREATMENTS_OFFERED_HEADING = "//div[@id='surgery-list']//h2[contains(normalize-space(),'Treatments offered')]";
-    private static final String POPULAR_TAB = "//div[@id='surgery-list']//button[.//span[contains(normalize-space(),'Popular')]]";
-    private static final String POPULAR_TREATMENT_NAMES = "//div[@id='surgery-list']//div[contains(@class,'SurgeryList-module_grid')]//*[self::div or self::p or self::span][normalize-space()!='']";
 
-    // Actions
-    public void scrollToSurgeryListSection() {
+    /*
+     * XPath given:
+     * Treatments Offered heading:
+     * //*[@id="surgery-list"]/section/h2
+     */
+    private static final String TREATMENTS_OFFERED_HEADING =
+            "//*[@id='surgery-list']/section/h2";
+
+    /*
+     * XPath given:
+     * Popular grid:
+     * //*[@id="surgery-list"]/section/div/div[1]
+     */
+    private static final String POPULAR_GRID =
+            "//*[@id='surgery-list']/section/div/div[1]";
+
+    /*
+     * Cards inside popular grid.
+     * From screenshot, each treatment card is a div with role='button' / tabindex='0'
+     */
+    private static final String POPULAR_TREATMENT_CARDS =
+            "//*[@id='surgery-list']/section/div/div[1]/div[@role='button' or @tabindex='0']";
+
+    public boolean isTreatmentsOfferedDisplayed() {
         try {
-            WebElement section = driver.findElement(By.xpath(SURGERY_LIST_SECTION));
-            JavascriptExecutor js = (JavascriptExecutor) driver;
-            js.executeScript("arguments[0].scrollIntoView({block:'center'});", section);
-        }
-        catch (Exception ignored) {
+            return driver.findElement(By.xpath(TREATMENTS_OFFERED_HEADING)).isDisplayed();
+        } catch (Exception e) {
+            return false;
         }
     }
-    public void clickPopularTab() {
+
+    public void scrollToTreatmentsOffered() {
         try {
-            WebElement popular = driver.findElement(By.xpath(POPULAR_TAB));
-            JavascriptExecutor js = (JavascriptExecutor) driver;
-            js.executeScript("arguments[0].click();", popular);
+            WebElement heading =
+                    driver.findElement(By.xpath(TREATMENTS_OFFERED_HEADING));
+
+            JavascriptExecutor js =
+                    (JavascriptExecutor) driver;
+
+            js.executeScript(
+                    "arguments[0].scrollIntoView({block:'center'});",
+                    heading
+            );
+
         } catch (Exception ignored) {
         }
     }
 
-    // Validation Methods
-    public boolean isSurgeryListSectionDisplayed() {
+    public boolean isPopularGridDisplayed() {
         try {
-            return driver.findElement(
-                    By.xpath(SURGERY_LIST_SECTION)
-            ).isDisplayed();
+            return driver.findElement(By.xpath(POPULAR_GRID)).isDisplayed();
         } catch (Exception e) {
             return false;
         }
     }
 
-    public boolean isTreatmentsOfferedDisplayed() {
+    public int getPopularTreatmentsCount() {
         try {
-            return driver.findElement(
-                    By.xpath(TREATMENTS_OFFERED_HEADING)
-            ).isDisplayed();
-        } catch (Exception e) {
-            return false;
-        }
-    }
-
-    // Data Extraction Methods
-    public int getPopularTreatmentCount() {
-        try {
-            return driver.findElements(
-                    By.xpath(POPULAR_TREATMENT_NAMES)
-            ).size();
+            return driver.findElements(By.xpath(POPULAR_TREATMENT_CARDS)).size();
         } catch (Exception e) {
             return 0;
         }
     }
 
     public List<String> getPopularTreatments() {
-        List<String> treatments = new ArrayList<>();
-        List<WebElement> treatmentElements =
-                driver.findElements(By.xpath(POPULAR_TREATMENT_NAMES));
-        for (WebElement treatmentElement : treatmentElements) {
-            try {
-                String treatmentName =
-                        treatmentElement.getText().trim();
-                if (!treatmentName.isEmpty()
-                        && treatmentName.length() <= 40
-                        && !treatmentName.equalsIgnoreCase("Popular")
-                        && !treatmentName.equalsIgnoreCase("Treatments offered")) {
 
-                    treatments.add(treatmentName);
+        List<String> treatments = new ArrayList<>();
+
+        List<WebElement> treatmentCards =
+                driver.findElements(By.xpath(POPULAR_TREATMENT_CARDS));
+
+        for (WebElement card : treatmentCards) {
+            try {
+                String text = card.getText().trim();
+
+                if (!text.isEmpty()) {
+                    treatments.add(text);
                 }
+
             } catch (Exception ignored) {
+                // handles stale element safely
             }
         }
 

@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -19,24 +20,27 @@ public class MedicinesPage {
         PageFactory.initElements(driver, this);
     }
 
+    @FindBy(css = "input[placeholder*='Search']")
+    private WebElement searchBox;
+
+    @FindBy(className = "search-bar__results")
+    private WebElement resultsBox;
+
     public void searchMedicine(String medicineName) {
-        WebElement searchBox = wait.until(
-                ExpectedConditions.visibilityOfElementLocated(
-                        By.cssSelector("input[placeholder*='Search']"))
+        wait.until(
+                ExpectedConditions.visibilityOf(searchBox)
         );
         searchBox.clear();
         searchBox.sendKeys(medicineName);
         searchBox.click();
         wait.until(
-                ExpectedConditions.visibilityOfElementLocated(
-                        By.className("search-bar__results"))
+                ExpectedConditions.visibilityOf(resultsBox)
         );
     }
 
     public int getMedicineCount() {
         wait.until(
-                ExpectedConditions.visibilityOfElementLocated(
-                        By.className("search-bar__results"))
+                ExpectedConditions.visibilityOf(resultsBox)
         );
         List<WebElement> suggestions =
                 driver.findElements(
@@ -49,8 +53,7 @@ public class MedicinesPage {
 
     public void printFirstFiveMedicines() {
         wait.until(
-                ExpectedConditions.visibilityOfElementLocated(
-                        By.className("search-bar__results"))
+                ExpectedConditions.visibilityOf(resultsBox)
         );
         JavascriptExecutor js =
                 (JavascriptExecutor) driver;
@@ -62,8 +65,7 @@ public class MedicinesPage {
                 int currentSize = suggestions.size();
                 js.executeScript(
                         "arguments[0].scrollTop = arguments[0].scrollTop + 300;",
-                        driver.findElement(
-                                By.className("search-bar__results"))
+                        resultsBox
                 );
                 wait.until(driver ->
                         driver.findElements(
@@ -104,7 +106,6 @@ public class MedicinesPage {
                     price = line;
                 }
             }
-            // Skip medicines with no price
             if (price.isEmpty()) {
                 continue;
             }

@@ -1,84 +1,72 @@
 package org.practo.tests;
-import org.openqa.selenium.Keys;
-import base.BaseTest;
-import org.openqa.selenium.JavascriptExecutor;
+
+import base.CommonCode;
 import org.openqa.selenium.WebElement;
 import org.practo.pages.HomePage;
 import org.practo.pages.HospitalPage;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import utilities.ConfigReader;
-import utilities.ExcelUtils;
 
-import java.util.HashMap;
 import java.util.Map;
-import java.util.Properties;
 
-public class TC_015_VerifyNoResultsPageDoesNotCrash extends BaseTest {
+public class TC_015_VerifyNoResultsPageDoesNotCrash extends CommonCode {
 
-    HomePage homePage = new HomePage();
-    HospitalPage hospitalPage = new HospitalPage();
+    HomePage homePage;
+    HospitalPage hospitalPage;
 
     @DataProvider(name = "tc15Data")
     public Object[][] getTC15Data() {
-
-        Properties hospitalProperties = ConfigReader.initProperties();
-
-        ExcelUtils.loadExcel(
-                hospitalProperties.getProperty("excelPath"),
-                hospitalProperties.getProperty("hospitalSheetName")
+        Map<String, String> rowData = getHospitalTestData(
+                "TC15",
+                "Location",
+                "SearchKeyword"
         );
 
-        Map<String, String> rowData = new HashMap<>();
-
-        rowData.put("TestCaseID", "TC15");
-        rowData.put("Location", ExcelUtils.getCellData("TC15", "Location"));
-        rowData.put("SearchKeyword", ExcelUtils.getCellData("TC15", "SearchKeyword"));
-
-        return new Object[][] {
-                { rowData }
+        return new Object[][]{
+                {rowData}
         };
     }
 
     @Test(dataProvider = "tc15Data")
     public void verifySiteDoesNotCrashWhenResultListIsEmpty(Map<String, String> data) {
+        homePage = new HomePage(driver);
+        hospitalPage = new HospitalPage(driver);
 
         openApplication();
 
         String location = data.get("Location");
         String searchKeyword = data.get("SearchKeyword");
 
-        type(homePage.hospitalLocationBox, location);
+        searchHospitalUsingContains(homePage, location, searchKeyword);
 
-        waitForVisible(homePage.hospitalLocationBox).sendKeys(Keys.BACK_SPACE);
-        waitForVisible(homePage.hospitalLocationBox).sendKeys(location.substring(location.length() - 1));
-
-        click(homePage.locationOption(location));
-
-        type(homePage.hospitalSearchBox, searchKeyword);
-        click(homePage.searchOptionContains(searchKeyword));
-
-        WebElement noResultsElement = waitForVisible(hospitalPage.noResultsMessage);
+        WebElement noResultsElement =
+                waitForVisible(hospitalPage.getNoResultsMessage());
 
         Assert.assertTrue(
                 noResultsElement.isDisplayed(),
                 "No results message is not displayed."
         );
 
-        String errorMessage = noResultsElement.getText();
+        String errorMessage =
+                getVisibleTextWithJsFallback(noResultsElement);
 
-        if (errorMessage == null || errorMessage.trim().isEmpty()) {
-            JavascriptExecutor js = (JavascriptExecutor) driver;
-            errorMessage = (String) js.executeScript(
-                    "return arguments[0].innerText;",
-                    noResultsElement
-            );
-        }
+        Assert.assertNotNull(
+                errorMessage,
+                "No results message text is null."
+        );
 
         Assert.assertFalse(
                 errorMessage.trim().isEmpty(),
                 "No results message text is empty."
+        );
+
+        Assert.assertFalse(
+                errorMessage.toLowerCase().contains("error") ||
+                        errorMessage.toLowerCase().contains("something went wrong") ||
+                        errorMessage.toLowerCase().contains("server") ||
+                        errorMessage.toLowerCase().contains("crash"),
+                "Error/crash message displayed instead of no-results message. Actual message: " + errorMessage
         );
 
         System.out.println("TC15 Passed: Site did not crash when result list was empty.");

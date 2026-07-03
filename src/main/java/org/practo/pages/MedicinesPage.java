@@ -1,108 +1,117 @@
 package org.practo.pages;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import java.time.Duration;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class MedicinesPage {
-
     private WebDriver driver;
-
+    private WebDriverWait wait;
     public MedicinesPage(WebDriver driver) {
         this.driver = driver;
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(30));
         PageFactory.initElements(driver, this);
     }
 
-    @FindBy(xpath = "//input[contains(@placeholder,'Search') or contains(@placeholder,'medicine')]")
-    private WebElement medicineSearchBox;
-
-    @FindBy(xpath = "//*[contains(@class,'medicine') or contains(@class,'product') or contains(@class,'card')]")
-    private List<WebElement> medicineList;
-
-    @FindBy(xpath = "//*[contains(@class,'name') or contains(@class,'title')]")
-    private List<WebElement> medicineNames;
-
-    @FindBy(xpath = "(//button[contains(text(),'Add') or contains(text(),'Cart')])[1]")
-    private WebElement addToCartButton;
-
-    @FindBy(xpath = "//*[contains(text(),'Cart') or contains(@class,'cart')]")
-    private WebElement cartIcon;
-
-    @FindBy(xpath = "//*[contains(text(),'Out of Stock') or contains(text(),'Unavailable')]")
-    private WebElement outOfStockText;
-
-    @FindBy(xpath = "//button[contains(text(),'Add') and @disabled]")
-    private WebElement disabledAddToCart;
-
     public void searchMedicine(String medicineName) {
-        medicineSearchBox.clear();
-        medicineSearchBox.sendKeys(medicineName);
-    }
-
-    public void clickAddToCart() {
-        addToCartButton.click();
-    }
-
-    public void clickCart() {
-        cartIcon.click();
-    }
-
-    public boolean isCartDisplayed() {
-        try {
-            return cartIcon.isDisplayed();
-        } catch (Exception e) {
-            return false;
-        }
-    }
-
-    public boolean isOutOfStockMessageDisplayed() {
-        try {
-            return outOfStockText.isDisplayed();
-        } catch (Exception e) {
-            return false;
-        }
-    }
-
-    public boolean isAddToCartDisabled() {
-        try {
-            return !disabledAddToCart.isEnabled();
-        } catch (Exception e) {
-            return false;
-        }
-    }
-
-    public boolean hasMedicines() {
-        return medicineList.size() > 0;
+        WebElement searchBox = wait.until(
+                ExpectedConditions.visibilityOfElementLocated(
+                        By.cssSelector("input[placeholder*='Search']"))
+        );
+        searchBox.clear();
+        searchBox.sendKeys(medicineName);
+        searchBox.click();
+        wait.until(
+                ExpectedConditions.visibilityOfElementLocated(
+                        By.className("search-bar__results"))
+        );
     }
 
     public int getMedicineCount() {
-        return medicineList.size();
+        wait.until(
+                ExpectedConditions.visibilityOfElementLocated(
+                        By.className("search-bar__results"))
+        );
+        List<WebElement> suggestions =
+                driver.findElements(
+                        By.cssSelector(".search-bar__results a"));
+        System.out.println(
+                "Total Medicines Found : "
+                        + suggestions.size());
+        return suggestions.size();
     }
 
-    public List<String> getMedicineNames() {
-        return medicineNames.stream()
-                .map(WebElement::getText)
-                .map(String::trim)
-                .filter(name -> !name.isEmpty())
-                .collect(Collectors.toList());
-    }
-
-    public String getOutOfStockMessage() {
+    public void printFirstFiveMedicines() {
+        wait.until(
+                ExpectedConditions.visibilityOfElementLocated(
+                        By.className("search-bar__results"))
+        );
+        JavascriptExecutor js =
+                (JavascriptExecutor) driver;
+        List<WebElement> suggestions =
+                driver.findElements(
+                        By.cssSelector(".search-bar__results a"));
         try {
-            return outOfStockText.getText().trim();
+            while (suggestions.size() < 10) {
+                int currentSize = suggestions.size();
+                js.executeScript(
+                        "arguments[0].scrollTop = arguments[0].scrollTop + 300;",
+                        driver.findElement(
+                                By.className("search-bar__results"))
+                );
+                wait.until(driver ->
+                        driver.findElements(
+                                        By.cssSelector(".search-bar__results a"))
+                                .size() >= currentSize
+                );
+                suggestions =
+                        driver.findElements(
+                                By.cssSelector(".search-bar__results a"));
+                if (suggestions.size() >= 10) {
+                    break;
+                }
+            }
         } catch (Exception e) {
-            return "";
+            e.printStackTrace();
         }
-    }
-
-    public void searchAndAddMedicine(String medicineName) {
-        searchMedicine(medicineName);
-        if (hasMedicines()) {
-            clickAddToCart();
+        System.out.println(
+                "\n========== FIRST 5 MEDICINES ==========");
+        int printedCount = 0;
+        for (WebElement suggestion : suggestions) {
+            if (printedCount == 5) {
+                break;
+            }
+            String text = suggestion.getText();
+            String[] lines = text.split("\\R");
+            String name = "";
+            String price = "";
+            for (String line : lines) {
+                line = line.trim();
+                if (line.isEmpty()
+                        || line.equalsIgnoreCase("ADD")) {
+                    continue;
+                }
+                if (name.isEmpty()) {
+                    name = line;
+                }
+                if (line.contains("₹")) {
+                    price = line;
+                }
+            }
+            // Skip medicines with no price
+            if (price.isEmpty()) {
+                continue;
+            }
+            printedCount++;
+            System.out.println("------------------------------------");
+            System.out.println("Medicine Name : " + name);
+            System.out.println("Price         : " + price);
         }
     }
 }

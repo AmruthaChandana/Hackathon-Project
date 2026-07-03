@@ -12,10 +12,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ExcelUtils {
-
     private static Workbook workbook;
     private static Sheet sheet;
-
     public static void loadExcel(String excelPath, String sheetName) {
         try {
             FileInputStream fis = new FileInputStream(excelPath);
@@ -33,16 +31,13 @@ public class ExcelUtils {
         if (sheet == null) {
             throw new RuntimeException("Excel sheet is not loaded. Please call loadExcel() first.");
         }
-
         int rowCount = sheet.getPhysicalNumberOfRows();
         Row headerRow = sheet.getRow(0);
         if (headerRow == null) {
             throw new RuntimeException("Header row is missing in Excel sheet.");
         }
-
         int testCaseIdColumnIndex = -1;
         int requiredColumnIndex = -1;
-
         for (int i = 0; i < headerRow.getPhysicalNumberOfCells(); i++) {
             Cell headerCell = headerRow.getCell(i);
             if (headerCell == null) {
@@ -56,14 +51,12 @@ public class ExcelUtils {
                 requiredColumnIndex = i;
             }
         }
-
         if (testCaseIdColumnIndex == -1) {
             throw new RuntimeException("TestCaseID column not found in Excel");
         }
         if (requiredColumnIndex == -1) {
             throw new RuntimeException("Column not found in Excel: " + columnName);
         }
-
         for (int i = 1; i < rowCount; i++) {
             Row row = sheet.getRow(i);
             if (row == null) {
@@ -90,7 +83,6 @@ public class ExcelUtils {
         int colCount = sheet.getRow(0).getPhysicalNumberOfCells();
         Object[][] data = new Object[rowCount - 1][1];
         Row headerRow = sheet.getRow(0);
-
         for (int i = 1; i < rowCount; i++) {
             Map<String, String> rowData = new HashMap<>();
             Row dataRow = sheet.getRow(i);

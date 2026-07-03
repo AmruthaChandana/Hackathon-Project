@@ -1,68 +1,49 @@
 package org.practo.tests;
-import org.openqa.selenium.Keys;
-import base.BaseTest;
+
+import base.CommonCode;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.practo.pages.HomePage;
 import org.practo.pages.HospitalPage;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import utilities.ConfigReader;
-import utilities.ExcelUtils;
 
-import java.util.HashMap;
 import java.util.Map;
-import java.util.Properties;
-import java.util.Set;
 
-public class TC_013_VerifyBookHospitalVisitButton extends BaseTest {
+public class TC_013_VerifyBookHospitalVisitButton extends CommonCode {
 
-    HomePage homePage = new HomePage();
-    HospitalPage hospitalPage = new HospitalPage();
+    HomePage homePage;
+    HospitalPage hospitalPage;
 
     @DataProvider(name = "tc13Data")
     public Object[][] getTC13Data() {
-
-        Properties hospitalProperties = ConfigReader.initProperties();
-
-        ExcelUtils.loadExcel(
-                hospitalProperties.getProperty("excelPath"),
-                hospitalProperties.getProperty("hospitalSheetName")
+        Map<String, String> rowData = getHospitalTestData(
+                "TC13",
+                "Location",
+                "SearchKeyword"
         );
 
-        Map<String, String> rowData = new HashMap<>();
-
-        rowData.put("TestCaseID", "TC13");
-        rowData.put("Location", ExcelUtils.getCellData("TC13", "Location"));
-        rowData.put("SearchKeyword", ExcelUtils.getCellData("TC13", "SearchKeyword"));
-
-        return new Object[][] {
-                { rowData }
+        return new Object[][]{
+                {rowData}
         };
     }
 
     @Test(dataProvider = "tc13Data")
     public void verifyBookHospitalVisitButtonIsFunctional(Map<String, String> data) {
+        homePage = new HomePage(driver);
+        hospitalPage = new HospitalPage(driver);
 
         openApplication();
 
         String location = data.get("Location");
         String searchKeyword = data.get("SearchKeyword");
 
-        type(homePage.hospitalLocationBox, location);
+        searchHospital(homePage, location, searchKeyword);
 
-        waitForVisible(homePage.hospitalLocationBox).sendKeys(Keys.BACK_SPACE);
-        waitForVisible(homePage.hospitalLocationBox).sendKeys(location.substring(location.length() - 1));
+        waitForHospitalSearchResults(hospitalPage);
 
-        click(homePage.locationOption(location));
-
-        type(homePage.hospitalSearchBox, searchKeyword);
-        click(homePage.searchOption(searchKeyword));
-
-        waitForVisible(hospitalPage.hospitalNamesForSearchResults);
-
-        WebElement bookHospitalButton = waitForClickable(hospitalPage.bookHospitalVisitButton);
+        WebElement bookHospitalButton =
+                waitForClickable(hospitalPage.getBookHospitalVisitButton());
 
         Assert.assertTrue(
                 bookHospitalButton.isDisplayed(),
@@ -92,26 +73,14 @@ public class TC_013_VerifyBookHospitalVisitButton extends BaseTest {
 
         bookHospitalButton.click();
 
-        try {
-            wait.until(ExpectedConditions.numberOfWindowsToBe(2));
+        boolean newWindowOpened =
+                switchToNewWindowIfAvailable(parentWindow);
 
-            Set<String> allWindows = driver.getWindowHandles();
-
-            for (String window : allWindows) {
-                if (!window.equals(parentWindow)) {
-                    driver.switchTo().window(window);
-                    break;
-                }
-            }
-
+        if (newWindowOpened) {
             System.out.println("New window opened and switched successfully.");
-
-        } catch (Exception e) {
+        } else {
             System.out.println("No new window opened. Continuing in the same window.");
-
-            wait.until(ExpectedConditions.not(
-                    ExpectedConditions.urlToBe(previousPageUrl)
-            ));
+            waitForUrlToChange(previousPageUrl);
         }
 
         String currentPageTitle = getPageTitle();

@@ -190,4 +190,11 @@ public class CommonCode extends BaseTest {
     public Object[][] getExcelData() {
         return ExcelUtils.getAllTestData();
     }
+
+    public void loadCorporateSheet() {
+        ExcelUtils.loadExcel(
+                prop.getProperty("excelPath"),
+                prop.getProperty("corporateSheetName")
+        );
+    }
 }

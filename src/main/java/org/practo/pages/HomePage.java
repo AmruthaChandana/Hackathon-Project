@@ -7,6 +7,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import java.time.Duration;
 
 public class HomePage {
     private WebDriver driver;
@@ -40,6 +43,18 @@ public class HomePage {
 
     @FindBy(xpath = "//input[@data-qa-id='omni-searchbox-keyword']")
     private WebElement hospitalSearchBoxElement;
+
+    @FindBy(xpath = "//a[@title='surgery']")
+    private WebElement surgeriesButton;
+
+    @FindBy(xpath = "//div[text()='Medicines']")
+    private WebElement medicinesButton;
+
+    @FindBy(xpath = "//span[contains(text(),'For Corporates')]")
+    private WebElement forCorporates;
+
+    @FindBy(xpath = "//a[contains(text(),'Health & Wellness Plans')]")
+    private WebElement healthAndWellnessPlans;
 
     public By hospitalLocationBox =
             By.xpath("//input[@data-qa-id='omni-searchbox-locality']");
@@ -143,4 +158,39 @@ public class HomePage {
     public WebElement getHospitalSearchBoxElement() {
         return hospitalSearchBoxElement;
     }
+
+    public void clickSurgeriesButton() {
+
+        WebDriverWait wait =
+                new WebDriverWait(driver, Duration.ofSeconds(20));
+
+        wait.until(
+                ExpectedConditions.elementToBeClickable(
+                        surgeriesButton));
+
+        surgeriesButton.click();
+    }
+
+    public void clickMedicines() {
+        medicinesButton.click();
+    }
+
+
+    public void clickSurgeriesButtonUsingJS() {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].click();", surgeriesButton);
+    }
+
+    public WebElement getSurgeriesButton() {
+        return surgeriesButton;
+    }
+
+    public void clickForCorporates() {
+        forCorporates.click();
+    }
+
+    public void clickHealthAndWellnessPlans() {
+        healthAndWellnessPlans.click();
+    }
+
 }

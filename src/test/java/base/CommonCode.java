@@ -22,7 +22,6 @@ public class CommonCode extends BaseTest {
     public void openApplication() {
         driver.get(prop.getProperty("url"));
     }
-
     // Excel Sheet Loaders
     public void loadMedicineSheet() {
         ExcelUtils.loadExcel(
@@ -296,5 +295,12 @@ public class CommonCode extends BaseTest {
     @DataProvider(name = "excelData")
     public Object[][] getExcelData() {
         return ExcelUtils.getAllTestData();
+    }
+
+    public void loadCorporateSheet() {
+        ExcelUtils.loadExcel(
+                prop.getProperty("excelPath"),
+                prop.getProperty("corporateSheetName")
+        );
     }
 }

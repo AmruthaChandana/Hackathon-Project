@@ -1,9 +1,10 @@
 package org.practo.pages;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -18,58 +19,62 @@ public class MedicinesPage {
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(30));
         PageFactory.initElements(driver, this);
     }
+
+    @FindBy(css = "input[placeholder*='Search']")
+    private WebElement searchBox;
+
+    @FindBy(className = "search-bar__results")
+    private WebElement resultsBox;
+
     public void searchMedicine(String medicineName) {
-        WebElement searchBox = wait.until(
-                ExpectedConditions.visibilityOfElementLocated(
-                        By.cssSelector("input[placeholder*='Search']"))
+        wait.until(
+                ExpectedConditions.visibilityOf(searchBox)
         );
         searchBox.clear();
         searchBox.sendKeys(medicineName);
         searchBox.click();
-        // Wait for results dropdown
         wait.until(
-                ExpectedConditions.visibilityOfElementLocated(
-                        By.className("search-bar__results"))
+                ExpectedConditions.visibilityOf(resultsBox)
         );
-        try {
-            Thread.sleep(2000);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
+
     public int getMedicineCount() {
-        WebElement resultsBox = wait.until(
-                ExpectedConditions.visibilityOfElementLocated(
-                        By.className("search-bar__results"))
+        wait.until(
+                ExpectedConditions.visibilityOf(resultsBox)
         );
-        try {
-            Thread.sleep(2000);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
         List<WebElement> suggestions =
-                resultsBox.findElements(By.tagName("a"));
-        System.out.println("Total Medicines Found : "
-                + suggestions.size());
+                driver.findElements(
+                        By.cssSelector(".search-bar__results a"));
+        System.out.println(
+                "Total Medicines Found : "
+                        + suggestions.size());
         return suggestions.size();
     }
+
     public void printFirstFiveMedicines() {
-        WebElement resultsBox = wait.until(
-                ExpectedConditions.visibilityOfElementLocated(
-                        By.className("search-bar__results"))
+        wait.until(
+                ExpectedConditions.visibilityOf(resultsBox)
         );
         JavascriptExecutor js =
                 (JavascriptExecutor) driver;
         List<WebElement> suggestions =
-                resultsBox.findElements(By.tagName("a"));
+                driver.findElements(
+                        By.cssSelector(".search-bar__results a"));
         try {
             while (suggestions.size() < 10) {
+                int currentSize = suggestions.size();
                 js.executeScript(
                         "arguments[0].scrollTop = arguments[0].scrollTop + 300;",
-                        resultsBox);
-                Thread.sleep(500);
+                        resultsBox
+                );
+                wait.until(driver ->
+                        driver.findElements(
+                                        By.cssSelector(".search-bar__results a"))
+                                .size() >= currentSize
+                );
                 suggestions =
-                        resultsBox.findElements(By.tagName("a"));
+                        driver.findElements(
+                                By.cssSelector(".search-bar__results a"));
                 if (suggestions.size() >= 10) {
                     break;
                 }
@@ -77,7 +82,8 @@ public class MedicinesPage {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println("\n========== FIRST 5 MEDICINES ==========");
+        System.out.println(
+                "\n========== FIRST 5 MEDICINES ==========");
         int printedCount = 0;
         for (WebElement suggestion : suggestions) {
             if (printedCount == 5) {
@@ -100,7 +106,6 @@ public class MedicinesPage {
                     price = line;
                 }
             }
-            // Skip medicines with no price
             if (price.isEmpty()) {
                 continue;
             }

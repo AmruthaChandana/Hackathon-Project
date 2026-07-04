@@ -47,11 +47,8 @@ public class HospitalPage {
     @FindBy(xpath = "//div[@data-qa-id='no_results']")
     private WebElement noResultsMessageElement;
 
-    // ==========================
     // TC11 to TC15 By Locators
     // Kept so existing TC11-TC15 test classes do not break
-    // ==========================
-
     public By hospitalNamesForSearchResults = By.xpath("//h2[contains(@class,'line-1')]");
 
     public By hospitalCardFromName = By.xpath("./ancestor::li");
@@ -79,7 +76,7 @@ public class HospitalPage {
     }
 
     // Existing Data Retrieval Methods
-        public int getHospitalCount() {
+    public int getHospitalCount() {
         return hospitalCards.size();
     }
 
@@ -139,7 +136,6 @@ public class HospitalPage {
     public boolean hasHospitals() {
         return getHospitalCount() > 0;
     }
-
     // TC11 to TC15 PageFactory Validation Methods
         public boolean isBookHospitalVisitButtonDisplayed() {
         try {

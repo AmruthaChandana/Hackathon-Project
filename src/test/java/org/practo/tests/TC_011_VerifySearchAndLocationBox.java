@@ -1,4 +1,5 @@
 package org.practo.tests;
+import base.CommonCode;
 import org.openqa.selenium.Keys;
 import base.BaseTest;
 import org.practo.pages.HomePage;
@@ -13,7 +14,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
-public class TC_011_VerifySearchAndLocationBox extends BaseTest {
+public class TC_011_VerifySearchAndLocationBox extends CommonCode {
     HomePage homePage = new HomePage();
     HospitalPage hospitalPage = new HospitalPage();
     @DataProvider(name = "tc11Data")

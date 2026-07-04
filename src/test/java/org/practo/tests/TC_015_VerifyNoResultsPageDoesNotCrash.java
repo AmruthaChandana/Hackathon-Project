@@ -1,4 +1,5 @@
 package org.practo.tests;
+import base.CommonCode;
 import org.openqa.selenium.Keys;
 import base.BaseTest;
 import org.openqa.selenium.JavascriptExecutor;
@@ -15,7 +16,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
-public class TC_015_VerifyNoResultsPageDoesNotCrash extends BaseTest {
+public class TC_015_VerifyNoResultsPageDoesNotCrash extends CommonCode {
     HomePage homePage = new HomePage();
     HospitalPage hospitalPage = new HospitalPage();
     @DataProvider(name = "tc15Data")

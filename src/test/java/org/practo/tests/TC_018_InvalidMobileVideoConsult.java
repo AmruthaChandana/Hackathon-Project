@@ -25,12 +25,12 @@ public class TC_018_InvalidMobileVideoConsult extends CommonCode {
         try {
             wait.until(
                     ExpectedConditions.elementToBeClickable(
-                            homePage.getVideoConsultHomeButton()
+                            homePage.getVideoConsultLink()
                     )
             );
-            homePage.clickVideoConsultHomeButton();
+            homePage.clickVideoConsult();
         } catch (Exception e) {
-            homePage.clickVideoConsultHomeButtonUsingJS();
+            homePage.clickVideoConsultUsingJS();
         }
 
         wait.until(driver ->

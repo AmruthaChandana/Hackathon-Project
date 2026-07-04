@@ -15,7 +15,6 @@ public class TC_009_Navigation extends CommonCode {
 
     @Test
     public void verifyNavigationToLabTestsPage() {
-        // Read URL and wait time from config.properties
         String url = ConfigReader.getProperty("url");
         int explicitWait = Integer.parseInt(
                 ConfigReader.getProperty("explicitWait"));
@@ -23,11 +22,8 @@ public class TC_009_Navigation extends CommonCode {
         LabTestsPage labTestsPage = new LabTestsPage(driver);
         WebDriverWait wait =
                 new WebDriverWait(driver, Duration.ofSeconds(explicitWait));
-        // Click Lab Tests menu
         labTestsPage.clickLabTestsMenu();
-        // Wait for navigation
         wait.until(ExpectedConditions.urlContains("tests"));
-        // Validation
         Assert.assertTrue(
                 labTestsPage.isLabTestsPageOpened(),
                 "Lab Tests/Diagnostics page was not opened successfully");

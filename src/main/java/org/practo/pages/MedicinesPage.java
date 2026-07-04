@@ -26,6 +26,12 @@ public class MedicinesPage {
     @FindBy(className = "search-bar__results")
     private WebElement resultsBox;
 
+    @FindBy(css = "input[placeholder*='Search']")
+    private WebElement searchBox;
+
+    @FindBy(className = "search-bar__results")
+    private WebElement resultsBox;
+
     @FindBy(xpath = "//span[contains(text(),'ADD TO CART')]")
     private WebElement addToCartButton;
 

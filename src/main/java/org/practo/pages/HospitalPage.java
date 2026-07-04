@@ -45,6 +45,9 @@ public class HospitalPage {
     @FindBy(xpath = "//h2[contains(@class,'line-1')]/ancestor::li")
     private List<WebElement> hospitalCardsForSearchResultsElements;
 
+    @FindBy(xpath = "(//h2[contains(@class,'line-1')]/parent::a)[1]")
+    private WebElement firstHospitalResultLinkElement;
+
     @FindBy(xpath = "//button[@class='c-book-cta' and text()='Book Hospital Visit']")
     private WebElement bookHospitalVisitButtonElement;
 
@@ -52,28 +55,22 @@ public class HospitalPage {
     private WebElement noResultsMessageElement;
 
     // Existing Actions
-
     public void clickOpen24x7Filter() {
         open247Filter.click();
     }
 
-
-
     public void clickFirstHospital() {
         firstHospitalCard.click();
     }
-
 
     public void clickBookHospitalVisitButton() {
         bookHospitalVisitButtonElement.click();
     }
 
     // Existing Data Retrieval Methods
-
     public int getHospitalCount() {
         return hospitalCards.size();
     }
-
 
     public List<String> getHospitalNames() {
         return hospitalNames.stream()
@@ -82,7 +79,6 @@ public class HospitalPage {
                 .filter(name -> !name.isEmpty())
                 .collect(Collectors.toList());
     }
-
 
     public List<String> getHospitalRatings() {
         return hospitalRatings.stream()
@@ -107,6 +103,10 @@ public class HospitalPage {
 
     public List<WebElement> getHospitalCardsForSearchResultsElements() {
         return hospitalCardsForSearchResultsElements;
+    }
+
+    public WebElement getFirstHospitalResultLink() {
+        return firstHospitalResultLinkElement;
     }
 
     public WebElement getBookHospitalVisitButton() {
@@ -168,7 +168,6 @@ public class HospitalPage {
     }
 
     // Existing Validation Methods
-
     public boolean isOpen24x7FilterDisplayed() {
         try {
             return open247Filter.isDisplayed();

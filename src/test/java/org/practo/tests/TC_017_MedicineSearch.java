@@ -6,6 +6,7 @@ import org.practo.pages.MedicinesPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import utilities.ExcelUtils;
+import org.practo.pages.HomePage;
 
 public class TC_017_MedicineSearch extends CommonCode {
     @Test
@@ -18,7 +19,13 @@ public class TC_017_MedicineSearch extends CommonCode {
         System.out.println(
                 "Medicine Search : "
                         + medicineName);
-        driver.get("https://www.practo.com/order");
+        HomePage homePage =
+                new HomePage(driver);
+
+        homePage.clickSurgeriesButton();
+
+        homePage.clickMedicines();
+
         MedicinesPage medicinesPage =
                 new MedicinesPage(driver);
         medicinesPage.searchMedicine(medicineName);

@@ -2,7 +2,6 @@ package org.practo.tests;
 
 import java.time.Duration;
 import java.util.List;
-
 import base.CommonCode;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -23,15 +22,12 @@ public class TC_010_TopCitiesVisibility extends CommonCode {
                         Integer.parseInt(ConfigReader.getProperty("explicitWait"))
                 )
         );
-        // Navigate to Lab Tests page
         labTestsPage.clickLabTestsMenu();
         wait.until(ExpectedConditions.urlContains("tests"));
-        // Verify Top Cities section is available
         Assert.assertTrue(
                 labTestsPage.getTopCitiesCount() > 0,
                 "Top Cities section is not visible"
         );
-        // Fetch and print city names
         List<String> cities = labTestsPage.getTopCityNames();
         System.out.println("Top Cities:");
         for (String city : cities) {

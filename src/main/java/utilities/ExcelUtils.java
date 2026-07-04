@@ -6,7 +6,6 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-
 import java.io.FileInputStream;
 import java.util.HashMap;
 import java.util.Map;
@@ -14,9 +13,10 @@ import java.util.Map;
 public class ExcelUtils {
     private static Workbook workbook;
     private static Sheet sheet;
+    private static final DataFormatter formatter = new DataFormatter();
+
     public static void loadExcel(String excelPath, String sheetName) {
-        try {
-            FileInputStream fis = new FileInputStream(excelPath);
+        try (FileInputStream fis = new FileInputStream(excelPath)) {
             workbook = new XSSFWorkbook(fis);
             sheet = workbook.getSheet(sheetName);
             if (sheet == null) {
@@ -28,10 +28,7 @@ public class ExcelUtils {
     }
 
     public static String getCellData(String testCaseId, String columnName) {
-        if (sheet == null) {
-            throw new RuntimeException("Excel sheet is not loaded. Please call loadExcel() first.");
-        }
-        int rowCount = sheet.getPhysicalNumberOfRows();
+        validateSheetLoaded();
         Row headerRow = sheet.getRow(0);
         if (headerRow == null) {
             throw new RuntimeException("Header row is missing in Excel sheet.");
@@ -57,6 +54,7 @@ public class ExcelUtils {
         if (requiredColumnIndex == -1) {
             throw new RuntimeException("Column not found in Excel: " + columnName);
         }
+        int rowCount = sheet.getPhysicalNumberOfRows();
         for (int i = 1; i < rowCount; i++) {
             Row row = sheet.getRow(i);
             if (row == null) {
@@ -76,17 +74,19 @@ public class ExcelUtils {
     }
 
     public static Object[][] getAllTestData() {
-        if (sheet == null) {
-            throw new RuntimeException("Excel sheet is not loaded. Please call loadExcel() first.");
+        validateSheetLoaded();
+        Row headerRow = sheet.getRow(0);
+        if (headerRow == null) {
+            throw new RuntimeException("Header row is missing in Excel sheet.");
         }
         int rowCount = sheet.getPhysicalNumberOfRows();
-        int colCount = sheet.getRow(0).getPhysicalNumberOfCells();
+        int colCount = headerRow.getPhysicalNumberOfCells();
         Object[][] data = new Object[rowCount - 1][1];
-        Row headerRow = sheet.getRow(0);
         for (int i = 1; i < rowCount; i++) {
             Map<String, String> rowData = new HashMap<>();
             Row dataRow = sheet.getRow(i);
             if (dataRow == null) {
+                data[i - 1][0] = rowData;
                 continue;
             }
             for (int j = 0; j < colCount; j++) {
@@ -103,7 +103,12 @@ public class ExcelUtils {
         if (cell == null) {
             return "";
         }
-        DataFormatter formatter = new DataFormatter();
         return formatter.formatCellValue(cell).trim();
+    }
+
+    private static void validateSheetLoaded() {
+        if (sheet == null) {
+            throw new RuntimeException("Excel sheet is not loaded. Please call loadExcel() first.");
+        }
     }
 }

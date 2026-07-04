@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import utilities.WaitUtils;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -12,14 +13,12 @@ public class HospitalPage {
 
     private WebDriver driver;
 
-    public HospitalPage() {
-    }
-
     public HospitalPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
 
+    // Hospital listing elements
     @FindBy(xpath = "//div[contains(@class,'listing') or contains(@class,'card')]")
     private List<WebElement> hospitalCards;
 
@@ -38,7 +37,7 @@ public class HospitalPage {
     @FindBy(xpath = "//*[contains(text(),'Address')]/following::*[1] | //*[contains(@class,'address')]")
     private WebElement addressSection;
 
-    // TC11 to TC15 FindBy Elements
+    // Hospital search result elements
     @FindBy(xpath = "//h2[contains(@class,'line-1')]")
     private List<WebElement> hospitalNamesForSearchResultsElements;
 
@@ -54,20 +53,24 @@ public class HospitalPage {
     @FindBy(xpath = "//div[@data-qa-id='no_results']")
     private WebElement noResultsMessageElement;
 
-    // Existing Actions
+    // Hospital details page address element
+    @FindBy(xpath = "//p[@data-qa-id='address_body']")
+    private WebElement addressBodyElement;
+
+    // Hospital listing actions
     public void clickOpen24x7Filter() {
-        open247Filter.click();
+        WaitUtils.safeClick(driver, open247Filter);
     }
 
     public void clickFirstHospital() {
-        firstHospitalCard.click();
+        WaitUtils.safeClick(driver, firstHospitalCard);
     }
 
     public void clickBookHospitalVisitButton() {
-        bookHospitalVisitButtonElement.click();
+        WaitUtils.safeClick(driver, bookHospitalVisitButtonElement);
     }
 
-    // Existing Data Retrieval Methods
+    // Hospital listing data methods
     public int getHospitalCount() {
         return hospitalCards.size();
     }
@@ -96,7 +99,7 @@ public class HospitalPage {
         }
     }
 
-    // TC11 to TC15 Data Retrieval Methods
+    // Hospital search result getters
     public List<WebElement> getHospitalNamesForSearchResultsElements() {
         return hospitalNamesForSearchResultsElements;
     }
@@ -117,6 +120,23 @@ public class HospitalPage {
         return noResultsMessageElement;
     }
 
+    // Hospital details address methods merged from HospitalDetailsPage
+    public WebElement getAddressBodyElement() {
+        return addressBodyElement;
+    }
+
+    public String cleanAddressText(String addressText) {
+        if (addressText == null) {
+            return "";
+        }
+        return addressText
+                .replace("Get Directions", "")
+                .replace("&amp;amp;", "&")
+                .replace("&amp;", "&")
+                .trim();
+    }
+
+    // Hospital card utility methods
     public WebElement getHospitalCardFromHospitalName(WebElement hospitalName) {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         return (WebElement) js.executeScript(
@@ -143,13 +163,10 @@ public class HospitalPage {
                             "return rating ? rating.textContent.trim() : '';",
                     hospitalCard
             );
-
             if (ratingText == null) {
                 return "";
             }
-
             return ratingText.toString().trim();
-
         } catch (Exception e) {
             return "";
         }
@@ -167,21 +184,13 @@ public class HospitalPage {
         }
     }
 
-    // Existing Validation Methods
+    // Hospital validation methods
     public boolean isOpen24x7FilterDisplayed() {
-        try {
-            return open247Filter.isDisplayed();
-        } catch (Exception e) {
-            return false;
-        }
+        return WaitUtils.isElementDisplayed(driver, open247Filter);
     }
 
     public boolean isAddressDisplayed() {
-        try {
-            return addressSection.isDisplayed();
-        } catch (Exception e) {
-            return false;
-        }
+        return WaitUtils.isElementDisplayed(driver, addressSection);
     }
 
     public boolean hasHospitals() {
@@ -189,26 +198,14 @@ public class HospitalPage {
     }
 
     public boolean isBookHospitalVisitButtonDisplayed() {
-        try {
-            return bookHospitalVisitButtonElement.isDisplayed();
-        } catch (Exception e) {
-            return false;
-        }
+        return WaitUtils.isElementDisplayed(driver, bookHospitalVisitButtonElement);
     }
 
     public boolean isBookHospitalVisitButtonEnabled() {
-        try {
-            return bookHospitalVisitButtonElement.isEnabled();
-        } catch (Exception e) {
-            return false;
-        }
+        return WaitUtils.isElementEnabled(driver, bookHospitalVisitButtonElement);
     }
 
     public boolean isNoResultsMessageDisplayed() {
-        try {
-            return noResultsMessageElement.isDisplayed();
-        } catch (Exception e) {
-            return false;
-        }
+        return WaitUtils.isElementDisplayed(driver, noResultsMessageElement);
     }
 }

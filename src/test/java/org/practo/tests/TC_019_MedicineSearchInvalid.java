@@ -1,6 +1,5 @@
 package org.practo.tests;
 
-import base.BaseTest;
 import base.CommonCode;
 import org.practo.pages.MedicinesPage;
 import org.testng.Assert;
@@ -8,17 +7,22 @@ import org.testng.annotations.Test;
 import utilities.ExcelUtils;
 import org.practo.pages.HomePage;
 
-public class TC_017_MedicineSearch extends CommonCode {
+public class TC_019_MedicineSearchInvalid extends CommonCode {
+
     @Test
-    public void verifyMedicineSearch() {
+    public void verifyInvalidMedicineSearch() {
+
         loadMedicineSheet();
+
         String medicineName =
                 ExcelUtils.getCellData(
-                        "TC_017",
+                        "TC_019",
                         "SearchMedicine");
+
         System.out.println(
-                "Medicine Search : "
+                "Searching Invalid Medicine : "
                         + medicineName);
+
         HomePage homePage =
                 new HomePage(driver);
 
@@ -28,11 +32,17 @@ public class TC_017_MedicineSearch extends CommonCode {
 
         MedicinesPage medicinesPage =
                 new MedicinesPage(driver);
+
         medicinesPage.searchMedicine(medicineName);
-        Assert.assertTrue(
-                medicinesPage.getMedicineCount() > 0,
-                "No medicines found."
+
+        Assert.assertFalse(
+                medicinesPage.isMedicinePresentInResults(
+                        medicineName),
+                "Invalid medicine is displayed in search results."
         );
-        medicinesPage.printFirstFiveMedicines();
+
+        System.out.println(
+                "No matching medicine found for invalid medicine. Test Passed."
+        );
     }
 }

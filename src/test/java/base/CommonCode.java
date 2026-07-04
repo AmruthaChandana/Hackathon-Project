@@ -3,6 +3,7 @@ package base;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -21,7 +22,6 @@ public class CommonCode extends BaseTest {
     public void openApplication() {
         driver.get(prop.getProperty("url"));
     }
-
     // Excel Sheet Loaders
     public void loadMedicineSheet() {
         ExcelUtils.loadExcel(
@@ -64,7 +64,19 @@ public class CommonCode extends BaseTest {
     }
 
     public void click(By locator) {
-        waitForClickable(locator).click();
+        try {
+            wait.until(
+                    ExpectedConditions.refreshed(
+                            ExpectedConditions.elementToBeClickable(locator)
+                    )
+            ).click();
+        } catch (StaleElementReferenceException e) {
+            wait.until(
+                    ExpectedConditions.refreshed(
+                            ExpectedConditions.elementToBeClickable(locator)
+                    )
+            ).click();
+        }
     }
 
     public void type(By locator, String value) {
@@ -215,6 +227,7 @@ public class CommonCode extends BaseTest {
         homePage.enterHospitalSearchKeyword(searchKeyword);
         click(homePage.searchOption(searchKeyword));
     }
+
     public void searchHospitalUsingContains(HomePage homePage, String location, String searchKeyword) {
         homePage.enterHospitalLocation(location);
         homePage.triggerHospitalLocationSuggestion(location);
@@ -282,5 +295,12 @@ public class CommonCode extends BaseTest {
     @DataProvider(name = "excelData")
     public Object[][] getExcelData() {
         return ExcelUtils.getAllTestData();
+    }
+
+    public void loadCorporateSheet() {
+        ExcelUtils.loadExcel(
+                prop.getProperty("excelPath"),
+                prop.getProperty("corporateSheetName")
+        );
     }
 }

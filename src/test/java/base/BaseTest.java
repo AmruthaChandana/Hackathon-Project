@@ -46,10 +46,8 @@ public class BaseTest {
         }
 
         driver.manage().window().maximize();
-
         int implicitWait = Integer.parseInt(prop.getProperty("implicitWait"));
         int explicitWait = Integer.parseInt(prop.getProperty("explicitWait"));
-
         driver.manage()
                 .timeouts()
                 .implicitlyWait(Duration.ofSeconds(implicitWait));

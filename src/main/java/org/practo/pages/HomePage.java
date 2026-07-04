@@ -7,14 +7,14 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import java.time.Duration;
 
 public class HomePage {
-
     private WebDriver driver;
-
     public HomePage() {
     }
-
     public HomePage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
@@ -29,12 +29,7 @@ public class HomePage {
     @FindBy(xpath = "//input[contains(@placeholder,'Search') or contains(@placeholder,'doctor') or contains(@placeholder,'clinic')]")
     private WebElement searchBox;
 
-    /*
-     * Correct Video Consult clickable anchor.
-     * This clicks the actual link which navigates to:
-     * https://www.practo.com/consult
-     */
-    @FindBy(xpath = "(//a[contains(@href,'/consult') and (@title='chat' or contains(normalize-space(),'Video Consult'))])[1]")
+    @FindBy(xpath = "//div[contains(text(),'Video Consult')] | //a[contains(text(),'Video Consult')]")
     private WebElement videoConsultLink;
 
     @FindBy(xpath = "//a[contains(text(),'Lab Tests') or contains(text(),'Diagnostics')]")
@@ -49,24 +44,6 @@ public class HomePage {
     @FindBy(xpath = "//input[@data-qa-id='omni-searchbox-keyword']")
     private WebElement hospitalSearchBoxElement;
 
-    // Dynamic locator because value comes from Excel
-
-// ==========================
-// TC_014 Surgery Page Elements
-// ==========================
-
-    @FindBy(xpath = "//*[@id='root']/div/div/div[1]/div[1]/div[2]/div/div[2]/div[4]/a/div[1]")
-    private WebElement surgeriesButton;
-
-
-// ==========================
-// TC_018 Video Consult Exact Home Link
-// ==========================
-
-    @FindBy(xpath = "//*[@id='root']/div/div/div[1]/div[1]/div[2]/div/div[2]/div[2]/a/div[1]")
-    private WebElement videoConsultHomeButton;
-
-
     public By hospitalLocationBox =
             By.xpath("//input[@data-qa-id='omni-searchbox-locality']");
 
@@ -77,20 +54,16 @@ public class HomePage {
         return By.xpath("//div[contains(text(),'" + location + "')]");
     }
 
-    // Dynamic locator because value comes from Excel
     public By searchOption(String searchKeyword) {
         return By.xpath(
                 "//div[@data-qa-id='omni-suggestion-main' and text()='"
-                        + searchKeyword + "']"
-        );
+                        + searchKeyword + "']");
     }
 
-    // Dynamic locator because value comes from Excel
     public By searchOptionContains(String searchKeyword) {
         return By.xpath(
                 "//div[@data-qa-id='omni-suggestion-main' and contains(text(),'"
-                        + searchKeyword + "')]"
-        );
+                        + searchKeyword + "')]");
     }
 
     public void clickLogin() {
@@ -137,8 +110,10 @@ public class HomePage {
     }
 
     public void triggerHospitalLocationSuggestion(String location) {
+
         hospitalLocationBoxElement.sendKeys(Keys.BACK_SPACE);
         hospitalLocationBoxElement.sendKeys(location.substring(location.length() - 1));
+
     }
 
     public void clickLocationOption(String location) {
@@ -171,35 +146,5 @@ public class HomePage {
 
     public WebElement getHospitalSearchBoxElement() {
         return hospitalSearchBoxElement;
-    }
-
-// ==========================
-// TC_014 Surgery Page Actions
-// ==========================
-
-    public void clickSurgeriesButton() {
-        surgeriesButton.click();
-    }
-
-    public void clickSurgeriesButtonUsingJS() {
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("arguments[0].click();", surgeriesButton);
-    }
-
-    public WebElement getSurgeriesButton() {
-        return surgeriesButton;
-    }
-
-    public void clickVideoConsultHomeButton() {
-        videoConsultHomeButton.click();
-    }
-
-    public void clickVideoConsultHomeButtonUsingJS() {
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("arguments[0].click();", videoConsultHomeButton);
-    }
-
-    public WebElement getVideoConsultHomeButton() {
-        return videoConsultHomeButton;
     }
 }

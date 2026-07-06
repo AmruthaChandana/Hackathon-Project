@@ -1,148 +1,129 @@
 package org.practo.pages;
 
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-
+import utilities.WaitUtils;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class LabTestsPage {
     private WebDriver driver;
+
     public LabTestsPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
 
+    // TC_006 - Navigation to Lab Tests Page
     @FindBy(xpath = "//a[@title='tests']")
     private WebElement labTestsMenu;
 
-    @FindBy(xpath = "//*[contains(text(),'Select City') or contains(@class,'city')]")
-    private WebElement cityDropdown;
-
-    @FindBy(xpath = "//*[contains(text(),'Top Cities') or contains(text(),'Popular Cities')]")
+    // TC_007 - Top Cities
+    @FindBy(xpath = "//div[text()='TOP CITIES']")
     private WebElement topCitiesSection;
 
-    @FindBy(xpath = "//*[contains(text(),'Bangalore') or contains(text(),'Mumbai') or contains(text(),'Delhi') or contains(text(),'Hyderabad') or contains(text(),'Pune')]")
-    private List<WebElement> topCityNames;
+    @FindBy(xpath = "//div[text()='TOP CITIES']/following::div[contains(@class,'o-f-color--primary')]")
+    private List<WebElement> topCities;
 
-    @FindBy(xpath = "//input[contains(@placeholder,'city') or contains(@placeholder,'City')]")
+    // TC_003 / TC_005 - Lab Test and City Search
+    @FindBy(xpath = "//input[@type='text' and @placeholder='Search for city']")
     private WebElement citySearchField;
 
     @FindBy(xpath = "//input[contains(@placeholder,'Search') or contains(@placeholder,'test')]")
     private WebElement labSearchField;
 
-    @FindBy(xpath = "//*[contains(text(),'Thyroid') or contains(@class,'test')]")
-    private List<WebElement> labSearchResults;
+    @FindBy(xpath = "//*[contains(@class,'suggestion') or contains(@class,'result')]")
+    private List<WebElement> citySuggestions;
 
-    @FindBy(xpath = "//*[contains(text(),'Health') or contains(text(),'package') or contains(text(),'Package')]")
-    private List<WebElement> healthPackages;
+    @FindBy(xpath = "//div[text()='Bangalore']")
+    private WebElement bangaloreCity;
 
-    @FindBy(xpath = "//img[contains(@src,'topcities')]")
-    private List<WebElement> topCityIcons;
+    // TC_004 - Add To Cart
+    @FindBy(xpath = "//a[contains(@href,'diabetes-checkup')]")
+    private WebElement diabetesLink;
+
+    @FindBy(xpath = "//a[contains(@href,'thyroid-profile-total-blood')]/following::div[contains(text(),'ADD TO CART')][1]")
+    private WebElement thyroidAddToCart;
+
+    @FindBy(xpath = "//div[contains(text(),'REMOVE')]")
+    private WebElement removeButton;
 
     public void clickLabTestsMenu() {
-        try {
-            labTestsMenu.click();
-        } catch (Exception e) {
-            JavascriptExecutor js = (JavascriptExecutor) driver;
-            js.executeScript("arguments[0].click();", labTestsMenu);
-        }
+        WaitUtils.safeClick(driver, labTestsMenu);
     }
 
     public boolean isLabTestsPageOpened() {
         try {
             String currentUrl = driver.getCurrentUrl().toLowerCase();
             String pageTitle = driver.getTitle().toLowerCase();
-            return currentUrl.contains("tests")
-                    || currentUrl.contains("lab")
-                    || pageTitle.contains("lab");
+            return currentUrl.contains("tests") || currentUrl.contains("lab") || pageTitle.contains("lab");
         } catch (Exception e) {
             return false;
         }
     }
 
-    public void clickCityDropdown() {
-        cityDropdown.click();
-    }
-
     public void enterCity(String city) {
+        WaitUtils.waitForVisible(driver, citySearchField);
         citySearchField.clear();
         citySearchField.sendKeys(city);
     }
 
     public void searchLabTest(String testName) {
+        WaitUtils.waitForVisible(driver, labSearchField);
         labSearchField.clear();
         labSearchField.sendKeys(testName);
     }
 
-    public boolean isTopCitiesDisplayed() {
-        try {
-            return topCitiesSection.isDisplayed();
-        } catch (Exception e) {
-            return false;
+    public void searchCity(String cityName) {
+        WaitUtils.waitForVisible(driver, citySearchField);
+        citySearchField.click();
+        citySearchField.clear();
+        citySearchField.sendKeys(cityName);
+    }
+
+    public void selectCity(String cityName) {
+        if (cityName.equalsIgnoreCase("Bangalore")) {
+            WaitUtils.safeClick(driver, bangaloreCity);
         }
     }
 
-    public boolean isCityDropdownDisplayed() {
+    public void clickDiabetesHealthConcern() {
+        WaitUtils.safeClick(driver, diabetesLink);
+    }
+
+    public void clickThyroidAddToCart() {
+        WaitUtils.safeClick(driver, thyroidAddToCart);
+    }
+
+    public void selectBangaloreCity() {
+        WaitUtils.safeClick(driver, bangaloreCity);
+    }
+
+    public boolean isAddedToCart() {
+        return WaitUtils.isElementDisplayed(driver, removeButton);
+    }
+
+    public boolean isCitySuggestionAvailable() {
         try {
-            return cityDropdown.isDisplayed();
+            return citySuggestions.size() > 0;
         } catch (Exception e) {
             return false;
-        }
-    }
-
-    public boolean hasLabResults() {
-        return labSearchResults.size() > 0;
-    }
-
-    public boolean hasHealthPackages() {
-        return healthPackages.size() > 0;
-    }
-
-    public boolean isTopCitiesSectionVisible() {
-        try {
-            return topCityIcons.size() > 0;
-        } catch (Exception e) {
-            return false;
-        }
-    }
-
-    public int getTopCityIconsCount() {
-        try {
-            return topCityIcons.size();
-        } catch (Exception e) {
-            return 0;
         }
     }
 
     public int getTopCitiesCount() {
-        return topCityNames.size();
+        return getTopCityNames().size();
     }
 
     public List<String> getTopCityNames() {
-        return topCityNames.stream()
+        WaitUtils.waitForVisible(driver, topCitiesSection);
+        return topCities.stream()
                 .map(WebElement::getText)
                 .map(String::trim)
                 .filter(city -> !city.isEmpty())
-                .collect(Collectors.toList());
-    }
-
-    public int getLabResultsCount() {
-        return labSearchResults.size();
-    }
-
-    public int getHealthPackageCount() {
-        return healthPackages.size();
-    }
-
-    public List<String> getLabResultNames() {
-        return labSearchResults.stream()
-                .map(WebElement::getText)
-                .map(String::trim)
-                .filter(result -> !result.isEmpty())
+                .distinct()
                 .collect(Collectors.toList());
     }
 }

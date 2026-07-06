@@ -1,15 +1,16 @@
 package org.practo.tests;
 
-import base.CommonCode;
+import base.BaseTest;
 import org.practo.pages.HomePage;
 import org.practo.pages.LoginPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import utilities.ExcelUtils;
+import utilities.WaitUtils;
 
-public class TC_002_LoginWithInvalidPassword extends CommonCode {
-    HomePage homePage;
-    LoginPage loginPage;
+public class TC_002_LoginWithInvalidPassword extends BaseTest {
+    private HomePage homePage;
+    private LoginPage loginPage;
 
     @Test
     public void verifyLoginWithInvalidPassword() {
@@ -17,24 +18,25 @@ public class TC_002_LoginWithInvalidPassword extends CommonCode {
         loginPage = new LoginPage(driver);
         String mobileNumber = ExcelUtils.getCellData("TC_002", "Mobile");
         String invalidPassword = ExcelUtils.getCellData("TC_002", "InvalidPassword");
-        openApplication();
+        commonCode.openApplication();
+
         // Step 1: Click Login
         homePage.clickLogin();
-        // Step 2: Enter Credentials
+
+        // Step 2: Enter invalid credentials
         loginPage.enterMobile(mobileNumber);
         loginPage.enterPassword(invalidPassword);
-        //Step 3: Click Login Button
+
+        // Step 3: Click Login button
         loginPage.clickLogin();
-        wait.until(driver ->
-                !loginPage.isUserLoggedIn()
-        );
-        //Step 4: Verify Login Failed
+        WaitUtils.waitUntil(driver, driver -> !loginPage.isUserLoggedIn());
+
+        // Step 4: Verify login failed
         Assert.assertFalse(
                 loginPage.isUserLoggedIn(),
                 "Login should NOT succeed with invalid password"
         );
-        System.out.println(
-                "TC_002 Passed: Login unsuccessful as expected with invalid password"
-        );
+
+        System.out.println("TC_002 Passed: Login unsuccessful as expected with invalid password");
     }
 }

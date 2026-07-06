@@ -7,6 +7,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import java.time.Duration;
 
 public class HomePage {
     private WebDriver driver;
@@ -107,9 +110,10 @@ public class HomePage {
     }
 
     public void triggerHospitalLocationSuggestion(String location) {
+
         hospitalLocationBoxElement.sendKeys(Keys.BACK_SPACE);
-        hospitalLocationBoxElement.sendKeys(
-                location.substring(location.length() - 1));
+        hospitalLocationBoxElement.sendKeys(location.substring(location.length() - 1));
+
     }
 
     public void clickLocationOption(String location) {

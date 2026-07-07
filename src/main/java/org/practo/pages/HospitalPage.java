@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import utilities.WaitUtils;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -57,55 +57,9 @@ public class HospitalPage {
     @FindBy(xpath = "//p[@data-qa-id='address_body']")
     private WebElement addressBodyElement;
 
-    // Hospital listing actions
-    public void clickOpen24x7Filter() {
-        WaitUtils.safeClick(driver, open247Filter);
-    }
-
-    public void clickFirstHospital() {
-        WaitUtils.safeClick(driver, firstHospitalCard);
-    }
-
-    public void clickBookHospitalVisitButton() {
-        WaitUtils.safeClick(driver, bookHospitalVisitButtonElement);
-    }
-
-    // Hospital listing data methods
-    public int getHospitalCount() {
-        return hospitalCards.size();
-    }
-
-    public List<String> getHospitalNames() {
-        return hospitalNames.stream()
-                .map(WebElement::getText)
-                .map(String::trim)
-                .filter(name -> !name.isEmpty())
-                .collect(Collectors.toList());
-    }
-
-    public List<String> getHospitalRatings() {
-        return hospitalRatings.stream()
-                .map(WebElement::getText)
-                .map(String::trim)
-                .filter(rating -> !rating.isEmpty())
-                .collect(Collectors.toList());
-    }
-
-    public String getHospitalAddress() {
-        try {
-            return addressSection.getText().trim();
-        } catch (Exception e) {
-            return "";
-        }
-    }
-
     // Hospital search result getters
     public List<WebElement> getHospitalNamesForSearchResultsElements() {
         return hospitalNamesForSearchResultsElements;
-    }
-
-    public List<WebElement> getHospitalCardsForSearchResultsElements() {
-        return hospitalCardsForSearchResultsElements;
     }
 
     public WebElement getFirstHospitalResultLink() {
@@ -174,38 +128,5 @@ public class HospitalPage {
 
     public double getHospitalRatingValue(WebElement hospitalCard) {
         return Double.parseDouble(getHospitalRatingText(hospitalCard));
-    }
-
-    public String getNoResultsMessageText() {
-        try {
-            return noResultsMessageElement.getText().trim();
-        } catch (Exception e) {
-            return "";
-        }
-    }
-
-    // Hospital validation methods
-    public boolean isOpen24x7FilterDisplayed() {
-        return WaitUtils.isElementDisplayed(driver, open247Filter);
-    }
-
-    public boolean isAddressDisplayed() {
-        return WaitUtils.isElementDisplayed(driver, addressSection);
-    }
-
-    public boolean hasHospitals() {
-        return getHospitalCount() > 0;
-    }
-
-    public boolean isBookHospitalVisitButtonDisplayed() {
-        return WaitUtils.isElementDisplayed(driver, bookHospitalVisitButtonElement);
-    }
-
-    public boolean isBookHospitalVisitButtonEnabled() {
-        return WaitUtils.isElementEnabled(driver, bookHospitalVisitButtonElement);
-    }
-
-    public boolean isNoResultsMessageDisplayed() {
-        return WaitUtils.isElementDisplayed(driver, noResultsMessageElement);
     }
 }

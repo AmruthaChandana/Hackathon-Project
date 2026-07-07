@@ -1,25 +1,41 @@
 package org.practo.pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import utilities.WaitUtils;
+
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class HomePage {
+
     private WebDriver driver;
+    private WebDriverWait wait;
 
     public HomePage() {
     }
 
     public HomePage(WebDriver driver) {
+
         this.driver = driver;
-        PageFactory.initElements(driver, this);
+
+        this.wait =
+                new WebDriverWait(
+                        driver,
+                        Duration.ofSeconds(40));
+
+        PageFactory.initElements(
+                driver,
+                this);
     }
 
-    // Common Home Page elements
     @FindBy(xpath = "//a[contains(text(),'Login') or contains(text(),'login')]")
     private WebElement loginButton;
 
@@ -38,93 +54,120 @@ public class HomePage {
     @FindBy(xpath = "//*[contains(text(),'Corporate Wellness') or contains(text(),'For Corporates')]")
     private WebElement corporateWellnessLink;
 
-    // Hospital search elements
     @FindBy(xpath = "//input[@data-qa-id='omni-searchbox-locality']")
     private WebElement hospitalLocationBoxElement;
 
     @FindBy(xpath = "//input[@data-qa-id='omni-searchbox-keyword']")
     private WebElement hospitalSearchBoxElement;
 
-    // TC_013 - Surgery navigation
-    @FindBy(xpath = "//*[@id='root']/div/div/div[1]/div[1]/div[2]/div/div[2]/div[4]/a/div[1]")
+    @FindBy(xpath = "//a[@title='surgery']")
     private WebElement surgeriesButton;
 
-    // Medicines elements
     @FindBy(xpath = "//div[text()='Medicines']")
     private WebElement medicinesButton;
 
     @FindBy(xpath = "(//a[contains(@href,'medicines') or contains(@href,'medicine') or contains(normalize-space(),'Medicines')])[1]")
     private WebElement medicinesLink;
 
-    // TC_019 / TC_020 - Corporate Wellness elements
-    @FindBy(xpath = "//*[@id='root']/div/div/div[1]/div[1]/div[2]/div/div[3]/div[1]/span/span[2]")
+    @FindBy(xpath = "//span[contains(text(),'For Corporates')]")
     private WebElement forCorporates;
 
-    @FindBy(xpath = "//*[@id='root']/div/div/div[1]/div[1]/div[2]/div/div[3]/div[1]/span/div/div[1]/a")
+    @FindBy(xpath = "//a[contains(text(),'Health & Wellness Plans')]")
     private WebElement healthAndWellnessPlans;
 
-    public By hospitalLocationBox = By.xpath("//input[@data-qa-id='omni-searchbox-locality']");
+    public By hospitalLocationBox =
+            By.xpath("//input[@data-qa-id='omni-searchbox-locality']");
 
-    public By hospitalSearchBox = By.xpath("//input[@data-qa-id='omni-searchbox-keyword']");
+    public By hospitalSearchBox =
+            By.xpath("//input[@data-qa-id='omni-searchbox-keyword']");
 
-    public By locationOption(String location) {
-        return By.xpath("//div[contains(text(),'" + location + "')]");
+    private WebElement waitForVisible(
+            WebElement element) {
+
+        return wait.until(
+                ExpectedConditions.visibilityOf(
+                        element));
     }
 
-    public By searchOption(String searchKeyword) {
-        return By.xpath("//div[@data-qa-id='omni-suggestion-main' and text()='" + searchKeyword + "']");
+    private WebElement waitForClickable(
+            WebElement element) {
+
+        return wait.until(
+                ExpectedConditions.elementToBeClickable(
+                        element));
     }
 
-    public By searchOptionContains(String searchKeyword) {
-        return By.xpath("//div[@data-qa-id='omni-suggestion-main' and contains(text(),'" + searchKeyword + "')]");
+    private void safeClick(
+            WebElement element) {
+
+        try {
+
+            waitForClickable(
+                    element)
+                    .click();
+
+        } catch (Exception e) {
+
+            JavascriptExecutor js =
+                    (JavascriptExecutor) driver;
+
+            js.executeScript(
+                    "arguments[0].click();",
+                    element);
+        }
+    }
+
+    public By locationOption(
+            String location) {
+
+        return By.xpath(
+                "//div[contains(text(),'"
+                        + location
+                        + "')]");
+    }
+
+    public By searchOption(
+            String searchKeyword) {
+
+        return By.xpath(
+                "//div[@data-qa-id='omni-suggestion-main' and text()='"
+                        + searchKeyword
+                        + "']");
+    }
+
+    public By searchOptionContains(
+            String searchKeyword) {
+
+        return By.xpath(
+                "//div[@data-qa-id='omni-suggestion-main' and contains(text(),'"
+                        + searchKeyword
+                        + "')]");
     }
 
     public void clickLogin() {
-        WaitUtils.safeClick(driver, loginButton);
-    }
-
-    public WebElement getLoginButton() {
-        return loginButton;
-    }
-
-    public void enterLocation(String location) {
-        WaitUtils.waitForVisible(driver, locationBox);
-        locationBox.clear();
-        locationBox.sendKeys(location);
-    }
-
-    public void enterSearchKeyword(String keyword) {
-        WaitUtils.waitForVisible(driver, searchBox);
-        searchBox.clear();
-        searchBox.sendKeys(keyword);
+        safeClick(loginButton);
     }
 
     public void clickVideoConsult() {
-        WaitUtils.safeClick(driver, videoConsultLink);
+        safeClick(videoConsultLink);
     }
 
     public void clickVideoConsultUsingJS() {
-        WaitUtils.clickUsingJS(driver, videoConsultLink);
+
+        JavascriptExecutor js =
+                (JavascriptExecutor) driver;
+
+        js.executeScript(
+                "arguments[0].click();",
+                videoConsultLink);
     }
 
     public WebElement getVideoConsultLink() {
         return videoConsultLink;
     }
 
-    public void clickLabTests() {
-        WaitUtils.safeClick(driver, labTestsLink);
-    }
-
-    public void clickLabTestsUsingJS() {
-        WaitUtils.clickUsingJS(driver, labTestsLink);
-    }
-
     public WebElement getLabTestsLink() {
         return labTestsLink;
-    }
-
-    public void clickCorporateWellness() {
-        WaitUtils.safeClick(driver, corporateWellnessLink);
     }
 
     public WebElement getCorporateWellnessLink() {
@@ -136,11 +179,17 @@ public class HomePage {
     }
 
     public void clickForCorporates() {
-        WaitUtils.safeClick(driver, forCorporates);
+        safeClick(forCorporates);
     }
 
     public void clickForCorporatesUsingJS() {
-        WaitUtils.clickUsingJS(driver, forCorporates);
+
+        JavascriptExecutor js =
+                (JavascriptExecutor) driver;
+
+        js.executeScript(
+                "arguments[0].click();",
+                forCorporates);
     }
 
     public WebElement getHealthAndWellnessPlans() {
@@ -148,42 +197,56 @@ public class HomePage {
     }
 
     public void clickHealthAndWellnessPlans() {
-        WaitUtils.safeClick(driver, healthAndWellnessPlans);
+        safeClick(healthAndWellnessPlans);
     }
 
     public void clickHealthAndWellnessPlansUsingJS() {
-        WaitUtils.clickUsingJS(driver, healthAndWellnessPlans);
+
+        JavascriptExecutor js =
+                (JavascriptExecutor) driver;
+
+        js.executeScript(
+                "arguments[0].click();",
+                healthAndWellnessPlans);
     }
 
-    public void enterHospitalLocation(String location) {
-        WaitUtils.waitForVisible(driver, hospitalLocationBoxElement);
+    public void enterHospitalLocation(
+            String location) {
+
+        waitForVisible(
+                hospitalLocationBoxElement);
+
         hospitalLocationBoxElement.click();
+
         hospitalLocationBoxElement.clear();
-        hospitalLocationBoxElement.sendKeys(location);
+
+        hospitalLocationBoxElement.sendKeys(
+                location);
     }
 
-    public void enterHospitalSearchKeyword(String searchKeyword) {
-        WaitUtils.waitForVisible(driver, hospitalSearchBoxElement);
+    public void enterHospitalSearchKeyword(
+            String searchKeyword) {
+
+        waitForVisible(
+                hospitalSearchBoxElement);
+
         hospitalSearchBoxElement.click();
+
         hospitalSearchBoxElement.clear();
-        hospitalSearchBoxElement.sendKeys(searchKeyword);
+
+        hospitalSearchBoxElement.sendKeys(
+                searchKeyword);
     }
 
-    public void triggerHospitalLocationSuggestion(String location) {
-        hospitalLocationBoxElement.sendKeys(Keys.BACK_SPACE);
-        hospitalLocationBoxElement.sendKeys(location.substring(location.length() - 1));
-    }
+    public void triggerHospitalLocationSuggestion(
+            String location) {
 
-    public void clickLocationOption(String location) {
-        driver.findElement(locationOption(location)).click();
-    }
+        hospitalLocationBoxElement.sendKeys(
+                Keys.BACK_SPACE);
 
-    public void clickSearchOption(String searchKeyword) {
-        driver.findElement(searchOption(searchKeyword)).click();
-    }
-
-    public void clickSearchOptionContains(String searchKeyword) {
-        driver.findElement(searchOptionContains(searchKeyword)).click();
+        hospitalLocationBoxElement.sendKeys(
+                location.substring(
+                        location.length() - 1));
     }
 
     public WebElement getHospitalLocationBoxElement() {
@@ -199,34 +262,16 @@ public class HomePage {
     }
 
     public void clickSurgeriesButton() {
-        WaitUtils.safeClick(driver, surgeriesButton);
+        safeClick(surgeriesButton);
     }
 
     public void clickSurgeriesButtonUsingJS() {
-        WaitUtils.clickUsingJS(driver, surgeriesButton);
-    }
 
-    public WebElement getMedicinesButton() {
-        return medicinesButton;
-    }
+        JavascriptExecutor js =
+                (JavascriptExecutor) driver;
 
-    public void clickMedicinesButton() {
-        WaitUtils.safeClick(driver, medicinesButton);
-    }
-
-    public void clickMedicinesButtonUsingJS() {
-        WaitUtils.clickUsingJS(driver, medicinesButton);
-    }
-
-    public WebElement getMedicinesLink() {
-        return medicinesLink;
-    }
-
-    public void clickMedicines() {
-        WaitUtils.safeClick(driver, medicinesLink);
-    }
-
-    public void clickMedicinesUsingJS() {
-        WaitUtils.clickUsingJS(driver, medicinesLink);
+        js.executeScript(
+                "arguments[0].click();",
+                surgeriesButton);
     }
 }

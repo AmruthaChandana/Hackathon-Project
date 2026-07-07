@@ -1001,3 +1001,126 @@ Your search for hospital 24/7 in bangalore didn't match anything.
 2026-07-07 00:32:52 INFO  TC_012_VerifyNoResultsPageDoesNotCrash - TC_012 Passed: Site did not crash when result list was empty.
 2026-07-07 00:32:52 INFO  BaseTest - Test passed: verifySiteDoesNotCrashWhenResultListIsEmpty
 2026-07-07 00:32:55 INFO  BaseTest - Browser closed successfully
+2026-07-07 10:19:00 INFO  BaseTest - Configuration loaded successfully
+2026-07-07 10:19:00 INFO  BaseTest - Launching browser: chrome
+2026-07-07 10:19:55 INFO  BaseTest - Browser setup completed successfully
+2026-07-07 10:19:55 INFO  TC_001_LoginWithValidCredentials - Starting TC_001 - Verify Login With Valid Credentials
+2026-07-07 10:19:55 INFO  TC_001_LoginWithValidCredentials - Clicking Login button
+2026-07-07 10:19:56 INFO  TC_001_LoginWithValidCredentials - Logging in with valid credentials
+2026-07-07 10:20:03 INFO  TC_001_LoginWithValidCredentials - TC_001 Passed: User logged in successfully as: Find Doctors
+Video Consult
+Lab Tests
+Surgeries
+NEWFor Corporates
+For Providers
+Security & help
+Amrutha
+Instant Video Consultation
+Connect within 60 secs
+Find Doctors Near You
+Confirmed appointments
+Lab Tests
+Safe and trusted lab tests
+Surgeries
+Safe and trusted surgery centers
+Consult top doctors online for any health concern
+Private online consultations with verified doctors in all specialists
+View All Specialities
+Period doubts or Pregnancy
+CONSULT NOW
+Acne, pimple or skin issues
+CONSULT NOW
+Performance issues in bed
+CONSULT NOW
+Cold, cough or fever
+CONSULT NOW
+Child not feeling well
+CONSULT NOW
+Depression or anxiety
+CONSULT NOW
+Book an appointment for an in-clinic consultation
+Find experienced doctors across all specialties
+Previous
+Dentist
+Teething troubles? Schedule a dental checkup
+Gynecologist/Obstetrician
+Explore for women’s health, pregnancy and infertility treatments
+Dietitian/Nutrition
+Get guidance on eating right, weight management and sports nutrition
+Physiotherapist
+Pulled a muscle? Get it treated by a trained physiotherapist
+Read top articles from health experts
+Health articles that keep you informed about good health practices and achieve your goals.
+See all articles
+CORONAVIRUS
+12 Coronavirus Myths and Facts That You Should Be Aware Of
+Dr. Diana Borgio
+VITAMINS AND SUPPLEMENTS
+Eating Right to Build Immunity Against Cold and Viral Infections
+Dr. Diana Borgio
+What our users have to say
+Very helpful. Far easier than doing same things on computer. Allows quick and easy search with speedy booking. Even maintains history of doctors visited.
+Amit Sharma
+1
+2
+3
+Download the Practo app
+Access video consultation with India’s top doctors on the Practo app. Connect with doctors online, available 24/7, from the comfort of your home.
+Get the link to download the app
++91
+Send SMS
+Practo
+About
+Blog
+Careers
+Press
+Contact Us
+For patients
+Search for doctors
+Search for clinics
+Search for hospitals
+Surgery Costs
+Book Diagnostic Tests
+Practo Plus
+Read health articles
+Read about medicines
+Practo drive
+Health app
+For doctors
+Practo Profile
+For clinics
+Ray by Practo
+Practo Reach
+Ray Tab
+Practo Pro
+For hospitals
+Insta by Practo
+Qikwell by Practo
+Practo Profile
+Practo Reach
+Practo Drive
+For Corporates
+Wellness Plans
+More
+Help
+Developers
+Privacy Policy
+Terms & Conditions
+PCS T&C
+Healthcare Directory
+Practo Health Wiki
+Social
+Facebook
+Twitter
+LinkedIn
+Youtube
+Github
+Copyright © 2017, Practo. All rights reserved.
+2026-07-07 10:20:03 INFO  BaseTest - Test passed: verifyLoginWithValidCredentials
+2026-07-07 10:20:07 INFO  BaseTest - Browser closed successfully
+2026-07-07 10:20:07 INFO  BaseTest - Configuration loaded successfully
+2026-07-07 10:20:07 INFO  BaseTest - Launching browser: chrome
+2026-07-07 10:20:15 INFO  BaseTest - Browser setup completed successfully
+2026-07-07 10:20:15 INFO  TC_002_LoginWithInvalidPassword - Starting TC_002 - Login With Invalid Password
+2026-07-07 10:20:15 INFO  TC_002_LoginWithInvalidPassword - Clicking Login button
+2026-07-07 10:20:15 INFO  TC_002_LoginWithInvalidPassword - Entering invalid login credentials

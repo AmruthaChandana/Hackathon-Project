@@ -18,23 +18,23 @@ public class HospitalPage {
     }
 
     // Hospital listing elements
-    @FindBy(xpath = "//div[contains(@class,'listing') or contains(@class,'card')]")
-    private List<WebElement> hospitalCards;
+    //@FindBy(xpath = "//div[contains(@class,'listing') or contains(@class,'card')]")
+    //private List<WebElement> hospitalCards;
 
-    @FindBy(xpath = "//h2 | //h3 | //div[contains(@class,'name')]")
-    private List<WebElement> hospitalNames;
+    //@FindBy(xpath = "//h2 | //h3 | //div[contains(@class,'name')]")
+    //private List<WebElement> hospitalNames;
 
-    @FindBy(xpath = "//*[contains(@class,'rating')]")
-    private List<WebElement> hospitalRatings;
+    //@FindBy(xpath = "//*[contains(@class,'rating')]")
+    //private List<WebElement> hospitalRatings;
 
-    @FindBy(xpath = "//*[contains(text(),'Open 24') or contains(text(),'24/7') or contains(text(),'Open now')]")
-    private WebElement open247Filter;
+    //@FindBy(xpath = "//*[contains(text(),'Open 24') or contains(text(),'24/7') or contains(text(),'Open now')]")
+    //private WebElement open247Filter;
 
-    @FindBy(xpath = "(//div[contains(@class,'listing') or contains(@class,'card')])[1]")
-    private WebElement firstHospitalCard;
+    //@FindBy(xpath = "(//div[contains(@class,'listing') or contains(@class,'card')])[1]")
+    //private WebElement firstHospitalCard;
 
-    @FindBy(xpath = "//*[contains(text(),'Address')]/following::*[1] | //*[contains(@class,'address')]")
-    private WebElement addressSection;
+    //@FindBy(xpath = "//*[contains(text(),'Address')]/following::*[1] | //*[contains(@class,'address')]")
+    //private WebElement addressSection;
 
     // Hospital search result elements
     @FindBy(xpath = "//h2[contains(@class,'line-1')]")

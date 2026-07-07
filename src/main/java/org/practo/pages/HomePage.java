@@ -51,11 +51,11 @@ public class HomePage {
     @FindBy(xpath = "//a[@title='surgery']")
     private WebElement surgeriesButton;
 
-    @FindBy(xpath = "//div[text()='Medicines']")
-    private WebElement medicinesButton;
+    //@FindBy(xpath = "//div[text()='Medicines']")
+    //private WebElement medicinesButton;
 
-    @FindBy(xpath = "(//a[contains(@href,'medicines') or contains(@href,'medicine') or contains(normalize-space(),'Medicines')])[1]")
-    private WebElement medicinesLink;
+    //@FindBy(xpath = "(//a[contains(@href,'medicines') or contains(@href,'medicine') or contains(normalize-space(),'Medicines')])[1]")
+    //private WebElement medicinesLink;
 
     @FindBy(xpath = "//span[contains(text(),'For Corporates')]")
     private WebElement forCorporates;
@@ -63,8 +63,8 @@ public class HomePage {
     @FindBy(xpath = "//a[contains(text(),'Health & Wellness Plans')]")
     private WebElement healthAndWellnessPlans;
 
-    public By hospitalLocationBox = By.xpath("//input[@data-qa-id='omni-searchbox-locality']");
-    public By hospitalSearchBox = By.xpath("//input[@data-qa-id='omni-searchbox-keyword']");
+    //public By hospitalLocationBox = By.xpath("//input[@data-qa-id='omni-searchbox-locality']");
+    //public By hospitalSearchBox = By.xpath("//input[@data-qa-id='omni-searchbox-keyword']");
 
     private WebElement waitForVisible(WebElement element) {
         return wait.until(

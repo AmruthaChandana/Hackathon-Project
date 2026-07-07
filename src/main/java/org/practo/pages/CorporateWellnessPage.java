@@ -201,7 +201,6 @@ public class CorporateWellnessPage {
             if (classValue != null && classValue.toLowerCase().contains("disabled")) {
                 return false;
             }
-
             return scheduleDemoButton.isEnabled();
         } catch (Exception e) {
             return false;

@@ -1782,3 +1782,437 @@ We follow a strict verification process for every doctor providing onl.... Read 
 2026-07-07 11:50:43 INFO  TC_007_TopCitiesVisibility - TC_007 Passed: Top Cities section is visible
 2026-07-07 11:50:43 INFO  BaseTest - Test passed: verifyTopCitiesSectionVisible
 2026-07-07 11:50:46 INFO  BaseTest - Browser closed successfully
+2026-07-07 13:42:30 INFO  ExcelUtils - Excel loaded successfully. Sheet: PractoData
+2026-07-07 13:42:30 INFO  BaseTest - Configuration loaded successfully
+2026-07-07 13:42:30 INFO  BaseTest - Launching browser: chrome
+2026-07-07 13:42:51 INFO  BaseTest - Browser setup completed successfully
+2026-07-07 13:42:51 INFO  TC_001_LoginWithValidCredentials - Starting TC_001 - Verify Login With Valid Credentials
+2026-07-07 13:42:52 INFO  TC_001_LoginWithValidCredentials - Clicking Login button
+2026-07-07 13:42:52 INFO  TC_001_LoginWithValidCredentials - Logging in with valid credentials
+2026-07-07 13:42:52 INFO  LoginPage - Entering mobile number
+2026-07-07 13:42:54 INFO  LoginPage - Entering password
+2026-07-07 13:42:54 INFO  LoginPage - Clicking Login button
+2026-07-07 13:42:58 INFO  LoginPage - Profile name found: Find Doctors
+Video Consult
+Lab Tests
+Surgeries
+NEWFor Corporates
+For Providers
+Security & help
+Amrutha
+Instant Video Consultation
+Connect within 60 secs
+Find Doctors Near You
+Confirmed appointments
+Lab Tests
+Safe and trusted lab tests
+Surgeries
+Safe and trusted surgery centers
+Consult top doctors online for any health concern
+Private online consultations with verified doctors in all specialists
+View All Specialities
+Period doubts or Pregnancy
+CONSULT NOW
+Acne, pimple or skin issues
+CONSULT NOW
+Performance issues in bed
+CONSULT NOW
+Cold, cough or fever
+CONSULT NOW
+Child not feeling well
+CONSULT NOW
+Depression or anxiety
+CONSULT NOW
+Book an appointment for an in-clinic consultation
+Find experienced doctors across all specialties
+Previous
+Dentist
+Teething troubles? Schedule a dental checkup
+Gynecologist/Obstetrician
+Explore for women’s health, pregnancy and infertility treatments
+Dietitian/Nutrition
+Get guidance on eating right, weight management and sports nutrition
+Physiotherapist
+Pulled a muscle? Get it treated by a trained physiotherapist
+Read top articles from health experts
+Health articles that keep you informed about good health practices and achieve your goals.
+See all articles
+CORONAVIRUS
+12 Coronavirus Myths and Facts That You Should Be Aware Of
+Dr. Diana Borgio
+VITAMINS AND SUPPLEMENTS
+Eating Right to Build Immunity Against Cold and Viral Infections
+Dr. Diana Borgio
+What our users have to say
+Very helpful. Far easier than doing same things on computer. Allows quick and easy search with speedy booking. Even maintains history of doctors visited.
+Amit Sharma
+1
+2
+3
+Download the Practo app
+Access video consultation with India’s top doctors on the Practo app. Connect with doctors online, available 24/7, from the comfort of your home.
+Get the link to download the app
++91
+Send SMS
+Practo
+About
+Blog
+Careers
+Press
+Contact Us
+For patients
+Search for doctors
+Search for clinics
+Search for hospitals
+Surgery Costs
+Book Diagnostic Tests
+Practo Plus
+Read health articles
+Read about medicines
+Practo drive
+Health app
+For doctors
+Practo Profile
+For clinics
+Ray by Practo
+Practo Reach
+Ray Tab
+Practo Pro
+For hospitals
+Insta by Practo
+Qikwell by Practo
+Practo Profile
+Practo Reach
+Practo Drive
+For Corporates
+Wellness Plans
+More
+Help
+Developers
+Privacy Policy
+Terms & Conditions
+PCS T&C
+Healthcare Directory
+Practo Health Wiki
+Social
+Facebook
+Twitter
+LinkedIn
+Youtube
+Github
+Copyright © 2017, Practo. All rights reserved.
+2026-07-07 13:42:58 INFO  TC_001_LoginWithValidCredentials - TC_001 Passed: User logged in successfully as: Find Doctors
+Video Consult
+Lab Tests
+Surgeries
+NEWFor Corporates
+For Providers
+Security & help
+Amrutha
+Instant Video Consultation
+Connect within 60 secs
+Find Doctors Near You
+Confirmed appointments
+Lab Tests
+Safe and trusted lab tests
+Surgeries
+Safe and trusted surgery centers
+Consult top doctors online for any health concern
+Private online consultations with verified doctors in all specialists
+View All Specialities
+Period doubts or Pregnancy
+CONSULT NOW
+Acne, pimple or skin issues
+CONSULT NOW
+Performance issues in bed
+CONSULT NOW
+Cold, cough or fever
+CONSULT NOW
+Child not feeling well
+CONSULT NOW
+Depression or anxiety
+CONSULT NOW
+Book an appointment for an in-clinic consultation
+Find experienced doctors across all specialties
+Previous
+Dentist
+Teething troubles? Schedule a dental checkup
+Gynecologist/Obstetrician
+Explore for women’s health, pregnancy and infertility treatments
+Dietitian/Nutrition
+Get guidance on eating right, weight management and sports nutrition
+Physiotherapist
+Pulled a muscle? Get it treated by a trained physiotherapist
+Read top articles from health experts
+Health articles that keep you informed about good health practices and achieve your goals.
+See all articles
+CORONAVIRUS
+12 Coronavirus Myths and Facts That You Should Be Aware Of
+Dr. Diana Borgio
+VITAMINS AND SUPPLEMENTS
+Eating Right to Build Immunity Against Cold and Viral Infections
+Dr. Diana Borgio
+What our users have to say
+Very helpful. Far easier than doing same things on computer. Allows quick and easy search with speedy booking. Even maintains history of doctors visited.
+Amit Sharma
+1
+2
+3
+Download the Practo app
+Access video consultation with India’s top doctors on the Practo app. Connect with doctors online, available 24/7, from the comfort of your home.
+Get the link to download the app
++91
+Send SMS
+Practo
+About
+Blog
+Careers
+Press
+Contact Us
+For patients
+Search for doctors
+Search for clinics
+Search for hospitals
+Surgery Costs
+Book Diagnostic Tests
+Practo Plus
+Read health articles
+Read about medicines
+Practo drive
+Health app
+For doctors
+Practo Profile
+For clinics
+Ray by Practo
+Practo Reach
+Ray Tab
+Practo Pro
+For hospitals
+Insta by Practo
+Qikwell by Practo
+Practo Profile
+Practo Reach
+Practo Drive
+For Corporates
+Wellness Plans
+More
+Help
+Developers
+Privacy Policy
+Terms & Conditions
+PCS T&C
+Healthcare Directory
+Practo Health Wiki
+Social
+Facebook
+Twitter
+LinkedIn
+Youtube
+Github
+Copyright © 2017, Practo. All rights reserved.
+2026-07-07 13:42:58 INFO  BaseTest - Test passed: verifyLoginWithValidCredentials
+2026-07-07 13:43:02 INFO  BaseTest - Browser closed successfully
+2026-07-07 14:38:16 INFO  ExcelUtils - Excel loaded successfully. Sheet: PractoData
+2026-07-07 14:38:16 INFO  BaseTest - Configuration loaded successfully
+2026-07-07 14:38:16 INFO  BaseTest - Launching browser: chrome
+2026-07-07 14:38:23 INFO  BaseTest - Browser setup completed successfully
+2026-07-07 14:38:23 INFO  TC_002_LoginWithInvalidPassword - Starting TC_002 - Login With Invalid Password
+2026-07-07 14:38:23 INFO  TC_002_LoginWithInvalidPassword - Clicking Login button
+2026-07-07 14:38:54 INFO  TC_002_LoginWithInvalidPassword - Entering invalid login credentials
+2026-07-07 14:38:54 INFO  LoginPage - Entering mobile number
+2026-07-07 14:38:56 INFO  LoginPage - Entering password
+2026-07-07 14:38:56 INFO  TC_002_LoginWithInvalidPassword - Clicking Login button with invalid password
+2026-07-07 14:38:56 INFO  LoginPage - Clicking Login button
+2026-07-07 14:40:39 INFO  TC_002_LoginWithInvalidPassword - TC_002 Passed: Login unsuccessful as expected with invalid password
+2026-07-07 14:40:39 INFO  BaseTest - Test passed: verifyLoginWithInvalidPassword
+2026-07-07 14:40:45 INFO  BaseTest - Browser closed successfully
+2026-07-07 14:45:16 INFO  ExcelUtils - Excel loaded successfully. Sheet: PractoData
+2026-07-07 14:45:16 INFO  BaseTest - Configuration loaded successfully
+2026-07-07 14:45:16 INFO  BaseTest - Launching browser: chrome
+2026-07-07 14:45:31 INFO  BaseTest - Browser setup completed successfully
+2026-07-07 14:45:31 INFO  TC_001_LoginWithValidCredentials - Starting TC_001 - Verify Login With Valid Credentials
+2026-07-07 14:45:32 INFO  TC_001_LoginWithValidCredentials - Clicking Login button
+2026-07-07 14:45:32 INFO  TC_001_LoginWithValidCredentials - Logging in with valid credentials
+2026-07-07 14:45:32 INFO  LoginPage - Entering mobile number
+2026-07-07 14:45:39 INFO  LoginPage - Entering password
+2026-07-07 14:45:39 INFO  LoginPage - Clicking Login button
+2026-07-07 14:45:42 INFO  LoginPage - Profile name found: Amrutha
+2026-07-07 14:45:42 INFO  TC_001_LoginWithValidCredentials - TC_001 Passed: User logged in successfully as: Amrutha
+2026-07-07 14:45:42 INFO  BaseTest - Test passed: verifyLoginWithValidCredentials
+2026-07-07 14:45:46 INFO  BaseTest - Browser closed successfully
+2026-07-07 14:45:59 INFO  ExcelUtils - Excel loaded successfully. Sheet: PractoData
+2026-07-07 14:45:59 INFO  BaseTest - Configuration loaded successfully
+2026-07-07 14:45:59 INFO  BaseTest - Launching browser: chrome
+2026-07-07 14:46:05 INFO  BaseTest - Browser setup completed successfully
+2026-07-07 14:46:05 INFO  TC_002_LoginWithInvalidPassword - Starting TC_002 - Login With Invalid Password
+2026-07-07 14:46:05 INFO  TC_002_LoginWithInvalidPassword - Clicking Login button
+2026-07-07 14:46:12 INFO  TC_002_LoginWithInvalidPassword - Entering invalid login credentials
+2026-07-07 14:46:12 INFO  LoginPage - Entering mobile number
+2026-07-07 14:46:14 INFO  LoginPage - Entering password
+2026-07-07 14:46:15 INFO  TC_002_LoginWithInvalidPassword - Clicking Login button with invalid password
+2026-07-07 14:46:15 INFO  LoginPage - Clicking Login button
+2026-07-07 14:47:54 INFO  TC_002_LoginWithInvalidPassword - TC_002 Passed: Login unsuccessful as expected with invalid password
+2026-07-07 14:47:54 INFO  BaseTest - Test passed: verifyLoginWithInvalidPassword
+2026-07-07 14:47:59 INFO  BaseTest - Browser closed successfully
+2026-07-07 14:49:03 INFO  ExcelUtils - Excel loaded successfully. Sheet: PractoData
+2026-07-07 14:49:03 INFO  BaseTest - Configuration loaded successfully
+2026-07-07 14:49:03 INFO  BaseTest - Launching browser: chrome
+2026-07-07 14:49:15 INFO  BaseTest - Browser setup completed successfully
+2026-07-07 14:49:15 INFO  TC_002_LoginWithInvalidPassword - Starting TC_002 - Login With Invalid Password
+2026-07-07 14:49:15 INFO  TC_002_LoginWithInvalidPassword - Clicking Login button
+2026-07-07 14:49:16 INFO  TC_002_LoginWithInvalidPassword - Entering invalid login credentials
+2026-07-07 14:49:16 INFO  LoginPage - Entering mobile number
+2026-07-07 14:49:20 INFO  LoginPage - Entering password
+2026-07-07 14:49:20 INFO  TC_002_LoginWithInvalidPassword - Clicking Login button with invalid password
+2026-07-07 14:49:20 INFO  LoginPage - Clicking Login button
+2026-07-07 14:51:00 INFO  TC_002_LoginWithInvalidPassword - TC_002 Passed: Login unsuccessful as expected with invalid password
+2026-07-07 14:51:00 INFO  BaseTest - Test passed: verifyLoginWithInvalidPassword
+2026-07-07 14:51:05 INFO  BaseTest - Browser closed successfully
+2026-07-07 16:04:39 INFO  ExcelUtils - Excel loaded successfully. Sheet: PractoData
+2026-07-07 16:04:39 INFO  BaseTest - Configuration loaded successfully
+2026-07-07 16:04:39 INFO  BaseTest - Launching browser: chrome
+2026-07-07 16:05:09 INFO  BaseTest - Browser setup completed successfully
+2026-07-07 16:05:09 INFO  TC_013_NavigateToSurgeryPage - Starting TC_013 - Navigate To Surgery Page
+2026-07-07 16:05:09 INFO  TC_013_NavigateToSurgeryPage - Clicking Surgeries button
+2026-07-07 16:05:49 WARN  TC_013_NavigateToSurgeryPage - Normal click failed. Using JavaScript click.
+2026-07-07 16:05:53 INFO  TC_013_NavigateToSurgeryPage - Navigated to Surgery page
+2026-07-07 16:05:53 INFO  TC_013_NavigateToSurgeryPage - Current URL: https://www.practo.com/care
+2026-07-07 16:12:47 ERROR BaseTest - Test failed: verifySurgeryPageAndPrintPopularTreatments
+2026-07-07 16:12:47 ERROR BaseTest - Failure reason: org.openqa.selenium.NoSuchSessionException: invalid session id
+Build info: version: '4.23.0', revision: '4df0a231af'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.2'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [d46131707bddd66fb2ed53cbcf629e4d, executeScript {args=[], script=window.scrollBy(0,700)}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 149.0.7827.103, chrome: {chromedriverVersion: 149.0.7827.155 (07b52360cc1..., userDataDir: C:\Users\2497768\AppData\Lo...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:50343}, goog:processID: 15600, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:50343/devtoo..., se:cdpVersion: 149.0.7827.103, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: d46131707bddd66fb2ed53cbcf629e4d
+2026-07-07 16:12:47 INFO  BaseTest - Browser closed successfully
+2026-07-07 16:27:36 INFO  ExcelUtils - Excel loaded successfully. Sheet: PractoData
+2026-07-07 16:27:36 INFO  BaseTest - Configuration loaded successfully
+2026-07-07 16:27:36 INFO  BaseTest - Launching browser: chrome
+2026-07-07 16:27:53 INFO  BaseTest - Browser setup completed successfully
+2026-07-07 16:27:53 INFO  TC_013_NavigateToSurgeryPage - Starting TC_013 - Navigate To Surgery Page
+2026-07-07 16:27:53 INFO  TC_013_NavigateToSurgeryPage - Clicking Surgeries button
+2026-07-07 16:28:34 WARN  TC_013_NavigateToSurgeryPage - Normal click failed. Using JavaScript click.
+2026-07-07 16:28:40 INFO  TC_013_NavigateToSurgeryPage - Navigated to Surgery page
+2026-07-07 16:28:40 INFO  TC_013_NavigateToSurgeryPage - Current URL: https://www.practo.com/care
+2026-07-07 16:33:24 INFO  ExcelUtils - Excel loaded successfully. Sheet: PractoData
+2026-07-07 16:33:24 INFO  BaseTest - Configuration loaded successfully
+2026-07-07 16:33:24 INFO  BaseTest - Launching browser: chrome
+2026-07-07 16:33:51 INFO  BaseTest - Browser setup completed successfully
+2026-07-07 16:33:51 INFO  TC_013_NavigateToSurgeryPage - Starting TC_013 - Navigate To Surgery Page
+2026-07-07 16:33:51 INFO  TC_013_NavigateToSurgeryPage - Clicking Surgeries button
+2026-07-07 16:34:31 WARN  TC_013_NavigateToSurgeryPage - Normal click failed. Using JavaScript click.
+2026-07-07 16:34:34 INFO  TC_013_NavigateToSurgeryPage - Navigated to Surgery page
+2026-07-07 16:34:34 INFO  TC_013_NavigateToSurgeryPage - Current URL: https://www.practo.com/care
+2026-07-07 16:34:35 INFO  TC_013_NavigateToSurgeryPage - Treatments Offered section found
+2026-07-07 16:34:36 INFO  TC_013_NavigateToSurgeryPage - Popular Treatments Offered:
+2026-07-07 16:34:36 INFO  TC_013_NavigateToSurgeryPage - 1. Piles
+2026-07-07 16:34:36 INFO  TC_013_NavigateToSurgeryPage - 2. Varicose Veins
+2026-07-07 16:34:36 INFO  TC_013_NavigateToSurgeryPage - 3. Hernia
+2026-07-07 16:34:36 INFO  TC_013_NavigateToSurgeryPage - 4. Lasik
+2026-07-07 16:34:36 INFO  TC_013_NavigateToSurgeryPage - 5. Gallstone
+2026-07-07 16:34:36 INFO  TC_013_NavigateToSurgeryPage - 6. Anal Fistula
+2026-07-07 16:34:36 INFO  TC_013_NavigateToSurgeryPage - 7. Cataract
+2026-07-07 16:34:36 INFO  TC_013_NavigateToSurgeryPage - 8. Kidney Stone
+2026-07-07 16:34:36 INFO  TC_013_NavigateToSurgeryPage - 9. Circumcision
+2026-07-07 16:34:36 INFO  TC_013_NavigateToSurgeryPage - 10. Anal Fissure
+2026-07-07 16:34:36 INFO  TC_013_NavigateToSurgeryPage - 11. Lipoma Removal
+2026-07-07 16:34:36 INFO  TC_013_NavigateToSurgeryPage - 12. Sebaceous Cyst
+2026-07-07 16:34:36 INFO  TC_013_NavigateToSurgeryPage - 13. Pilonidal Sinus
+2026-07-07 16:34:36 INFO  TC_013_NavigateToSurgeryPage - 14. Lump in Breast
+2026-07-07 16:34:36 INFO  TC_013_NavigateToSurgeryPage - 15. TURP
+2026-07-07 16:34:36 INFO  TC_013_NavigateToSurgeryPage - 16. Hydrocele
+2026-07-07 16:34:36 INFO  TC_013_NavigateToSurgeryPage - 17. Knee Replacement
+2026-07-07 16:34:36 INFO  TC_013_NavigateToSurgeryPage - 18. Hair Transplant
+2026-07-07 16:34:36 INFO  TC_013_NavigateToSurgeryPage - 19. Gynaecomastia
+2026-07-07 16:34:36 INFO  TC_013_NavigateToSurgeryPage - Total Popular Treatments Found: 19
+2026-07-07 16:34:38 INFO  TC_013_NavigateToSurgeryPage - Returned back from Surgery page
+2026-07-07 16:34:38 INFO  TC_013_NavigateToSurgeryPage - TC_013 Passed: Surgery page opened, popular treatments printed, and redirected back
+2026-07-07 16:34:38 INFO  BaseTest - Test passed: verifySurgeryPageAndPrintPopularTreatments
+2026-07-07 16:34:43 INFO  BaseTest - Browser closed successfully
+2026-07-07 16:57:48 INFO  ExcelUtils - Excel loaded successfully. Sheet: PractoData
+2026-07-07 16:57:48 INFO  BaseTest - Configuration loaded successfully
+2026-07-07 16:57:48 INFO  BaseTest - Launching browser: chrome
+2026-07-07 16:58:04 INFO  BaseTest - Browser setup completed successfully
+2026-07-07 16:58:04 INFO  TC_014_InvalidMobileVideoConsult - Starting TC_014 - Invalid Mobile Number Video Consult
+2026-07-07 16:58:04 INFO  TC_014_InvalidMobileVideoConsult - Symptom: Fever
+2026-07-07 16:58:04 INFO  TC_014_InvalidMobileVideoConsult - Invalid Mobile Number: 24355434
+2026-07-07 16:58:04 INFO  TC_014_InvalidMobileVideoConsult - Clicking Video Consult link
+2026-07-07 16:58:12 INFO  TC_014_InvalidMobileVideoConsult - Navigated to Video Consult page
+2026-07-07 16:58:12 INFO  TC_014_InvalidMobileVideoConsult - Current URL: https://www.practo.com/consult
+2026-07-07 16:58:12 INFO  TC_014_InvalidMobileVideoConsult - Clicking Consult Now button
+2026-07-07 16:58:12 INFO  VideoConsultPage - Clicking Consult Now
+2026-07-07 16:58:17 INFO  TC_014_InvalidMobileVideoConsult - Consultation form opened
+2026-07-07 16:58:18 INFO  VideoConsultPage - Entering symptom: Fever
+2026-07-07 16:58:19 INFO  TC_014_InvalidMobileVideoConsult - Entered symptom: Fever
+2026-07-07 16:58:20 INFO  VideoConsultPage - Selecting first specialist
+2026-07-07 16:58:20 INFO  TC_014_InvalidMobileVideoConsult - Specialist selected successfully
+2026-07-07 16:58:20 INFO  VideoConsultPage - Entering mobile number
+2026-07-07 16:58:20 INFO  TC_014_InvalidMobileVideoConsult - Entered invalid mobile number: 24355434
+2026-07-07 16:58:21 INFO  VideoConsultPage - Clicking Continue button
+2026-07-07 16:58:21 INFO  TC_014_InvalidMobileVideoConsult - Switching to login iframe
+2026-07-07 16:58:33 INFO  TC_014_InvalidMobileVideoConsult - Invalid mobile validation message: Not a valid mobile number.National number Eg: 081234 56789 International number Eg: +15107488230
+2026-07-07 16:58:33 INFO  TC_014_InvalidMobileVideoConsult - Capturing validation screenshot
+2026-07-07 16:58:33 INFO  VideoConsultPage - Closing OTP popup
+2026-07-07 16:58:34 INFO  TC_014_InvalidMobileVideoConsult - OTP/Login popup closed
+2026-07-07 16:58:34 INFO  TC_014_InvalidMobileVideoConsult - Switched back to default content
+2026-07-07 16:59:14 ERROR BaseTest - Test failed: verifyInvalidMobileNumberInVideoConsultFlow
+2026-07-07 16:59:14 ERROR BaseTest - Failure reason: org.openqa.selenium.TimeoutException: Expected condition failed: waiting for org.practo.tests.TC_014_InvalidMobileVideoConsult$$Lambda/0x000002a6ce485df8@1304e0d7 (tried for 40 second(s) with 500 milliseconds interval)
+Build info: version: '4.23.0', revision: '4df0a231af'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.2'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 149.0.7827.103, chrome: {chromedriverVersion: 149.0.7827.155 (07b52360cc1..., userDataDir: C:\Users\2497768\AppData\Lo...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:62856}, goog:processID: 24336, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:62856/devtoo..., se:cdpVersion: 149.0.7827.103, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: bcf7504d4bdf06ccf395e627dc1709aa
+2026-07-07 16:59:22 INFO  BaseTest - Browser closed successfully
+2026-07-07 17:08:17 INFO  ExcelUtils - Excel loaded successfully. Sheet: PractoData
+2026-07-07 17:08:17 INFO  BaseTest - Configuration loaded successfully
+2026-07-07 17:08:17 INFO  BaseTest - Launching browser: chrome
+2026-07-07 17:08:41 INFO  BaseTest - Browser setup completed successfully
+2026-07-07 17:08:41 INFO  TC_014_InvalidMobileVideoConsult - Starting TC_014 - Invalid Mobile Number Video Consult
+2026-07-07 17:08:42 INFO  TC_014_InvalidMobileVideoConsult - Symptom: Fever
+2026-07-07 17:08:42 INFO  TC_014_InvalidMobileVideoConsult - Invalid Mobile Number: 24355434
+2026-07-07 17:08:42 INFO  TC_014_InvalidMobileVideoConsult - Clicking Video Consult link
+2026-07-07 17:08:50 INFO  TC_014_InvalidMobileVideoConsult - Navigated to Video Consult page
+2026-07-07 17:08:50 INFO  TC_014_InvalidMobileVideoConsult - Current URL: https://www.practo.com/consult
+2026-07-07 17:08:50 INFO  TC_014_InvalidMobileVideoConsult - Clicking Consult Now button
+2026-07-07 17:08:50 INFO  VideoConsultPage - Clicking Consult Now
+2026-07-07 17:08:56 INFO  TC_014_InvalidMobileVideoConsult - Consultation form opened
+2026-07-07 17:08:56 INFO  VideoConsultPage - Entering symptom: Fever
+2026-07-07 17:08:57 INFO  TC_014_InvalidMobileVideoConsult - Entered symptom: Fever
+2026-07-07 17:08:58 INFO  VideoConsultPage - Selecting first specialist
+2026-07-07 17:08:58 INFO  TC_014_InvalidMobileVideoConsult - Specialist selected successfully
+2026-07-07 17:08:58 INFO  VideoConsultPage - Entering mobile number
+2026-07-07 17:08:58 INFO  TC_014_InvalidMobileVideoConsult - Entered invalid mobile number: 24355434
+2026-07-07 17:08:59 INFO  VideoConsultPage - Clicking Continue button
+2026-07-07 17:08:59 INFO  TC_014_InvalidMobileVideoConsult - Switching to login iframe
+2026-07-07 17:09:07 INFO  TC_014_InvalidMobileVideoConsult - Invalid mobile validation message: Not a valid mobile number.National number Eg: 081234 56789 International number Eg: +15107488230
+2026-07-07 17:09:08 INFO  TC_014_InvalidMobileVideoConsult - Capturing validation screenshot
+2026-07-07 17:09:08 INFO  VideoConsultPage - Closing OTP popup
+2026-07-07 17:09:08 INFO  TC_014_InvalidMobileVideoConsult - OTP/Login popup closed
+2026-07-07 17:09:08 INFO  TC_014_InvalidMobileVideoConsult - Switched back to default content
+2026-07-07 17:09:08 INFO  TC_014_InvalidMobileVideoConsult - Returned from consultation page
+2026-07-07 17:09:08 INFO  TC_014_InvalidMobileVideoConsult - TC_014 Passed: Invalid mobile number validation message captured successfully
+2026-07-07 17:09:08 INFO  BaseTest - Test passed: verifyInvalidMobileNumberInVideoConsultFlow
+2026-07-07 17:09:15 INFO  BaseTest - Browser closed successfully
+2026-07-07 17:09:29 INFO  ExcelUtils - Excel loaded successfully. Sheet: PractoData
+2026-07-07 17:09:29 INFO  BaseTest - Configuration loaded successfully
+2026-07-07 17:09:29 INFO  BaseTest - Launching browser: chrome
+2026-07-07 17:09:43 INFO  BaseTest - Browser setup completed successfully
+2026-07-07 17:09:43 INFO  TC_015_ExtractTop5FAQs - Starting TC_015 - Extract Top 5 FAQs
+2026-07-07 17:09:43 INFO  TC_015_ExtractTop5FAQs - Clicking Video Consult link
+2026-07-07 17:09:50 INFO  TC_015_ExtractTop5FAQs - Navigated to Video Consult page
+2026-07-07 17:09:50 INFO  TC_015_ExtractTop5FAQs - Current URL: https://www.practo.com/consult
+2026-07-07 17:09:50 INFO  VideoConsultPage - Scrolled to FAQ section
+2026-07-07 17:09:51 INFO  TC_015_ExtractTop5FAQs - FAQ section found successfully
+2026-07-07 17:09:51 INFO  TC_015_ExtractTop5FAQs - FAQs loaded successfully
+2026-07-07 17:10:31 INFO  TC_015_ExtractTop5FAQs - Top 5 FAQs:
+2026-07-07 17:10:31 INFO  TC_015_ExtractTop5FAQs - 1. What is online doctor consultation?
+2026-07-07 17:10:31 INFO  TC_015_ExtractTop5FAQs - 2. How do I start online consultation with doctors on Practo?
+2026-07-07 17:10:31 INFO  TC_015_ExtractTop5FAQs - 3. Are your online doctors qualified?
+2026-07-07 17:10:31 INFO  TC_015_ExtractTop5FAQs - 4. Is online doctor consultation safe and secured on Practo?
+2026-07-07 17:10:31 INFO  TC_015_ExtractTop5FAQs - 5. What happens if I don’t get a response from a doctor?
+2026-07-07 17:10:31 INFO  TC_015_ExtractTop5FAQs - Total FAQs Extracted: 5
+2026-07-07 17:10:32 INFO  TC_015_ExtractTop5FAQs - Returned from Video Consult page
+2026-07-07 17:10:32 INFO  TC_015_ExtractTop5FAQs - TC_015 Passed: Extracted 5 FAQs successfully
+2026-07-07 17:10:32 INFO  BaseTest - Test passed: verifyTop5FAQsExtraction
+2026-07-07 17:10:37 INFO  BaseTest - Browser closed successfully

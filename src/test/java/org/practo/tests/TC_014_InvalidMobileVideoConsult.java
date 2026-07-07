@@ -161,21 +161,11 @@ public class TC_014_InvalidMobileVideoConsult extends BaseTest {
 
         // Step 12: Switch Back
         videoConsultPage.switchToDefaultContent();
-
         logger.info("Switched back to default content");
 
         // Step 13: Navigate Back
-        commonCode.waitUntil(driver ->
-                videoConsultPage.isBackToVideoConsultPageLinkDisplayed()
-        );
-
-        try {
-            videoConsultPage.clickBackToVideoConsultPage();
-        } catch (Exception e) {
-            logger.warn("Back navigation click failed. Using JavaScript click.");
-            videoConsultPage.clickBackToVideoConsultPageUsingJS();
-        }
-
+        driver.navigate().back();
+        logger.info("Returned from consultation page");
         logger.info("TC_014 Passed: Invalid mobile number validation message captured successfully");
     }
 }

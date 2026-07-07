@@ -15,7 +15,6 @@ import java.util.stream.Collectors;
 public class SurgeryPage {
     private WebDriver driver;
     private WebDriverWait wait;
-
     public SurgeryPage(WebDriver driver) {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(40));
@@ -23,22 +22,20 @@ public class SurgeryPage {
     }
 
     // TC_013 - Treatments Offered heading
-    @FindBy(xpath = "//*[@id='surgery-list']/section/h2")
+    @FindBy(xpath = "//h2[contains(text(),'Treatments Offered')]")
     private WebElement treatmentsOfferedHeading;
 
     // TC_013 - Popular grid
-    @FindBy(xpath = "//*[@id='surgery-list']/section/div/div[1]")
+    @FindBy(xpath = "//div[@id='surgery-list']//div[contains(@class,'SurgeryList-module_grid')]")
     private WebElement popularGrid;
 
-    // TC_013 - Popular treatment cards
-    @FindBy(xpath = "//*[@id='surgery-list']/section/div/div[1]/div[@role='button' or @tabindex='0']")
+    // TC_013 - Treatment names
+    @FindBy(xpath = "//div[@id='surgery-list']//span[contains(@class,'tileName')]")
     private List<WebElement> popularTreatmentCards;
 
     // Helper methods
     private WebElement waitForVisible(WebElement element) {
-        return wait.until(
-                ExpectedConditions.visibilityOf(element)
-        );
+        return wait.until(ExpectedConditions.visibilityOf(element));
     }
 
     private boolean isElementDisplayed(WebElement element) {
@@ -51,10 +48,7 @@ public class SurgeryPage {
 
     private void scrollToElement(WebElement element) {
         JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript(
-                "arguments[0].scrollIntoView({block:'center'});",
-                element
-        );
+        js.executeScript("arguments[0].scrollIntoView({block:'center'});", element);
     }
 
     // Page actions
@@ -84,19 +78,15 @@ public class SurgeryPage {
     public List<String> getPopularTreatments() {
         List<String> treatments = new ArrayList<>();
         waitForVisible(popularGrid);
-
-        for (WebElement card : popularTreatmentCards) {
+        for (WebElement treatment : popularTreatmentCards) {
             try {
-                String text = card.getText().trim();
+                String text = treatment.getText().trim();
                 if (!text.isEmpty()) {
                     treatments.add(text);
                 }
             } catch (Exception ignored) {
             }
         }
-
-        return treatments.stream()
-                .distinct()
-                .collect(Collectors.toList());
+        return treatments.stream().distinct().collect(Collectors.toList());
     }
 }

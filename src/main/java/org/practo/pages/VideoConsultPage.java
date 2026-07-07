@@ -18,6 +18,7 @@ public class VideoConsultPage {
     private static final Logger logger = LogManager.getLogger(VideoConsultPage.class);
     private WebDriver driver;
     private WebDriverWait wait;
+
     public VideoConsultPage(WebDriver driver) {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(40));
@@ -25,47 +26,51 @@ public class VideoConsultPage {
     }
 
     // TC_014
-    @FindBy(xpath = "//*[@id='FirstFold']/div/section/div[1]/a")
+    @FindBy(xpath = "//a[contains(@class,'cta')]")
     private WebElement consultNowButton;
 
-    @FindBy(xpath = "//*[@id='detailed-description']")
+    @FindBy(name = "detailedDescription")
     private WebElement symptomField;
 
-    @FindBy(xpath = "//*[@id='container']/div/div/div/section/section/div/div/div/div/form/problem-form/div/div/div[2]/div/div/div[1]/label")
+    @FindBy(xpath = "//label[contains(@class,'tag-label')]")
     private WebElement firstSpecialistOption;
 
-    @FindBy(xpath = "//input[contains(@placeholder,'Mobile') or contains(@placeholder,'mobile') or contains(@placeholder,'phone') or @type='tel']")
+    @FindBy(id = "mobile")
     private WebElement mobileNumberField;
 
-    @FindBy(xpath = "//*[@id='container']/div/div/div/section/section/div/div/div/div/form/div/div/div[2]/button")
+    @FindBy(xpath = "//button[contains(text(),'Continue')]")
     private WebElement continueButton;
 
-    @FindBy(xpath = "//*[@id='login-iframe-form']")
+    @FindBy(id = "login-iframe-form")
     private WebElement loginIframe;
 
-    @FindBy(xpath = "//*[contains(normalize-space(),'Not a valid mobile number')]")
+    @FindBy(id = "otpSentMsg")
     private WebElement invalidMobileMessageInIframe;
 
-    @FindBy(xpath = "//*[@id='close']/span")
+    @FindBy(id = "close")
     private WebElement closeOtpPopupButton;
 
-    @FindBy(xpath = "//*[@id='new-consultation-top-element']/div/div/a")
-    private WebElement backToVideoConsultPageLink;
-
     // TC_015
-    @FindBy(xpath = "//*[@id='FaqSection' or @data-testid='faq-section' or contains(@class,'faq-section')]")
-    private List<WebElement> faqSections;
+    @FindBy(id = "FaqSection")
+    private WebElement faqSection;
 
-    @FindBy(xpath = "//*[@id='FaqSection']//*[self::h3 or self::div or self::p or self::span][contains(normalize-space(),'?')] | //*[@data-testid='faq-section']//*[self::h3 or self::div or self::p or self::span][contains(normalize-space(),'?')] | //*[contains(@class,'faq-section')]//*[self::h3 or self::div or self::p or self::span][contains(normalize-space(),'?')]")
+    @FindBy(xpath = "//div[@id='FaqSection']//h2[contains(@class,'faq-section-heading')]")
+    private WebElement faqHeading;
+
+    @FindBy(xpath = "//div[@id='FaqSection']//h3[contains(@class,'accordion-text')]")
     private List<WebElement> faqElements;
 
     // Helper Methods
     private WebElement waitForVisible(WebElement element) {
-        return wait.until(ExpectedConditions.visibilityOf(element));
+        return wait.until(
+                ExpectedConditions.visibilityOf(element)
+        );
     }
 
     private WebElement waitForClickable(WebElement element) {
-        return wait.until(ExpectedConditions.elementToBeClickable(element));
+        return wait.until(
+                ExpectedConditions.elementToBeClickable(element)
+        );
     }
 
     private void safeClick(WebElement element) {
@@ -190,22 +195,10 @@ public class VideoConsultPage {
         clickUsingJS(closeOtpPopupButton);
     }
 
-    public boolean isBackToVideoConsultPageLinkDisplayed() {
-        return isElementDisplayed(backToVideoConsultPageLink);
-    }
-
-    public void clickBackToVideoConsultPage() {
-        safeClick(backToVideoConsultPageLink);
-    }
-
-    public void clickBackToVideoConsultPageUsingJS() {
-        clickUsingJS(backToVideoConsultPageLink);
-    }
-
     // FAQ Methods
     public boolean isFaqSectionPresent() {
         try {
-            return !faqSections.isEmpty();
+            return faqSection.isDisplayed();
         } catch (Exception e) {
             logger.error("Unable to verify FAQ section presence.", e);
             return false;
@@ -213,29 +206,13 @@ public class VideoConsultPage {
     }
 
     public boolean isFaqSectionDisplayed() {
-        try {
-            for (WebElement faqSection : faqSections) {
-                try {
-                    if (faqSection.isDisplayed()) {
-                        return true;
-                    }
-                } catch (Exception e) {
-                    logger.debug("FAQ section visibility check failed.", e);
-                }
-            }
-            return getFaqCount() > 0;
-        } catch (Exception e) {
-            logger.error("Error validating FAQ section display.", e);
-            return false;
-        }
+        return isElementDisplayed(faqHeading);
     }
 
     public void scrollToFaqSection() {
         try {
-            if (!faqSections.isEmpty()) {
-                scrollToElement(faqSections.get(0));
-                logger.info("Scrolled to FAQ section");
-            }
+            scrollToElement(faqHeading);
+            logger.info("Scrolled to FAQ section");
         } catch (Exception e) {
             logger.error("Unable to scroll to FAQ section.", e);
         }
@@ -255,7 +232,7 @@ public class VideoConsultPage {
         for (WebElement faqElement : faqElements) {
             try {
                 String faqText = faqElement.getText().trim();
-                if (!faqText.isEmpty() && faqText.contains("?") && faqText.length() <= 180) {
+                if (!faqText.isEmpty()) {
                     faqList.add(faqText);
                 }
             } catch (Exception e) {

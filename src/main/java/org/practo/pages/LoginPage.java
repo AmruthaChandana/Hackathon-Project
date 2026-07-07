@@ -25,13 +25,13 @@ public class LoginPage {
     }
 
     // Login Form Elements
-    @FindBy(xpath = "//input[contains(@placeholder,'Mobile') or contains(@name,'mobile')]")
+    @FindBy(xpath = "//input[contains(@placeholder,'Mobile')]")
     private WebElement mobileNumberField;
 
     @FindBy(xpath = "//input[@type='password']")
     private WebElement passwordField;
 
-    @FindBy(xpath = "//button[contains(text(),'Login') or contains(text(),'Continue')]")
+    @FindBy(xpath = "//button[contains(text(),'Login')]")
     private WebElement loginSubmitButton;
 
     // Profile Elements
@@ -45,16 +45,11 @@ public class LoginPage {
     private WebElement profileDropdownPanel;
 
     // Error Message
-    @FindBy(xpath = "//*[contains(text(),'Invalid') or contains(text(),'incorrect') or contains(text(),'wrong') or contains(text(),'Try again')]")
+    @FindBy(xpath = "//span[contains(text(),'Invalid')]")
     private WebElement errorMessage;
 
     private By profileNameLocator(String expectedProfileName) {
-        return By.xpath(
-                "//*[normalize-space()='"
-                        + expectedProfileName
-                        + "' or contains(normalize-space(),'"
-                        + expectedProfileName
-                        + "')]");
+        return By.xpath("//span[normalize-space()='" + expectedProfileName + "' ]");
     }
 
     private WebElement waitForVisible(WebElement element) {

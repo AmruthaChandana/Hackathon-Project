@@ -3,33 +3,21 @@ package org.practo.pages;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.time.Duration;
 import java.util.List;
 
 public class CorporateWellnessPage {
-
     private WebDriver driver;
     private WebDriverWait wait;
 
     public CorporateWellnessPage(WebDriver driver) {
-
         this.driver = driver;
-
-        this.wait =
-                new WebDriverWait(
-                        driver,
-                        Duration.ofSeconds(40));
-
-        PageFactory.initElements(
-                driver,
-                this);
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(40));
+        PageFactory.initElements(driver, this);
     }
 
     @FindBy(xpath = "//*[@id='header']/div[2]/div | //div[contains(@class,'corporate-form')]")
@@ -77,196 +65,105 @@ public class CorporateWellnessPage {
     @FindBy(xpath = "//*[contains(normalize-space(),'FAQs')]")
     private WebElement faqs;
 
-    private WebElement waitForVisible(
-            WebElement element) {
-
+    private WebElement waitForVisible(WebElement element) {
         return wait.until(
-                ExpectedConditions
-                        .visibilityOf(element));
+                ExpectedConditions.visibilityOf(element)
+        );
     }
 
-    private WebElement waitForClickable(
-            WebElement element) {
-
+    private WebElement waitForClickable(WebElement element) {
         return wait.until(
-                ExpectedConditions
-                        .elementToBeClickable(
-                                element));
+                ExpectedConditions.elementToBeClickable(element)
+        );
     }
 
-    private void safeClick(
-            WebElement element) {
-
+    private void safeClick(WebElement element) {
         try {
-
-            waitForClickable(
-                    element)
-                    .click();
-
+            waitForClickable(element).click();
         } catch (Exception e) {
-
-            JavascriptExecutor js =
-                    (JavascriptExecutor) driver;
-
-            js.executeScript(
-                    "arguments[0].click();",
-                    element);
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            js.executeScript("arguments[0].click();", element);
         }
     }
 
     public boolean isCorporateFormDisplayed() {
-
         try {
-
-            return waitForVisible(
-                    corporateForm)
-                    .isDisplayed();
-
+            return waitForVisible(corporateForm).isDisplayed();
         } catch (Exception e) {
-
             return false;
         }
     }
 
     public void waitForCorporateForm() {
-
-        waitForVisible(
-                corporateForm);
+        waitForVisible(corporateForm);
     }
 
-    public void enterName(
-            String name) {
-
-        waitForVisible(
-                nameField);
-
+    public void enterName(String name) {
+        waitForVisible(nameField);
         nameField.clear();
-
-        nameField.sendKeys(
-                name);
+        nameField.sendKeys(name);
     }
 
-    public void enterOrganization(
-            String organization) {
-
-        waitForVisible(
-                organizationField);
-
+    public void enterOrganization(String organization) {
+        waitForVisible(organizationField);
         organizationField.clear();
-
-        organizationField.sendKeys(
-                organization);
+        organizationField.sendKeys(organization);
     }
 
-    public void enterMobile(
-            String mobile) {
-
-        waitForVisible(
-                mobileField);
-
+    public void enterMobile(String mobile) {
+        waitForVisible(mobileField);
         mobileField.clear();
-
-        mobileField.sendKeys(
-                mobile);
+        mobileField.sendKeys(mobile);
     }
 
-    public void enterEmail(
-            String email) {
-
-        waitForVisible(
-                emailField);
-
+    public void enterEmail(String email) {
+        waitForVisible(emailField);
         emailField.clear();
-
-        emailField.sendKeys(
-                email);
+        emailField.sendKeys(email);
     }
 
-    public void selectOrganizationSize(
-            String organizationSize) {
-
-        safeClick(
-                organizationSizeDropdown);
-
-        selectDropdownOption(
-                organizationSize);
+    public void selectOrganizationSize(String organizationSize) {
+        safeClick(organizationSizeDropdown);
+        selectDropdownOption(organizationSize);
     }
 
-    public void selectInterestedIn(
-            String interestedIn) {
-
-        safeClick(
-                interestedInDropdown);
-
-        selectDropdownOption(
-                interestedIn);
+    public void selectInterestedIn(String interestedIn) {
+        safeClick(interestedInDropdown);
+        selectDropdownOption(interestedIn);
     }
 
-    private void selectDropdownOption(
-            String expectedOption) {
-
-        boolean optionClicked =
-                false;
-
+    private void selectDropdownOption(String expectedOption) {
+        boolean optionClicked = false;
         for (WebElement option : dropdownOptions) {
-
             try {
-
-                String optionText =
-                        option.getText()
-                                .trim();
-
+                String optionText = option.getText().trim();
                 if (option.isDisplayed()
                         && !optionText.isEmpty()
-                        && optionText.equalsIgnoreCase(
-                        expectedOption.trim())) {
-
+                        && optionText.equalsIgnoreCase(expectedOption.trim())) {
                     option.click();
-
                     optionClicked = true;
-
                     break;
                 }
-
             } catch (Exception ignored) {
             }
         }
-
         if (!optionClicked) {
-
             for (WebElement option : dropdownOptions) {
-
                 try {
-
-                    String optionText =
-                            option.getText()
-                                    .trim();
-
+                    String optionText = option.getText().trim();
                     if (option.isDisplayed()
                             && !optionText.isEmpty()
-                            && optionText.toLowerCase()
-                            .contains(
-                                    expectedOption
-                                            .trim()
-                                            .toLowerCase())) {
-
+                            && optionText.toLowerCase().contains(expectedOption.trim().toLowerCase())) {
                         option.click();
-
                         optionClicked = true;
-
                         break;
                     }
-
                 } catch (Exception ignored) {
                 }
             }
         }
-
         if (!optionClicked) {
-
-            throw new RuntimeException(
-                    "Dropdown option not found: "
-                            + expectedOption);
+            throw new RuntimeException("Dropdown option not found: " + expectedOption);
         }
     }
 
@@ -277,92 +174,46 @@ public class CorporateWellnessPage {
             String mobile,
             String organizationSize,
             String interestedIn) {
-
         waitForCorporateForm();
-
         enterName(name);
-
-        enterOrganization(
-                organization);
-
+        enterOrganization(organization);
         enterMobile(mobile);
-
         enterEmail(email);
-
-        selectOrganizationSize(
-                organizationSize);
-
-        selectInterestedIn(
-                interestedIn);
+        selectOrganizationSize(organizationSize);
+        selectInterestedIn(interestedIn);
     }
 
     public boolean isSubmitButtonEnabled() {
-
         try {
-
-            waitForVisible(
-                    scheduleDemoButton);
-
-            String disabled =
-                    scheduleDemoButton
-                            .getAttribute(
-                                    "disabled");
-
-            String ariaDisabled =
-                    scheduleDemoButton
-                            .getAttribute(
-                                    "aria-disabled");
-
-            String classValue =
-                    scheduleDemoButton
-                            .getAttribute(
-                                    "class");
+            waitForVisible(scheduleDemoButton);
+            String disabled = scheduleDemoButton.getAttribute("disabled");
+            String ariaDisabled = scheduleDemoButton.getAttribute("aria-disabled");
+            String classValue = scheduleDemoButton.getAttribute("class");
 
             if (disabled != null) {
                 return false;
             }
 
-            if (ariaDisabled != null
-                    && ariaDisabled.equalsIgnoreCase(
-                    "true")) {
-
+            if (ariaDisabled != null && ariaDisabled.equalsIgnoreCase("true")) {
                 return false;
             }
 
-            if (classValue != null
-                    && classValue.toLowerCase()
-                    .contains("disabled")) {
-
+            if (classValue != null && classValue.toLowerCase().contains("disabled")) {
                 return false;
             }
-
-            return scheduleDemoButton
-                    .isEnabled();
-
+            return scheduleDemoButton.isEnabled();
         } catch (Exception e) {
-
             return false;
         }
     }
 
-    private void clickMenuOption(
-            WebElement element) {
-
+    private void clickMenuOption(WebElement element) {
         try {
-
-            scrollToElement(
-                    element);
-
+            scrollToElement(element);
             safeClick(element);
-
         } catch (Exception e) {
-
-            JavascriptExecutor js =
-                    (JavascriptExecutor) driver;
-
-            js.executeScript(
-                    "arguments[0].click();",
-                    element);
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            js.executeScript("arguments[0].click();", element);
         }
     }
 
@@ -387,44 +238,27 @@ public class CorporateWellnessPage {
     }
 
     public void scrollDown() {
-
-        JavascriptExecutor js =
-                (JavascriptExecutor) driver;
-
-        js.executeScript(
-                "window.scrollBy(0,700)");
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollBy(0,700)");
     }
 
     public void scrollToTop() {
-
-        JavascriptExecutor js =
-                (JavascriptExecutor) driver;
-
-        js.executeScript(
-                "window.scrollTo(0,0)");
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollTo(0,0)");
     }
 
-    public void scrollToElement(
-            WebElement element) {
-
-        JavascriptExecutor js =
-                (JavascriptExecutor) driver;
-
+    public void scrollToElement(WebElement element) {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript(
                 "arguments[0].scrollIntoView({block:'center'});",
-                element);
+                element
+        );
     }
 
     public void scrollToForm() {
-
         try {
-
-            waitForVisible(
-                    corporateForm);
-
-            scrollToElement(
-                    corporateForm);
-
+            waitForVisible(corporateForm);
+            scrollToElement(corporateForm);
         } catch (Exception ignored) {
         }
     }

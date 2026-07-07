@@ -33,13 +33,10 @@ public class LabTestsPage {
     private List<WebElement> topCities;
 
     // TC_003 / TC_005 - Lab Test and City Search
-    @FindBy(xpath = "//input[@type='text' and @placeholder='Search for city']")
+    @FindBy(xpath = "//input[@placeholder='Search for city']")
     private WebElement citySearchField;
 
-    @FindBy(xpath = "//input[contains(@placeholder,'Search') or contains(@placeholder,'test')]")
-    private WebElement labSearchField;
-
-    @FindBy(xpath = "//*[contains(@class,'suggestion') or contains(@class,'result')]")
+    @FindBy(xpath = "//div[contains(@class,'suggestion')]")
     private List<WebElement> citySuggestions;
 
     @FindBy(xpath = "//div[text()='Bangalore']")

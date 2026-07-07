@@ -279,3 +279,93 @@ Session ID: 2f262de236ba6b6d04eb054838fe45c1
 2026-07-04 18:52:18 INFO  BaseTest - Browser setup completed successfully
 2026-07-04 18:52:31 INFO  BaseTest - Test passed: verifyCorporateMenuOptions
 2026-07-04 18:52:35 INFO  BaseTest - Browser closed successfully
+2026-07-06 22:15:20 INFO  BaseTest - Configuration loaded successfully
+2026-07-06 22:15:20 INFO  BaseTest - Launching browser: chrome
+2026-07-06 22:15:27 INFO  BaseTest - Browser setup completed successfully
+2026-07-06 22:15:40 INFO  BaseTest - Test passed: verifyThyroidProfileAddedToCart
+2026-07-06 22:15:44 INFO  BaseTest - Browser closed successfully
+2026-07-07 10:21:24 INFO  BaseTest - Configuration loaded successfully
+2026-07-07 10:21:24 INFO  BaseTest - Launching browser: chrome
+2026-07-07 10:21:28 INFO  BaseTest - Browser setup completed successfully
+2026-07-07 10:21:29 ERROR BaseTest - Test failed: verifyThyroidProfileAddedToCart
+2026-07-07 10:21:29 ERROR BaseTest - Failure reason: org.openqa.selenium.WebDriverException: unknown error: net::ERR_CONNECTION_CLOSED
+  (Session info: chrome=149.0.7827.103)
+Build info: version: '4.23.0', revision: '4df0a231af'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.10'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [f57401423b2dddf06cd885a49b36f56e, get {url=https://www.practo.com}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 149.0.7827.103, chrome: {chromedriverVersion: 149.0.7827.155 (07b52360cc1..., userDataDir: C:\Users\2497764\AppData\Lo...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:65347}, goog:processID: 30444, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:65347/devtoo..., se:cdpVersion: 149.0.7827.103, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: f57401423b2dddf06cd885a49b36f56e
+2026-07-07 10:21:32 INFO  BaseTest - Browser closed successfully
+2026-07-07 10:21:48 INFO  BaseTest - Configuration loaded successfully
+2026-07-07 10:21:48 INFO  BaseTest - Launching browser: chrome
+2026-07-07 10:21:50 INFO  BaseTest - Browser setup completed successfully
+2026-07-07 10:21:50 ERROR BaseTest - Test failed: verifyThyroidProfileAddedToCart
+2026-07-07 10:21:50 ERROR BaseTest - Failure reason: org.openqa.selenium.WebDriverException: unknown error: net::ERR_CONNECTION_CLOSED
+  (Session info: chrome=149.0.7827.103)
+Build info: version: '4.23.0', revision: '4df0a231af'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.10'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [9830d23e7a769a5c1898e1ca2e371261, get {url=https://www.practo.com}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 149.0.7827.103, chrome: {chromedriverVersion: 149.0.7827.155 (07b52360cc1..., userDataDir: C:\Users\2497764\AppData\Lo...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:55429}, goog:processID: 28048, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:55429/devtoo..., se:cdpVersion: 149.0.7827.103, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 9830d23e7a769a5c1898e1ca2e371261
+2026-07-07 10:21:54 INFO  BaseTest - Browser closed successfully
+2026-07-07 10:22:55 INFO  BaseTest - Configuration loaded successfully
+2026-07-07 10:22:55 INFO  BaseTest - Launching browser: chrome
+2026-07-07 10:22:57 INFO  BaseTest - Browser setup completed successfully
+2026-07-07 10:24:40 INFO  BaseTest - Configuration loaded successfully
+2026-07-07 10:24:40 INFO  BaseTest - Launching browser: chrome
+2026-07-07 10:24:42 INFO  BaseTest - Browser setup completed successfully
+2026-07-07 10:24:58 INFO  BaseTest - Test passed: verifyTopCitiesSectionVisible
+2026-07-07 10:25:01 INFO  BaseTest - Browser closed successfully
+2026-07-07 10:25:07 ERROR BaseTest - Test failed: verifyThyroidProfileAddedToCart
+2026-07-07 10:25:07 ERROR BaseTest - Failure reason: org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of Proxy element for: DefaultElementLocator 'By.xpath: //a[@title='tests']' (tried for 40 second(s) with 500 milliseconds interval)
+2026-07-07 10:25:11 INFO  BaseTest - Browser closed successfully
+2026-07-07 10:28:22 INFO  BaseTest - Configuration loaded successfully
+2026-07-07 10:28:22 INFO  BaseTest - Launching browser: chrome
+2026-07-07 10:28:25 INFO  BaseTest - Browser setup completed successfully
+2026-07-07 10:28:47 INFO  BaseTest - Test passed: verifyLoginWithValidCredentials
+2026-07-07 10:28:50 INFO  BaseTest - Browser closed successfully
+2026-07-07 10:28:50 INFO  BaseTest - Configuration loaded successfully
+2026-07-07 10:28:50 INFO  BaseTest - Launching browser: chrome
+2026-07-07 10:28:51 INFO  BaseTest - Browser setup completed successfully
+2026-07-07 10:30:37 INFO  BaseTest - Test passed: verifyLoginWithInvalidPassword
+2026-07-07 10:30:41 INFO  BaseTest - Browser closed successfully
+2026-07-07 10:30:41 INFO  BaseTest - Configuration loaded successfully
+2026-07-07 10:30:41 INFO  BaseTest - Launching browser: chrome
+2026-07-07 10:30:43 INFO  BaseTest - Browser setup completed successfully
+2026-07-07 10:30:50 INFO  BaseTest - Test passed: verifyDiabetesHealthConcernNavigation
+2026-07-07 10:30:53 INFO  BaseTest - Browser closed successfully
+2026-07-07 10:30:53 INFO  BaseTest - Configuration loaded successfully
+2026-07-07 10:30:53 INFO  BaseTest - Launching browser: chrome
+2026-07-07 10:30:55 INFO  BaseTest - Browser setup completed successfully
+2026-07-07 10:31:01 INFO  BaseTest - Test passed: verifyThyroidProfileAddedToCart
+2026-07-07 10:31:04 INFO  BaseTest - Browser closed successfully
+2026-07-07 10:31:04 INFO  BaseTest - Configuration loaded successfully
+2026-07-07 10:31:04 INFO  BaseTest - Launching browser: chrome
+2026-07-07 10:31:05 INFO  BaseTest - Browser setup completed successfully
+2026-07-07 10:31:11 INFO  BaseTest - Test passed: verifyCitySearchFromDropdown
+2026-07-07 10:31:14 INFO  BaseTest - Browser closed successfully
+2026-07-07 10:31:14 INFO  BaseTest - Configuration loaded successfully
+2026-07-07 10:31:14 INFO  BaseTest - Launching browser: chrome
+2026-07-07 10:31:15 INFO  BaseTest - Browser setup completed successfully
+2026-07-07 10:31:21 INFO  BaseTest - Test passed: verifyNavigationToLabTestsPage
+2026-07-07 10:31:23 INFO  BaseTest - Browser closed successfully
+2026-07-07 10:31:24 INFO  BaseTest - Configuration loaded successfully
+2026-07-07 10:31:24 INFO  BaseTest - Launching browser: chrome
+2026-07-07 10:31:25 INFO  BaseTest - Browser setup completed successfully
+2026-07-07 10:31:32 INFO  BaseTest - Test passed: verifyTopCitiesSectionVisible
+2026-07-07 10:31:35 INFO  BaseTest - Browser closed successfully
+2026-07-07 10:31:35 INFO  BaseTest - Configuration loaded successfully
+2026-07-07 10:31:35 INFO  BaseTest - Launching browser: chrome
+2026-07-07 10:31:36 INFO  BaseTest - Browser setup completed successfully
+2026-07-07 10:31:51 INFO  BaseTest - Test passed: verifyLocationAndSearchBoxesAreWorking
+2026-07-07 10:31:55 INFO  BaseTest - Browser closed successfully
+2026-07-07 10:31:55 INFO  BaseTest - Configuration loaded successfully
+2026-07-07 10:31:55 INFO  BaseTest - Launching browser: chrome
+2026-07-07 10:31:57 INFO  BaseTest - Browser setup completed successfully
+2026-07-07 10:32:10 INFO  BaseTest - Test passed: verifyAddressIsVisibleAndCanBeExtracted
+2026-07-07 10:32:13 INFO  BaseTest - Browser closed successfully
+2026-07-07 10:32:13 INFO  BaseTest - Configuration loaded successfully
+2026-07-07 10:32:13 INFO  BaseTest - Launching browser: chrome
+2026-07-07 10:32:15 INFO  BaseTest - Browser setup completed successfully

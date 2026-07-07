@@ -1,71 +1,149 @@
 package org.practo.tests;
 
 import base.BaseTest;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import org.practo.pages.MedicinesPage;
+
 import org.testng.Assert;
 import org.testng.annotations.Test;
+
 import utilities.ExcelUtils;
-import utilities.WaitUtils;
 
 public class TC_017_MedicineAddToCart extends BaseTest {
 
+    private static final Logger logger =
+            LogManager.getLogger(
+                    TC_017_MedicineAddToCart.class);
+
     @Test
     public void verifyMedicineAddToCart() {
+
+        logger.info(
+                "Starting TC_017 - Medicine Add To Cart");
+
         commonCode.loadMedicineSheet();
-        String medicineName = ExcelUtils.getCellData("TC_017", "SearchMedicine");
+
+        String medicineName =
+                ExcelUtils.getCellData(
+                        "TC_017",
+                        "SearchMedicine");
 
         Assert.assertFalse(
                 medicineName.isEmpty(),
                 "Medicine name is empty in Excel"
         );
 
-        System.out.println("Medicine Search : " + medicineName);
-        MedicinesPage medicinesPage = new MedicinesPage(driver);
+        logger.info(
+                "Medicine Search : {}",
+                medicineName);
 
-        // Step 1: Open Medicines page using url2 from config.properties
-        driver.get(prop.getProperty("url2"));
+        MedicinesPage medicinesPage =
+                new MedicinesPage(driver);
 
-        // Step 2: Validate Medicines page opened
-        WaitUtils.waitUntil(driver, driver ->
-                commonCode.getCurrentUrl().toLowerCase().contains("order")
-                        || commonCode.getCurrentUrl().toLowerCase().contains("medicine")
-                        || commonCode.getCurrentUrl().toLowerCase().contains("medicines")
+        // Step 1: Open Medicines Page
+
+        logger.info(
+                "Opening Medicines page");
+
+        driver.get(
+                prop.getProperty("url2"));
+
+        // Step 2: Validate Medicines Page Opened
+
+        commonCode.waitUntil(
+                driver ->
+                        commonCode.getCurrentUrl()
+                                .toLowerCase()
+                                .contains("order")
+                                ||
+                                commonCode.getCurrentUrl()
+                                        .toLowerCase()
+                                        .contains("medicine")
+                                ||
+                                commonCode.getCurrentUrl()
+                                        .toLowerCase()
+                                        .contains("medicines")
         );
 
-        System.out.println("Navigated to Medicines page");
-        System.out.println("Current URL: " + commonCode.getCurrentUrl());
+        logger.info(
+                "Navigated to Medicines page");
 
-        // Step 3: Search medicine
-        medicinesPage.searchMedicine(medicineName);
+        logger.info(
+                "Current URL: {}",
+                commonCode.getCurrentUrl());
 
-        // Step 4: Validate medicines are found
-        int medicineCount = medicinesPage.getMedicineCount();
+        // Step 3: Search Medicine
+
+        logger.info(
+                "Searching medicine: {}",
+                medicineName);
+
+        medicinesPage.searchMedicine(
+                medicineName);
+
+        // Step 4: Validate Medicines Found
+
+        int medicineCount =
+                medicinesPage.getMedicineCount();
 
         Assert.assertTrue(
                 medicineCount > 0,
-                "No medicines found for search: " + medicineName
+                "No medicines found for search: "
+                        + medicineName
         );
 
-        // Step 5: Click first medicine from search results
+        logger.info(
+                "Medicines found: {}",
+                medicineCount);
+
+        // Step 5: Click First Medicine
+
         medicinesPage.clickFirstMedicineFromResults();
-        System.out.println("Clicked first medicine from search results");
 
-        // Step 6: Wait after selecting first medicine
-        WaitUtils.waitUntil(driver, driver ->
-                commonCode.getCurrentUrl().toLowerCase().contains("order")
-                        || commonCode.getCurrentUrl().toLowerCase().contains("medicine")
-                        || commonCode.getCurrentUrl().toLowerCase().contains("product")
+        logger.info(
+                "Clicked first medicine from search results");
+
+        // Step 6: Wait For Product Page
+
+        commonCode.waitUntil(
+                driver ->
+                        commonCode.getCurrentUrl()
+                                .toLowerCase()
+                                .contains("order")
+                                ||
+                                commonCode.getCurrentUrl()
+                                        .toLowerCase()
+                                        .contains("medicine")
+                                ||
+                                commonCode.getCurrentUrl()
+                                        .toLowerCase()
+                                        .contains("product")
         );
+
+        logger.info(
+                "Medicine product page opened");
 
         // Step 7: Click Add To Cart
+
         medicinesPage.clickAddToCart();
 
-        // Step 8: Validate cart
+        logger.info(
+                "Clicked Add To Cart button");
+
+        // Step 8: Validate Cart
+
         Assert.assertTrue(
                 medicinesPage.isCartDisplayed(),
                 "Cart is not displayed after adding medicine"
         );
 
-        System.out.println("TC_017 Passed: Add To Cart button is functioning properly");
+        logger.info(
+                "Cart displayed successfully");
+
+        logger.info(
+                "TC_017 Passed: Add To Cart button is functioning properly");
     }
 }

@@ -115,7 +115,6 @@ public class TC_015_ExtractTop5FAQs extends BaseTest {
 
         // Step 8: Navigate Back
         driver.navigate().back();
-
         logger.info("Returned from Video Consult page");
         logger.info("TC_015 Passed: Extracted 5 FAQs successfully");
     }

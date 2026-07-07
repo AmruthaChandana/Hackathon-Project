@@ -7,27 +7,31 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import java.time.Duration;
 
 public class HomePage {
-
     private WebDriver driver;
+    private WebDriverWait wait;
 
     public HomePage() {
     }
 
     public HomePage(WebDriver driver) {
         this.driver = driver;
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(40));
         PageFactory.initElements(driver, this);
     }
 
     @FindBy(xpath = "//a[contains(text(),'Login') or contains(text(),'login')]")
     private WebElement loginButton;
 
-    @FindBy(xpath = "//input[contains(@placeholder,'location') or contains(@placeholder,'Location')]")
-    private WebElement locationBox;
+    //@FindBy(xpath = "//input[contains(@placeholder,'location') or contains(@placeholder,'Location')]")
+    //private WebElement locationBox;
 
-    @FindBy(xpath = "//input[contains(@placeholder,'Search') or contains(@placeholder,'doctor') or contains(@placeholder,'clinic')]")
-    private WebElement searchBox;
+    //@FindBy(xpath = "//input[contains(@placeholder,'Search') or contains(@placeholder,'doctor') or contains(@placeholder,'clinic')]")
+    //private WebElement searchBox;
 
     @FindBy(xpath = "//div[contains(text(),'Video Consult')] | //a[contains(text(),'Video Consult')]")
     private WebElement videoConsultLink;
@@ -50,50 +54,67 @@ public class HomePage {
     @FindBy(xpath = "//div[text()='Medicines']")
     private WebElement medicinesButton;
 
+    @FindBy(xpath = "(//a[contains(@href,'medicines') or contains(@href,'medicine') or contains(normalize-space(),'Medicines')])[1]")
+    private WebElement medicinesLink;
+
     @FindBy(xpath = "//span[contains(text(),'For Corporates')]")
     private WebElement forCorporates;
 
     @FindBy(xpath = "//a[contains(text(),'Health & Wellness Plans')]")
     private WebElement healthAndWellnessPlans;
 
-    public By hospitalLocationBox =
-            By.xpath("//input[@data-qa-id='omni-searchbox-locality']");
+    public By hospitalLocationBox = By.xpath("//input[@data-qa-id='omni-searchbox-locality']");
+    public By hospitalSearchBox = By.xpath("//input[@data-qa-id='omni-searchbox-keyword']");
 
-    public By hospitalSearchBox =
-            By.xpath("//input[@data-qa-id='omni-searchbox-keyword']");
+    private WebElement waitForVisible(WebElement element) {
+        return wait.until(
+                ExpectedConditions.visibilityOf(element)
+        );
+    }
+
+    private WebElement waitForClickable(WebElement element) {
+        return wait.until(
+                ExpectedConditions.elementToBeClickable(element)
+        );
+    }
+
+    private void safeClick(WebElement element) {
+        try {
+            waitForClickable(element).click();
+        } catch (Exception e) {
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            js.executeScript("arguments[0].click();", element);
+        }
+    }
 
     public By locationOption(String location) {
-        return By.xpath("//div[contains(text(),'" + location + "')]");
+        return By.xpath(
+                "//div[contains(text(),'" + location + "')]"
+        );
     }
 
     public By searchOption(String searchKeyword) {
         return By.xpath(
                 "//div[@data-qa-id='omni-suggestion-main' and text()='"
-                        + searchKeyword + "']");
+                        + searchKeyword
+                        + "']"
+        );
     }
 
     public By searchOptionContains(String searchKeyword) {
         return By.xpath(
                 "//div[@data-qa-id='omni-suggestion-main' and contains(text(),'"
-                        + searchKeyword + "')]");
+                        + searchKeyword
+                        + "')]"
+        );
     }
 
     public void clickLogin() {
-        loginButton.click();
-    }
-
-    public void enterLocation(String location) {
-        locationBox.clear();
-        locationBox.sendKeys(location);
-    }
-
-    public void enterSearchKeyword(String keyword) {
-        searchBox.clear();
-        searchBox.sendKeys(keyword);
+        safeClick(loginButton);
     }
 
     public void clickVideoConsult() {
-        videoConsultLink.click();
+        safeClick(videoConsultLink);
     }
 
     public void clickVideoConsultUsingJS() {
@@ -101,21 +122,53 @@ public class HomePage {
         js.executeScript("arguments[0].click();", videoConsultLink);
     }
 
-    public void clickLabTests() {
-        labTestsLink.click();
+    public WebElement getVideoConsultLink() {
+        return videoConsultLink;
     }
 
-    public void clickCorporateWellness() {
-        corporateWellnessLink.click();
+    public WebElement getLabTestsLink() {
+        return labTestsLink;
+    }
+
+    public WebElement getCorporateWellnessLink() {
+        return corporateWellnessLink;
+    }
+
+    public WebElement getForCorporates() {
+        return forCorporates;
+    }
+
+    public void clickForCorporates() {
+        safeClick(forCorporates);
+    }
+
+    public void clickForCorporatesUsingJS() {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].click();", forCorporates);
+    }
+
+    public WebElement getHealthAndWellnessPlans() {
+        return healthAndWellnessPlans;
+    }
+
+    public void clickHealthAndWellnessPlans() {
+        safeClick(healthAndWellnessPlans);
+    }
+
+    public void clickHealthAndWellnessPlansUsingJS() {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].click();", healthAndWellnessPlans);
     }
 
     public void enterHospitalLocation(String location) {
+        waitForVisible(hospitalLocationBoxElement);
         hospitalLocationBoxElement.click();
         hospitalLocationBoxElement.clear();
         hospitalLocationBoxElement.sendKeys(location);
     }
 
     public void enterHospitalSearchKeyword(String searchKeyword) {
+        waitForVisible(hospitalSearchBoxElement);
         hospitalSearchBoxElement.click();
         hospitalSearchBoxElement.clear();
         hospitalSearchBoxElement.sendKeys(searchKeyword);
@@ -123,32 +176,7 @@ public class HomePage {
 
     public void triggerHospitalLocationSuggestion(String location) {
         hospitalLocationBoxElement.sendKeys(Keys.BACK_SPACE);
-        hospitalLocationBoxElement.sendKeys(
-                location.substring(location.length() - 1));
-    }
-
-    public void clickLocationOption(String location) {
-        driver.findElement(locationOption(location)).click();
-    }
-
-    public void clickSearchOption(String searchKeyword) {
-        driver.findElement(searchOption(searchKeyword)).click();
-    }
-
-    public void clickSearchOptionContains(String searchKeyword) {
-        driver.findElement(searchOptionContains(searchKeyword)).click();
-    }
-
-    public WebElement getLoginButton() {
-        return loginButton;
-    }
-
-    public WebElement getVideoConsultLink() {
-        return videoConsultLink;
-    }
-
-    public WebElement getCorporateWellnessLink() {
-        return corporateWellnessLink;
+        hospitalLocationBoxElement.sendKeys(location.substring(location.length() - 1));
     }
 
     public WebElement getHospitalLocationBoxElement() {
@@ -164,23 +192,11 @@ public class HomePage {
     }
 
     public void clickSurgeriesButton() {
-        surgeriesButton.click();
+        safeClick(surgeriesButton);
     }
 
     public void clickSurgeriesButtonUsingJS() {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].click();", surgeriesButton);
-    }
-
-    public void clickMedicines() {
-        medicinesButton.click();
-    }
-
-    public void clickForCorporates() {
-        forCorporates.click();
-    }
-
-    public void clickHealthAndWellnessPlans() {
-        healthAndWellnessPlans.click();
     }
 }

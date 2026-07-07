@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Practo Hackathon Automation Suite">
+    <listeners>
+        <listener class-name="listeners.ExtentTestListener"/>
+    </listeners>
+    <test name="Practo Automation Test Cases">
+        <classes>
+            <class name="org.practo.tests.TC_001_LoginWithValidCredentials"/>
+            <class name="org.practo.tests.TC_002_LoginWithInvalidPassword"/>
+            <class name="org.practo.tests.TC_003_FindTest"/>
+            <class name="org.practo.tests.TC_004_AddToCart"/>
+            <class name="org.practo.tests.TC_005_CitySearch"/>
+            <class name="org.practo.tests.TC_006_Navigation"/>
+            <class name="org.practo.tests.TC_007_TopCitiesVisibility"/>
+            <class name="org.practo.tests.TC_008_VerifySearchAndLocationBox"/>
+            <class name="org.practo.tests.TC_009_VerifyHospitalAddress"/>
+            <class name="org.practo.tests.TC_010_VerifyFirstNHospitals"/>
+            <class name="org.practo.tests.TC_011_VerifyBookHospitalVisitButton"/>
+            <class name="org.practo.tests.TC_012_VerifyNoResultsPageDoesNotCrash"/>
+            <class name="org.practo.tests.TC_013_NavigateToSurgeryPage"/>
+            <class name="org.practo.tests.TC_014_InvalidMobileVideoConsult"/>
+            <class name="org.practo.tests.TC_015_ExtractTop5FAQs"/>
+            <class name="org.practo.tests.TC_016_MedicineSearch"/>
+            <class name="org.practo.tests.TC_017_MedicineAddToCart"/>
+            <class name="org.practo.tests.TC_018_MedicineSearchInvalid"/>
+            <class name="org.practo.tests.TC_019_CorporateDisableButton"/>
+            <class name="org.practo.tests.TC_020_CorporateMenuOptions"/>
+        </classes>
+    </test>
+</suite>

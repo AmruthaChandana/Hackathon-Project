@@ -1,118 +1,169 @@
 package org.practo.pages;
 
-import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.openqa.selenium.JavascriptExecutor;
-
 import java.time.Duration;
+import java.util.List;
 
 public class CorporateWellnessPage {
-
-    WebDriver driver;
+    private WebDriver driver;
     private WebDriverWait wait;
 
     public CorporateWellnessPage(WebDriver driver) {
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(40));
         PageFactory.initElements(driver, this);
     }
 
-    @FindBy(xpath = "//input[contains(@placeholder,'Name')]")
+    @FindBy(xpath = "//*[@id='header']/div[2]/div | //div[contains(@class,'corporate-form')]")
+    private WebElement corporateForm;
+
+    @FindBy(xpath = "//input[@placeholder='Name' or contains(@placeholder,'Name')]")
     private WebElement nameField;
 
-    @FindBy(xpath = "//input[contains(@placeholder,'Organization') or contains(@placeholder,'Company')]")
+    @FindBy(xpath = "//input[@placeholder='Organization Name' or contains(@placeholder,'Organization')]")
     private WebElement organizationField;
 
-    @FindBy(xpath = "//input[contains(@placeholder,'Email')]")
-    private WebElement emailField;
-
-    @FindBy(id = "contactNumber")
+    @FindBy(xpath = "//input[@placeholder='Contact Number' or contains(@placeholder,'Contact')]")
     private WebElement mobileField;
 
-    @FindBy(id = "organizationSize")
+    @FindBy(xpath = "//input[@placeholder='Official Email ID' or contains(@placeholder,'Email')]")
+    private WebElement emailField;
+
+    @FindBy(xpath = "//*[contains(normalize-space(),'Organization Size')]")
     private WebElement organizationSizeDropdown;
 
-    @FindBy(id = "interestedIn")
+    @FindBy(xpath = "//*[contains(normalize-space(),'Interested In')]")
     private WebElement interestedInDropdown;
 
-    @FindBy(xpath = "//button[contains(text(),'Schedule') or contains(text(),'Submit')]")
-    private WebElement submitButton;
+    @FindBy(xpath = "//button[contains(normalize-space(),'Schedule a demo')]")
+    private WebElement scheduleDemoButton;
 
-    @FindBy(xpath = "//*[contains(text(),'valid') or contains(text(),'Invalid') or contains(text(),'required')]")
+    @FindBy(xpath = "//*[contains(normalize-space(),'valid') or contains(normalize-space(),'Invalid') or contains(normalize-space(),'required') or contains(normalize-space(),'Please')]")
     private WebElement validationMessage;
 
-    @FindBy(xpath = "//li[contains(text(),'Our Services')]")
+    @FindBy(xpath = "//*[self::div or self::li or self::span][normalize-space()!='']")
+    private List<WebElement> dropdownOptions;
+
+    @FindBy(xpath = "//*[contains(normalize-space(),'Our Services')]")
     private WebElement ourServices;
 
-    @FindBy(xpath = "//li[contains(text(),'Practo Ecosystem')]")
+    @FindBy(xpath = "//*[contains(normalize-space(),'Practo Ecosystem')]")
     private WebElement practoEcosystem;
 
-    @FindBy(xpath = "//li[contains(text(),'Product Capabilities')]")
+    @FindBy(xpath = "//*[contains(normalize-space(),'Product Capabilities')]")
     private WebElement productCapabilities;
 
-    @FindBy(xpath = "//li[contains(text(),'Testimonials')]")
+    @FindBy(xpath = "//*[contains(normalize-space(),'Testimonials')]")
     private WebElement testimonials;
 
-    @FindBy(xpath = "//li[contains(text(),'FAQs')]")
+    @FindBy(xpath = "//*[contains(normalize-space(),'FAQs')]")
     private WebElement faqs;
 
-    // Actions
+    private WebElement waitForVisible(WebElement element) {
+        return wait.until(
+                ExpectedConditions.visibilityOf(element)
+        );
+    }
+
+    private WebElement waitForClickable(WebElement element) {
+        return wait.until(
+                ExpectedConditions.elementToBeClickable(element)
+        );
+    }
+
+    private void safeClick(WebElement element) {
+        try {
+            waitForClickable(element).click();
+        } catch (Exception e) {
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            js.executeScript("arguments[0].click();", element);
+        }
+    }
+
+    public boolean isCorporateFormDisplayed() {
+        try {
+            return waitForVisible(corporateForm).isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public void waitForCorporateForm() {
+        waitForVisible(corporateForm);
+    }
 
     public void enterName(String name) {
+        waitForVisible(nameField);
         nameField.clear();
         nameField.sendKeys(name);
     }
 
     public void enterOrganization(String organization) {
+        waitForVisible(organizationField);
         organizationField.clear();
         organizationField.sendKeys(organization);
     }
 
-    public void enterEmail(String email) {
-        emailField.clear();
-        emailField.sendKeys(email);
-    }
-
     public void enterMobile(String mobile) {
+        waitForVisible(mobileField);
         mobileField.clear();
         mobileField.sendKeys(mobile);
     }
 
-    public void clickSubmit() {
-        submitButton.click();
-    }
-
-    public String getValidationMessage() {
-        return validationMessage.getText();
+    public void enterEmail(String email) {
+        waitForVisible(emailField);
+        emailField.clear();
+        emailField.sendKeys(email);
     }
 
     public void selectOrganizationSize(String organizationSize) {
-
-        Select select =
-                new Select(organizationSizeDropdown);
-
-        select.selectByVisibleText(organizationSize);
+        safeClick(organizationSizeDropdown);
+        selectDropdownOption(organizationSize);
     }
 
     public void selectInterestedIn(String interestedIn) {
+        safeClick(interestedInDropdown);
+        selectDropdownOption(interestedIn);
+    }
 
-        Select select =
-                new Select(interestedInDropdown);
-
-        for (WebElement option : select.getOptions()) {
-
-            if (option.getText().trim()
-                    .equalsIgnoreCase(interestedIn.trim())) {
-
-                option.click();
-                break;
+    private void selectDropdownOption(String expectedOption) {
+        boolean optionClicked = false;
+        for (WebElement option : dropdownOptions) {
+            try {
+                String optionText = option.getText().trim();
+                if (option.isDisplayed()
+                        && !optionText.isEmpty()
+                        && optionText.equalsIgnoreCase(expectedOption.trim())) {
+                    option.click();
+                    optionClicked = true;
+                    break;
+                }
+            } catch (Exception ignored) {
             }
+        }
+        if (!optionClicked) {
+            for (WebElement option : dropdownOptions) {
+                try {
+                    String optionText = option.getText().trim();
+                    if (option.isDisplayed()
+                            && !optionText.isEmpty()
+                            && optionText.toLowerCase().contains(expectedOption.trim().toLowerCase())) {
+                        option.click();
+                        optionClicked = true;
+                        break;
+                    }
+                } catch (Exception ignored) {
+                }
+            }
+        }
+        if (!optionClicked) {
+            throw new RuntimeException("Dropdown option not found: " + expectedOption);
         }
     }
 
@@ -123,71 +174,93 @@ public class CorporateWellnessPage {
             String mobile,
             String organizationSize,
             String interestedIn) {
-
+        waitForCorporateForm();
         enterName(name);
         enterOrganization(organization);
-        enterEmail(email);
         enterMobile(mobile);
-
+        enterEmail(email);
         selectOrganizationSize(organizationSize);
         selectInterestedIn(interestedIn);
     }
 
     public boolean isSubmitButtonEnabled() {
-        return submitButton.isEnabled();
+        try {
+            waitForVisible(scheduleDemoButton);
+            String disabled = scheduleDemoButton.getAttribute("disabled");
+            String ariaDisabled = scheduleDemoButton.getAttribute("aria-disabled");
+            String classValue = scheduleDemoButton.getAttribute("class");
+
+            if (disabled != null) {
+                return false;
+            }
+
+            if (ariaDisabled != null && ariaDisabled.equalsIgnoreCase("true")) {
+                return false;
+            }
+
+            if (classValue != null && classValue.toLowerCase().contains("disabled")) {
+                return false;
+            }
+
+            return scheduleDemoButton.isEnabled();
+        } catch (Exception e) {
+            return false;
+        }
     }
 
-    public void scrollDown() {
-
-        JavascriptExecutor js =
-                (JavascriptExecutor) driver;
-
-        js.executeScript(
-                "window.scrollBy(0,500)");
+    private void clickMenuOption(WebElement element) {
+        try {
+            scrollToElement(element);
+            safeClick(element);
+        } catch (Exception e) {
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            js.executeScript("arguments[0].click();", element);
+        }
     }
 
     public void clickOurServices() {
-
-        wait.until(
-                ExpectedConditions.elementToBeClickable(
-                        ourServices));
-
-        ourServices.click();
+        clickMenuOption(ourServices);
     }
 
     public void clickPractoEcosystem() {
-
-        wait.until(
-                ExpectedConditions.elementToBeClickable(
-                        practoEcosystem));
-
-        practoEcosystem.click();
+        clickMenuOption(practoEcosystem);
     }
 
     public void clickProductCapabilities() {
-
-        wait.until(
-                ExpectedConditions.elementToBeClickable(
-                        productCapabilities));
-
-        productCapabilities.click();
+        clickMenuOption(productCapabilities);
     }
 
     public void clickTestimonials() {
-
-        wait.until(
-                ExpectedConditions.elementToBeClickable(
-                        testimonials));
-
-        testimonials.click();
+        clickMenuOption(testimonials);
     }
 
     public void clickFAQs() {
+        clickMenuOption(faqs);
+    }
 
-        wait.until(
-                ExpectedConditions.elementToBeClickable(
-                        faqs));
+    public void scrollDown() {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollBy(0,700)");
+    }
 
-        faqs.click();
+    public void scrollToTop() {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollTo(0,0)");
+    }
+
+    public void scrollToElement(WebElement element) {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript(
+                "arguments[0].scrollIntoView({block:'center'});",
+                element
+        );
+    }
+
+    public void scrollToForm() {
+        try {
+            waitForVisible(corporateForm);
+            scrollToElement(corporateForm);
+        } catch (Exception ignored) {
+        }
     }
 }

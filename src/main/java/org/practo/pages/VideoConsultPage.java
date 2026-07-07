@@ -1,29 +1,28 @@
 package org.practo.pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class VideoConsultPage {
-
     private WebDriver driver;
+    private WebDriverWait wait;
 
     public VideoConsultPage(WebDriver driver) {
         this.driver = driver;
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(40));
         PageFactory.initElements(driver, this);
     }
 
-    // =====================================================
-    // TC_018 - Video Consult Invalid Mobile Flow Elements
-    // =====================================================
-
+    // TC_014
     @FindBy(xpath = "//*[@id='FirstFold']/div/section/div[1]/a")
     private WebElement consultNowButton;
 
@@ -51,110 +50,115 @@ public class VideoConsultPage {
     @FindBy(xpath = "//*[@id='new-consultation-top-element']/div/div/a")
     private WebElement backToVideoConsultPageLink;
 
-    // =====================================================
-    // Existing TC_016 - FAQ Dynamic Locators
-    // Do not remove these, TC_016 depends on these methods.
-    // =====================================================
+    // TC_015
+    @FindBy(xpath = "//*[@id='FaqSection' or @data-testid='faq-section' or contains(@class,'faq-section')]")
+    private List<WebElement> faqSections;
 
-    private static final String FAQ_SECTION_XPATH =
-            "//*[@id='FaqSection' or @data-testid='faq-section' or contains(@class,'faq-section')]";
+    @FindBy(xpath = "//*[@id='FaqSection']//*[self::h3 or self::div or self::p or self::span][contains(normalize-space(),'?')] | //*[@data-testid='faq-section']//*[self::h3 or self::div or self::p or self::span][contains(normalize-space(),'?')] | //*[contains(@class,'faq-section')]//*[self::h3 or self::div or self::p or self::span][contains(normalize-space(),'?')]")
+    private List<WebElement> faqElements;
 
-    private static final String FAQ_XPATH =
-            "//*[@id='FaqSection']//*[self::h3 or self::div or self::p or self::span][contains(normalize-space(),'?')] " +
-                    "| //*[@data-testid='faq-section']//*[self::h3 or self::div or self::p or self::span][contains(normalize-space(),'?')] " +
-                    "| //*[contains(@class,'faq-section')]//*[self::h3 or self::div or self::p or self::span][contains(normalize-space(),'?')]";
+    // Helper methods
+    private WebElement waitForVisible(WebElement element) {
+        return wait.until(
+                ExpectedConditions.visibilityOf(element)
+        );
+    }
 
-    // =====================================================
-    // TC_018 - Consultation Flow Actions
-    // =====================================================
+    private WebElement waitForClickable(WebElement element) {
+        return wait.until(
+                ExpectedConditions.elementToBeClickable(element)
+        );
+    }
 
-    public boolean isConsultNowDisplayed() {
+    private void safeClick(WebElement element) {
         try {
-            return consultNowButton.isDisplayed();
+            waitForClickable(element).click();
+        } catch (Exception e) {
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            js.executeScript("arguments[0].click();", element);
+        }
+    }
+
+    private void clickUsingJS(WebElement element) {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].click();", element);
+    }
+
+    private boolean isElementDisplayed(WebElement element) {
+        try {
+            return waitForVisible(element).isDisplayed();
         } catch (Exception e) {
             return false;
         }
+    }
+
+    private void scrollToElement(WebElement element) {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript(
+                "arguments[0].scrollIntoView({block:'center'});",
+                element
+        );
+    }
+
+    // TC_014 methods
+    public boolean isConsultNowDisplayed() {
+        return isElementDisplayed(consultNowButton);
     }
 
     public void clickConsultNow() {
-        consultNowButton.click();
+        safeClick(consultNowButton);
     }
 
     public void clickConsultNowUsingJS() {
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("arguments[0].click();", consultNowButton);
+        clickUsingJS(consultNowButton);
     }
 
     public boolean isSymptomFieldDisplayed() {
-        try {
-            return symptomField.isDisplayed();
-        } catch (Exception e) {
-            return false;
-        }
+        return isElementDisplayed(symptomField);
     }
 
     public void enterSymptom(String symptom) {
+        waitForVisible(symptomField);
         symptomField.clear();
         symptomField.sendKeys(symptom);
     }
 
     public boolean isFirstSpecialistDisplayed() {
-        try {
-            return firstSpecialistOption.isDisplayed();
-        } catch (Exception e) {
-            return false;
-        }
+        return isElementDisplayed(firstSpecialistOption);
     }
 
     public void selectFirstSpecialist() {
-        firstSpecialistOption.click();
+        safeClick(firstSpecialistOption);
     }
 
     public void selectFirstSpecialistUsingJS() {
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("arguments[0].click();", firstSpecialistOption);
+        clickUsingJS(firstSpecialistOption);
     }
 
     public boolean isMobileNumberFieldDisplayed() {
-        try {
-            return mobileNumberField.isDisplayed();
-        } catch (Exception e) {
-            return false;
-        }
+        return isElementDisplayed(mobileNumberField);
     }
 
     public void enterMobileNumber(String mobileNumber) {
+        waitForVisible(mobileNumberField);
         mobileNumberField.clear();
         mobileNumberField.sendKeys(mobileNumber);
     }
 
     public boolean isContinueButtonDisplayed() {
-        try {
-            return continueButton.isDisplayed();
-        } catch (Exception e) {
-            return false;
-        }
+        return isElementDisplayed(continueButton);
     }
 
     public void clickContinue() {
-        continueButton.click();
+        safeClick(continueButton);
     }
 
     public void clickContinueUsingJS() {
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("arguments[0].click();", continueButton);
+        clickUsingJS(continueButton);
     }
-
-    // =====================================================
-    // TC_018 - Iframe / Invalid Mobile Popup Methods
-    // =====================================================
 
     public WebElement getLoginIframe() {
         return loginIframe;
-    }
-
-    public void switchToLoginIframe() {
-        driver.switchTo().frame(loginIframe);
     }
 
     public void switchToDefaultContent() {
@@ -162,55 +166,41 @@ public class VideoConsultPage {
     }
 
     public boolean isInvalidMobileMessageDisplayedInIframe() {
-        try {
-            return invalidMobileMessageInIframe.isDisplayed();
-        } catch (Exception e) {
-            return false;
-        }
+        return isElementDisplayed(invalidMobileMessageInIframe);
     }
 
     public String getInvalidMobileMessageInIframe() {
         try {
-            return invalidMobileMessageInIframe.getText().trim();
+            return waitForVisible(invalidMobileMessageInIframe).getText().trim();
         } catch (Exception e) {
             return "";
         }
     }
 
     public void closeOtpPopup() {
-        closeOtpPopupButton.click();
+        safeClick(closeOtpPopupButton);
     }
 
     public void closeOtpPopupUsingJS() {
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("arguments[0].click();", closeOtpPopupButton);
+        clickUsingJS(closeOtpPopupButton);
     }
 
     public boolean isBackToVideoConsultPageLinkDisplayed() {
-        try {
-            return backToVideoConsultPageLink.isDisplayed();
-        } catch (Exception e) {
-            return false;
-        }
+        return isElementDisplayed(backToVideoConsultPageLink);
     }
 
     public void clickBackToVideoConsultPage() {
-        backToVideoConsultPageLink.click();
+        safeClick(backToVideoConsultPageLink);
     }
 
     public void clickBackToVideoConsultPageUsingJS() {
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("arguments[0].click();", backToVideoConsultPageLink);
+        clickUsingJS(backToVideoConsultPageLink);
     }
 
-    // =====================================================
-    // Existing TC_016 - FAQ Methods
-    // Keep these exactly so TC_016 compiles and runs.
-    // =====================================================
-
+    // TC_015 FAQ methods
     public boolean isFaqSectionPresent() {
         try {
-            return driver.findElements(By.xpath(FAQ_SECTION_XPATH)).size() > 0;
+            return !faqSections.isEmpty();
         } catch (Exception e) {
             return false;
         }
@@ -218,9 +208,6 @@ public class VideoConsultPage {
 
     public boolean isFaqSectionDisplayed() {
         try {
-            List<WebElement> faqSections =
-                    driver.findElements(By.xpath(FAQ_SECTION_XPATH));
-
             for (WebElement faqSection : faqSections) {
                 try {
                     if (faqSection.isDisplayed()) {
@@ -229,9 +216,7 @@ public class VideoConsultPage {
                 } catch (Exception ignored) {
                 }
             }
-
             return getFaqCount() > 0;
-
         } catch (Exception e) {
             return false;
         }
@@ -239,51 +224,32 @@ public class VideoConsultPage {
 
     public void scrollToFaqSection() {
         try {
-            WebElement faqSection =
-                    driver.findElement(By.xpath(FAQ_SECTION_XPATH));
-
-            JavascriptExecutor js = (JavascriptExecutor) driver;
-
-            js.executeScript(
-                    "arguments[0].scrollIntoView({block:'center'});",
-                    faqSection
-            );
-
+            if (!faqSections.isEmpty()) {
+                scrollToElement(faqSections.get(0));
+            }
         } catch (Exception ignored) {
         }
     }
 
     public int getFaqCount() {
         try {
-            return driver.findElements(By.xpath(FAQ_XPATH)).size();
+            return faqElements.size();
         } catch (Exception e) {
             return 0;
         }
     }
 
     public List<String> getAllFaqQuestions() {
-
         List<String> faqList = new ArrayList<>();
-
-        List<WebElement> faqElements =
-                driver.findElements(By.xpath(FAQ_XPATH));
-
         for (WebElement faqElement : faqElements) {
             try {
                 String faqText = faqElement.getText().trim();
-
-                if (!faqText.isEmpty()
-                        && faqText.contains("?")
-                        && faqText.length() <= 180) {
-
+                if (!faqText.isEmpty() && faqText.contains("?") && faqText.length() <= 180) {
                     faqList.add(faqText);
                 }
-
             } catch (Exception ignored) {
-                // Handles stale element safely
             }
         }
-
         return faqList.stream()
                 .distinct()
                 .collect(Collectors.toList());
@@ -294,16 +260,5 @@ public class VideoConsultPage {
                 .stream()
                 .limit(5)
                 .collect(Collectors.toList());
-    }
-
-    // =====================================================
-    // Optional Business Method
-    // =====================================================
-
-    public void startConsultation(String symptom, String mobileNumber) {
-        clickConsultNow();
-        enterSymptom(symptom);
-        selectFirstSpecialist();
-        enterMobileNumber(mobileNumber);
     }
 }

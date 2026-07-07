@@ -1,113 +1,181 @@
 package org.practo.tests;
 
 import base.BaseTest;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.practo.pages.HomePage;
 import org.practo.pages.VideoConsultPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import utilities.ExcelUtils;
 import utilities.ScreenshotUtil;
-import utilities.WaitUtils;
 
 public class TC_014_InvalidMobileVideoConsult extends BaseTest {
+    private static final Logger logger = LogManager.getLogger(TC_014_InvalidMobileVideoConsult.class);
+
     private HomePage homePage;
     private VideoConsultPage videoConsultPage;
 
     @Test
     public void verifyInvalidMobileNumberInVideoConsultFlow() {
+        logger.info("Starting TC_014 - Invalid Mobile Number Video Consult");
+
         homePage = new HomePage(driver);
         videoConsultPage = new VideoConsultPage(driver);
+
         String symptom = ExcelUtils.getCellData("TC_014", "Symptom");
         String invalidMobile = ExcelUtils.getCellData("TC_014", "InvalidMobile");
-        commonCode.openApplication();
 
-        // Step 1: Click Video Consult from Home Page
+        logger.info("Symptom: {}", symptom);
+        logger.info("Invalid Mobile Number: {}", invalidMobile);
+
+        // Step 1: Click Video Consult
         try {
-            WaitUtils.waitForClickable(driver, homePage.getVideoConsultLink());
+            logger.info("Clicking Video Consult link");
+
+            commonCode.waitForClickable(
+                    homePage.getVideoConsultLink()
+            );
+
             homePage.clickVideoConsult();
         } catch (Exception e) {
+            logger.warn("Normal click failed. Using JavaScript click.");
             homePage.clickVideoConsultUsingJS();
         }
 
-        WaitUtils.waitUntil(driver, driver -> commonCode.getCurrentUrl().contains("/consult"));
-        System.out.println("Navigated to Video Consult page");
-        System.out.println("Current URL: " + commonCode.getCurrentUrl());
+        commonCode.waitUntil(driver ->
+                commonCode.getCurrentUrl().contains("/consult")
+        );
+
+        logger.info("Navigated to Video Consult page");
+        logger.info("Current URL: {}", commonCode.getCurrentUrl());
 
         // Step 2: Click Consult Now
-        WaitUtils.waitUntil(driver, driver -> videoConsultPage.isConsultNowDisplayed());
+        commonCode.waitUntil(driver ->
+                videoConsultPage.isConsultNowDisplayed()
+        );
+
         try {
+            logger.info("Clicking Consult Now button");
             videoConsultPage.clickConsultNow();
         } catch (Exception e) {
+            logger.warn("Normal click failed. Using JavaScript click.");
             videoConsultPage.clickConsultNowUsingJS();
         }
 
-        // Step 3: Wait for consultation form
-        WaitUtils.waitUntil(driver, driver ->
-                commonCode.getCurrentUrl().contains("new_consultation") || videoConsultPage.isSymptomFieldDisplayed()
+        // Step 3: Wait for Consultation Form
+        commonCode.waitUntil(driver ->
+                commonCode.getCurrentUrl().contains("new_consultation")
+                        || videoConsultPage.isSymptomFieldDisplayed()
         );
-        System.out.println("Consultation form opened");
 
-        // Step 4: Enter symptom
-        WaitUtils.waitUntil(driver, driver -> videoConsultPage.isSymptomFieldDisplayed());
+        logger.info("Consultation form opened");
+
+        // Step 4: Enter Symptom
+        commonCode.waitUntil(driver ->
+                videoConsultPage.isSymptomFieldDisplayed()
+        );
+
         videoConsultPage.enterSymptom(symptom);
-        System.out.println("Entered symptom: " + symptom);
 
-        // Step 5: Select relevant specialist
-        WaitUtils.waitUntil(driver, driver -> videoConsultPage.isFirstSpecialistDisplayed());
+        logger.info("Entered symptom: {}", symptom);
+
+        // Step 5: Select Specialist
+        commonCode.waitUntil(driver ->
+                videoConsultPage.isFirstSpecialistDisplayed()
+        );
+
         try {
             videoConsultPage.selectFirstSpecialist();
         } catch (Exception e) {
+            logger.warn("Specialist selection click failed. Using JavaScript click.");
             videoConsultPage.selectFirstSpecialistUsingJS();
         }
-        System.out.println("Specialist selected");
 
-        // Step 6: Enter invalid mobile number
-        WaitUtils.waitUntil(driver, driver -> videoConsultPage.isMobileNumberFieldDisplayed());
+        logger.info("Specialist selected successfully");
+
+        // Step 6: Enter Invalid Mobile
+        commonCode.waitUntil(driver ->
+                videoConsultPage.isMobileNumberFieldDisplayed()
+        );
+
         videoConsultPage.enterMobileNumber(invalidMobile);
-        System.out.println("Entered invalid mobile number: " + invalidMobile);
+
+        logger.info("Entered invalid mobile number: {}", invalidMobile);
 
         // Step 7: Click Continue
-        WaitUtils.waitUntil(driver, driver -> videoConsultPage.isContinueButtonDisplayed());
+        commonCode.waitUntil(driver ->
+                videoConsultPage.isContinueButtonDisplayed()
+        );
+
         try {
             videoConsultPage.clickContinue();
         } catch (Exception e) {
+            logger.warn("Continue button click failed. Using JavaScript click.");
             videoConsultPage.clickContinueUsingJS();
         }
 
-        // Step 8: Wait for iframe popup
-        WaitUtils.waitForFrameAndSwitchToIt(driver, videoConsultPage.getLoginIframe());
+        // Step 8: Switch to Iframe
+        logger.info("Switching to login iframe");
 
-        // Step 9: Validate invalid mobile message inside iframe
-        WaitUtils.waitUntil(driver, driver -> videoConsultPage.isInvalidMobileMessageDisplayedInIframe());
-        String invalidMessage = videoConsultPage.getInvalidMobileMessageInIframe();
-        System.out.println("Invalid mobile validation message: " + invalidMessage);
+        commonCode.waitForFrameAndSwitchToIt(
+                videoConsultPage.getLoginIframe()
+        );
+
+        // Step 9: Verify Validation Message
+        commonCode.waitUntil(driver ->
+                videoConsultPage.isInvalidMobileMessageDisplayedInIframe()
+        );
+
+        String invalidMessage =
+                videoConsultPage.getInvalidMobileMessageInIframe();
+
+        logger.info(
+                "Invalid mobile validation message: {}",
+                invalidMessage
+        );
 
         Assert.assertTrue(
                 invalidMessage.contains("Not a valid mobile number"),
-                "Expected invalid mobile number message is not displayed. Actual: " + invalidMessage
+                "Expected invalid mobile number message is not displayed. Actual: "
+                        + invalidMessage
         );
 
-        // Step 10: Capture screenshot while iframe popup is visible
-        ScreenshotUtil.captureScreenshot(driver, "TC_014_Invalid_Mobile_Number");
+        // Step 10: Capture Screenshot
+        logger.info("Capturing validation screenshot");
 
-        // Step 11: Close OTP/Login popup inside iframe
+        ScreenshotUtil.captureScreenshot(
+                driver,
+                "TC_014_Invalid_Mobile_Number"
+        );
+
+        // Step 11: Close OTP Popup
         try {
             videoConsultPage.closeOtpPopup();
         } catch (Exception e) {
+            logger.warn("OTP popup close click failed. Using JavaScript click.");
             videoConsultPage.closeOtpPopupUsingJS();
         }
 
-        // Step 12: Switch back to main page
+        logger.info("OTP/Login popup closed");
+
+        // Step 12: Switch Back
         videoConsultPage.switchToDefaultContent();
 
-        // Step 13: Come back using top consultation page link
-        WaitUtils.waitUntil(driver, driver -> videoConsultPage.isBackToVideoConsultPageLinkDisplayed());
+        logger.info("Switched back to default content");
+
+        // Step 13: Navigate Back
+        commonCode.waitUntil(driver ->
+                videoConsultPage.isBackToVideoConsultPageLinkDisplayed()
+        );
+
         try {
             videoConsultPage.clickBackToVideoConsultPage();
         } catch (Exception e) {
+            logger.warn("Back navigation click failed. Using JavaScript click.");
             videoConsultPage.clickBackToVideoConsultPageUsingJS();
         }
 
-        System.out.println("TC_014 Passed: Invalid mobile number validation message captured successfully");
+        logger.info("TC_014 Passed: Invalid mobile number validation message captured successfully");
     }
 }

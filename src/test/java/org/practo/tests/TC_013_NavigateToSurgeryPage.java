@@ -1,43 +1,56 @@
 package org.practo.tests;
 
 import base.BaseTest;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.practo.pages.HomePage;
 import org.practo.pages.SurgeryPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import utilities.WaitUtils;
 import java.util.List;
 
 public class TC_013_NavigateToSurgeryPage extends BaseTest {
+    private static final Logger logger = LogManager.getLogger(TC_013_NavigateToSurgeryPage.class);
+
     private HomePage homePage;
     private SurgeryPage surgeryPage;
 
     @Test
     public void verifySurgeryPageAndPrintPopularTreatments() {
+        logger.info("Starting TC_013 - Navigate To Surgery Page");
+
         homePage = new HomePage(driver);
         surgeryPage = new SurgeryPage(driver);
-        commonCode.openApplication();
 
-        // Step 1: Click Surgeries button from Home Page
+        // Step 1: Click Surgeries Button
         try {
-            WaitUtils.waitForClickable(driver, homePage.getSurgeriesButton());
+            logger.info("Clicking Surgeries button");
+
+            commonCode.waitForClickable(
+                    homePage.getSurgeriesButton()
+            );
+
             homePage.clickSurgeriesButton();
+
         } catch (Exception e) {
+            logger.warn("Normal click failed. Using JavaScript click.");
             homePage.clickSurgeriesButtonUsingJS();
         }
 
-        // Step 2: Validate redirected to Surgery/Care page
-        WaitUtils.waitUntil(driver, driver -> commonCode.getCurrentUrl().contains("/care"));
+        // Step 2: Validate Navigation
+        commonCode.waitUntil(driver ->
+                commonCode.getCurrentUrl().contains("/care")
+        );
 
         Assert.assertTrue(
                 commonCode.getCurrentUrl().contains("/care"),
                 "User is not navigated to Surgery page"
         );
 
-        System.out.println("Navigated to Surgery page");
-        System.out.println("Current URL: " + commonCode.getCurrentUrl());
+        logger.info("Navigated to Surgery page");
+        logger.info("Current URL: {}", commonCode.getCurrentUrl());
 
-        // Step 3: Scroll to Treatments Offered section
+        // Step 3: Scroll to Treatments Offered Section
         boolean treatmentsSectionFound = false;
 
         for (int i = 0; i < 15; i++) {
@@ -45,6 +58,7 @@ public class TC_013_NavigateToSurgeryPage extends BaseTest {
                 treatmentsSectionFound = true;
                 break;
             }
+
             commonCode.scrollDown();
         }
 
@@ -54,37 +68,54 @@ public class TC_013_NavigateToSurgeryPage extends BaseTest {
         );
 
         surgeryPage.scrollToTreatmentsOffered();
-        System.out.println("Treatments Offered section found");
 
-        // Step 4: Wait until Popular grid is displayed
-        WaitUtils.waitUntil(driver, driver -> surgeryPage.isPopularGridDisplayed());
+        logger.info("Treatments Offered section found");
 
-        // Step 5: Wait until popular treatments are loaded
-        WaitUtils.waitUntil(driver, driver -> surgeryPage.getPopularTreatmentsCount() > 0);
+        // Step 4: Wait for Popular Grid
+        commonCode.waitUntil(driver ->
+                surgeryPage.isPopularGridDisplayed()
+        );
 
-        // Step 6: Extract and print all popular treatments
-        List<String> popularTreatments = surgeryPage.getPopularTreatments();
+        // Step 5: Wait for Treatments
+        commonCode.waitUntil(driver ->
+                surgeryPage.getPopularTreatmentsCount() > 0
+        );
 
-        System.out.println("\nPopular Treatments Offered:");
+        // Step 6: Extract Treatments
+        List<String> popularTreatments =
+                surgeryPage.getPopularTreatments();
+
+        logger.info("Popular Treatments Offered:");
 
         for (int i = 0; i < popularTreatments.size(); i++) {
-            System.out.println((i + 1) + ". " + popularTreatments.get(i));
+            logger.info(
+                    "{}. {}",
+                    (i + 1),
+                    popularTreatments.get(i)
+            );
         }
 
-        // Step 7: Validate popular treatments extracted
+        // Step 7: Validate Treatments
         Assert.assertTrue(
                 popularTreatments.size() > 0,
                 "No popular treatments were extracted"
         );
 
-        // Step 8: Redirect back to Home Page
-        driver.navigate().back();
-
-        WaitUtils.waitUntil(driver, driver ->
-                commonCode.getCurrentUrl().equalsIgnoreCase(prop.getProperty("url"))
-                        || commonCode.getCurrentUrl().contains("practo.com")
+        logger.info(
+                "Total Popular Treatments Found: {}",
+                popularTreatments.size()
         );
 
-        System.out.println("TC_013 Passed: Surgery page opened, popular treatments printed, and redirected back");
+        // Step 8: Navigate Back
+        driver.navigate().back();
+
+        commonCode.waitUntil(driver ->
+                commonCode.getCurrentUrl().equalsIgnoreCase(
+                        prop.getProperty("url")
+                ) || commonCode.getCurrentUrl().contains("practo.com")
+        );
+
+        logger.info("Returned back from Surgery page");
+        logger.info("TC_013 Passed: Surgery page opened, popular treatments printed, and redirected back");
     }
 }

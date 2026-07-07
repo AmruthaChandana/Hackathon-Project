@@ -1,19 +1,24 @@
 package org.practo.pages;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import utilities.WaitUtils;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class SurgeryPage {
     private WebDriver driver;
+    private WebDriverWait wait;
 
     public SurgeryPage(WebDriver driver) {
         this.driver = driver;
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(40));
         PageFactory.initElements(driver, this);
     }
 
@@ -29,19 +34,43 @@ public class SurgeryPage {
     @FindBy(xpath = "//*[@id='surgery-list']/section/div/div[1]/div[@role='button' or @tabindex='0']")
     private List<WebElement> popularTreatmentCards;
 
+    // Helper methods
+    private WebElement waitForVisible(WebElement element) {
+        return wait.until(
+                ExpectedConditions.visibilityOf(element)
+        );
+    }
+
+    private boolean isElementDisplayed(WebElement element) {
+        try {
+            return waitForVisible(element).isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    private void scrollToElement(WebElement element) {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript(
+                "arguments[0].scrollIntoView({block:'center'});",
+                element
+        );
+    }
+
+    // Page actions
     public boolean isTreatmentsOfferedDisplayed() {
-        return WaitUtils.isElementDisplayed(driver, treatmentsOfferedHeading);
+        return isElementDisplayed(treatmentsOfferedHeading);
     }
 
     public void scrollToTreatmentsOffered() {
         try {
-            WaitUtils.scrollToElement(driver, treatmentsOfferedHeading);
+            scrollToElement(treatmentsOfferedHeading);
         } catch (Exception ignored) {
         }
     }
 
     public boolean isPopularGridDisplayed() {
-        return WaitUtils.isElementDisplayed(driver, popularGrid);
+        return isElementDisplayed(popularGrid);
     }
 
     public int getPopularTreatmentsCount() {
@@ -54,7 +83,8 @@ public class SurgeryPage {
 
     public List<String> getPopularTreatments() {
         List<String> treatments = new ArrayList<>();
-        WaitUtils.waitForVisible(driver, popularGrid);
+        waitForVisible(popularGrid);
+
         for (WebElement card : popularTreatmentCards) {
             try {
                 String text = card.getText().trim();
@@ -64,6 +94,9 @@ public class SurgeryPage {
             } catch (Exception ignored) {
             }
         }
-        return treatments.stream().distinct().collect(Collectors.toList());
+
+        return treatments.stream()
+                .distinct()
+                .collect(Collectors.toList());
     }
 }

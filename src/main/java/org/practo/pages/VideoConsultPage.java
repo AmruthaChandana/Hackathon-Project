@@ -5,20 +5,24 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import utilities.WaitUtils;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class VideoConsultPage {
     private WebDriver driver;
+    private WebDriverWait wait;
 
     public VideoConsultPage(WebDriver driver) {
         this.driver = driver;
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(40));
         PageFactory.initElements(driver, this);
     }
 
-    // TC_014 - Invalid mobile consultation flow elements
+    // TC_014
     @FindBy(xpath = "//*[@id='FirstFold']/div/section/div[1]/a")
     private WebElement consultNowButton;
 
@@ -46,67 +50,111 @@ public class VideoConsultPage {
     @FindBy(xpath = "//*[@id='new-consultation-top-element']/div/div/a")
     private WebElement backToVideoConsultPageLink;
 
-    // TC_015 - FAQ elements
+    // TC_015
     @FindBy(xpath = "//*[@id='FaqSection' or @data-testid='faq-section' or contains(@class,'faq-section')]")
     private List<WebElement> faqSections;
 
     @FindBy(xpath = "//*[@id='FaqSection']//*[self::h3 or self::div or self::p or self::span][contains(normalize-space(),'?')] | //*[@data-testid='faq-section']//*[self::h3 or self::div or self::p or self::span][contains(normalize-space(),'?')] | //*[contains(@class,'faq-section')]//*[self::h3 or self::div or self::p or self::span][contains(normalize-space(),'?')]")
     private List<WebElement> faqElements;
 
+    // Helper methods
+    private WebElement waitForVisible(WebElement element) {
+        return wait.until(
+                ExpectedConditions.visibilityOf(element)
+        );
+    }
+
+    private WebElement waitForClickable(WebElement element) {
+        return wait.until(
+                ExpectedConditions.elementToBeClickable(element)
+        );
+    }
+
+    private void safeClick(WebElement element) {
+        try {
+            waitForClickable(element).click();
+        } catch (Exception e) {
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            js.executeScript("arguments[0].click();", element);
+        }
+    }
+
+    private void clickUsingJS(WebElement element) {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].click();", element);
+    }
+
+    private boolean isElementDisplayed(WebElement element) {
+        try {
+            return waitForVisible(element).isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    private void scrollToElement(WebElement element) {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript(
+                "arguments[0].scrollIntoView({block:'center'});",
+                element
+        );
+    }
+
+    // TC_014 methods
     public boolean isConsultNowDisplayed() {
-        return WaitUtils.isElementDisplayed(driver, consultNowButton);
+        return isElementDisplayed(consultNowButton);
     }
 
     public void clickConsultNow() {
-        WaitUtils.safeClick(driver, consultNowButton);
+        safeClick(consultNowButton);
     }
 
     public void clickConsultNowUsingJS() {
-        WaitUtils.clickUsingJS(driver, consultNowButton);
+        clickUsingJS(consultNowButton);
     }
 
     public boolean isSymptomFieldDisplayed() {
-        return WaitUtils.isElementDisplayed(driver, symptomField);
+        return isElementDisplayed(symptomField);
     }
 
     public void enterSymptom(String symptom) {
-        WaitUtils.waitForVisible(driver, symptomField);
+        waitForVisible(symptomField);
         symptomField.clear();
         symptomField.sendKeys(symptom);
     }
 
     public boolean isFirstSpecialistDisplayed() {
-        return WaitUtils.isElementDisplayed(driver, firstSpecialistOption);
+        return isElementDisplayed(firstSpecialistOption);
     }
 
     public void selectFirstSpecialist() {
-        WaitUtils.safeClick(driver, firstSpecialistOption);
+        safeClick(firstSpecialistOption);
     }
 
     public void selectFirstSpecialistUsingJS() {
-        WaitUtils.clickUsingJS(driver, firstSpecialistOption);
+        clickUsingJS(firstSpecialistOption);
     }
 
     public boolean isMobileNumberFieldDisplayed() {
-        return WaitUtils.isElementDisplayed(driver, mobileNumberField);
+        return isElementDisplayed(mobileNumberField);
     }
 
     public void enterMobileNumber(String mobileNumber) {
-        WaitUtils.waitForVisible(driver, mobileNumberField);
+        waitForVisible(mobileNumberField);
         mobileNumberField.clear();
         mobileNumberField.sendKeys(mobileNumber);
     }
 
     public boolean isContinueButtonDisplayed() {
-        return WaitUtils.isElementDisplayed(driver, continueButton);
+        return isElementDisplayed(continueButton);
     }
 
     public void clickContinue() {
-        WaitUtils.safeClick(driver, continueButton);
+        safeClick(continueButton);
     }
 
     public void clickContinueUsingJS() {
-        WaitUtils.clickUsingJS(driver, continueButton);
+        clickUsingJS(continueButton);
     }
 
     public WebElement getLoginIframe() {
@@ -118,37 +166,38 @@ public class VideoConsultPage {
     }
 
     public boolean isInvalidMobileMessageDisplayedInIframe() {
-        return WaitUtils.isElementDisplayed(driver, invalidMobileMessageInIframe);
+        return isElementDisplayed(invalidMobileMessageInIframe);
     }
 
     public String getInvalidMobileMessageInIframe() {
         try {
-            return WaitUtils.waitForVisible(driver, invalidMobileMessageInIframe).getText().trim();
+            return waitForVisible(invalidMobileMessageInIframe).getText().trim();
         } catch (Exception e) {
             return "";
         }
     }
 
     public void closeOtpPopup() {
-        WaitUtils.safeClick(driver, closeOtpPopupButton);
+        safeClick(closeOtpPopupButton);
     }
 
     public void closeOtpPopupUsingJS() {
-        WaitUtils.clickUsingJS(driver, closeOtpPopupButton);
+        clickUsingJS(closeOtpPopupButton);
     }
 
     public boolean isBackToVideoConsultPageLinkDisplayed() {
-        return WaitUtils.isElementDisplayed(driver, backToVideoConsultPageLink);
+        return isElementDisplayed(backToVideoConsultPageLink);
     }
 
     public void clickBackToVideoConsultPage() {
-        WaitUtils.safeClick(driver, backToVideoConsultPageLink);
+        safeClick(backToVideoConsultPageLink);
     }
 
     public void clickBackToVideoConsultPageUsingJS() {
-        WaitUtils.clickUsingJS(driver, backToVideoConsultPageLink);
+        clickUsingJS(backToVideoConsultPageLink);
     }
 
+    // TC_015 FAQ methods
     public boolean isFaqSectionPresent() {
         try {
             return !faqSections.isEmpty();
@@ -176,7 +225,7 @@ public class VideoConsultPage {
     public void scrollToFaqSection() {
         try {
             if (!faqSections.isEmpty()) {
-                WaitUtils.scrollToElement(driver, faqSections.get(0));
+                scrollToElement(faqSections.get(0));
             }
         } catch (Exception ignored) {
         }
@@ -201,10 +250,15 @@ public class VideoConsultPage {
             } catch (Exception ignored) {
             }
         }
-        return faqList.stream().distinct().collect(Collectors.toList());
+        return faqList.stream()
+                .distinct()
+                .collect(Collectors.toList());
     }
 
     public List<String> getTopFiveFaqQuestions() {
-        return getAllFaqQuestions().stream().limit(5).collect(Collectors.toList());
+        return getAllFaqQuestions()
+                .stream()
+                .limit(5)
+                .collect(Collectors.toList());
     }
 }

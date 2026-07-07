@@ -7,11 +7,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.practo.pages.CommonCode;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
+import utilities.CommonCode;
 import utilities.ConfigReader;
 import utilities.ExcelUtils;
 import utilities.ScreenshotUtil;
@@ -52,10 +52,16 @@ public class BaseTest {
         }
 
         driver.manage().window().maximize();
+
         int implicitWait = Integer.parseInt(prop.getProperty("implicitWait"));
         int explicitWait = Integer.parseInt(prop.getProperty("explicitWait"));
+
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(implicitWait));
         wait = new WebDriverWait(driver, Duration.ofSeconds(explicitWait));
+
+        // Open URL from BaseTest
+        driver.get(prop.getProperty("url"));
+
         commonCode = new CommonCode(driver, wait, prop);
         logger.info("Browser setup completed successfully");
     }

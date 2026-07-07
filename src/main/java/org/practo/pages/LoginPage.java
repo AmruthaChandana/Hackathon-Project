@@ -6,14 +6,18 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import utilities.WaitUtils;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import java.time.Duration;
 import java.util.List;
 
 public class LoginPage {
     private WebDriver driver;
+    private WebDriverWait wait;
 
     public LoginPage(WebDriver driver) {
         this.driver = driver;
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(40));
         PageFactory.initElements(driver, this);
     }
 
@@ -27,7 +31,7 @@ public class LoginPage {
     @FindBy(xpath = "//button[contains(text(),'Login') or contains(text(),'Continue')]")
     private WebElement loginSubmitButton;
 
-    // Logged-in profile elements
+    // Profile elements
     @FindBy(xpath = "//span[contains(@class,'user_info_top')]")
     private WebElement headerUserName;
 
@@ -37,28 +41,64 @@ public class LoginPage {
     @FindBy(xpath = "//div[contains(@class,'nav-dropdown')]")
     private WebElement profileDropdownPanel;
 
-    // Login error element
+    // Error message
     @FindBy(xpath = "//*[contains(text(),'Invalid') or contains(text(),'incorrect') or contains(text(),'wrong') or contains(text(),'Try again')]")
     private WebElement errorMessage;
 
     private By profileNameLocator(String expectedProfileName) {
-        return By.xpath("//*[normalize-space()='" + expectedProfileName + "' or contains(normalize-space(),'" + expectedProfileName + "')]");
+        return By.xpath(
+                "//*[normalize-space()='"
+                        + expectedProfileName
+                        + "' or contains(normalize-space(),'"
+                        + expectedProfileName
+                        + "')]"
+        );
     }
 
+    private WebElement waitForVisible(WebElement element) {
+        return wait.until(
+                ExpectedConditions.visibilityOf(element)
+        );
+    }
+
+    private WebElement waitForClickable(WebElement element) {
+        return wait.until(
+                ExpectedConditions.elementToBeClickable(element)
+        );
+    }
+
+    private void safeClick(WebElement element) {
+        try {
+            waitForClickable(element).click();
+        } catch (Exception e) {
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            js.executeScript("arguments[0].click();", element);
+        }
+    }
+
+    private boolean isElementDisplayed(WebElement element) {
+        try {
+            return waitForVisible(element).isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    // Actions
     public void enterMobile(String mobile) {
-        WaitUtils.waitForVisible(driver, mobileNumberField);
+        waitForVisible(mobileNumberField);
         mobileNumberField.clear();
         mobileNumberField.sendKeys(mobile);
     }
 
     public void enterPassword(String password) {
-        WaitUtils.waitForVisible(driver, passwordField);
+        waitForVisible(passwordField);
         passwordField.clear();
         passwordField.sendKeys(password);
     }
 
     public void clickLogin() {
-        WaitUtils.safeClick(driver, loginSubmitButton);
+        safeClick(loginSubmitButton);
     }
 
     public void login(String mobile, String password) {
@@ -68,7 +108,7 @@ public class LoginPage {
     }
 
     public boolean isUserLoggedIn() {
-        return WaitUtils.isElementDisplayed(driver, headerUserName);
+        return isElementDisplayed(headerUserName);
     }
 
     public boolean isProfileNameDisplayed(String expectedProfileName) {
@@ -112,29 +152,5 @@ public class LoginPage {
             return "";
         }
         return "";
-    }
-
-    public boolean isLoginButtonDisplayed() {
-        return WaitUtils.isElementDisplayed(driver, loginSubmitButton);
-    }
-
-    public boolean isErrorMessageDisplayed() {
-        return WaitUtils.isElementDisplayed(driver, errorMessage);
-    }
-
-    public void clickProfileArrow() {
-        WaitUtils.safeClick(driver, profileDownArrow);
-    }
-
-    public boolean isProfileDropdownDisplayed() {
-        return WaitUtils.isElementDisplayed(driver, profileDropdownPanel);
-    }
-
-    public String getLoggedInUserName() {
-        try {
-            return WaitUtils.waitForVisible(driver, headerUserName).getText().trim();
-        } catch (Exception e) {
-            return "";
-        }
     }
 }

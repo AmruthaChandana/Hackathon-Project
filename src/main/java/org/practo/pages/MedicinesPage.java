@@ -1,5 +1,7 @@
 package org.practo.pages;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -12,9 +14,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MedicinesPage {
+    private static final Logger logger = LogManager.getLogger(MedicinesPage.class);
     private WebDriver driver;
     private WebDriverWait wait;
-
     public MedicinesPage(WebDriver driver) {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(40));
@@ -40,21 +42,18 @@ public class MedicinesPage {
 
     // Helper Methods
     private WebElement waitForVisible(WebElement element) {
-        return wait.until(
-                ExpectedConditions.visibilityOf(element)
-        );
+        return wait.until(ExpectedConditions.visibilityOf(element));
     }
 
     private WebElement waitForClickable(WebElement element) {
-        return wait.until(
-                ExpectedConditions.elementToBeClickable(element)
-        );
+        return wait.until(ExpectedConditions.elementToBeClickable(element));
     }
 
     private void safeClick(WebElement element) {
         try {
             waitForClickable(element).click();
         } catch (Exception e) {
+            logger.warn("Regular click failed. Using JavaScript click.");
             JavascriptExecutor js = (JavascriptExecutor) driver;
             js.executeScript("arguments[0].click();", element);
         }
@@ -64,6 +63,7 @@ public class MedicinesPage {
         try {
             return waitForVisible(element).isDisplayed();
         } catch (Exception e) {
+            logger.debug("Element is not displayed.");
             return false;
         }
     }
@@ -74,6 +74,7 @@ public class MedicinesPage {
 
     // Medicine Search Methods
     public void searchMedicine(String medicineName) {
+        logger.info("Searching medicine: {}", medicineName);
         waitForVisible(medicineSearchBox);
         medicineSearchBox.clear();
         medicineSearchBox.sendKeys(medicineName);
@@ -83,6 +84,7 @@ public class MedicinesPage {
     }
 
     public void searchInvalidMedicine(String medicineName) {
+        logger.info("Searching invalid medicine: {}", medicineName);
         waitForVisible(medicineSearchBox);
         medicineSearchBox.clear();
         medicineSearchBox.sendKeys(medicineName);
@@ -92,7 +94,7 @@ public class MedicinesPage {
     public int getMedicineCount() {
         waitForVisible(searchResultsBox);
         waitUntil(driver -> medicineSuggestions.size() > 0);
-        System.out.println("Total Medicines Found : " + medicineSuggestions.size());
+        logger.info("Total Medicines Found : {}", medicineSuggestions.size());
         return medicineSuggestions.size();
     }
 
@@ -108,55 +110,43 @@ public class MedicinesPage {
         });
 
         List<String[]> medicines = getPricedMedicineDetails();
-        System.out.println("\n========== FIRST 5 MEDICINES ==========");
+        logger.info("========== FIRST 5 MEDICINES ==========");
         int count = Math.min(5, medicines.size());
-
         for (int i = 0; i < count; i++) {
             String[] medicine = medicines.get(i);
-            System.out.println("------------------------------------");
-            System.out.println("Medicine Name : " + medicine[0]);
-            System.out.println("Price         : " + medicine[1]);
+            logger.info("------------------------------------");
+            logger.info("Medicine Name : {}", medicine[0]);
+            logger.info("Price : {}", medicine[1]);
         }
     }
 
     private List<String[]> getPricedMedicineDetails() {
         List<String[]> medicineDetails = new ArrayList<>();
-
         for (WebElement suggestion : medicineSuggestions) {
             try {
                 String text = suggestion.getText();
                 String[] lines = text.split("\\R");
                 String name = "";
                 String price = "";
-
                 for (String line : lines) {
                     line = line.trim();
-
                     if (line.isEmpty() || line.equalsIgnoreCase("ADD")) {
                         continue;
                     }
-
                     if (name.isEmpty()) {
                         name = line;
                     }
-
                     if (line.contains("₹")) {
                         price = line;
                     }
                 }
-
                 if (!name.isEmpty() && !price.isEmpty()) {
-                    medicineDetails.add(
-                            new String[]{
-                                    name,
-                                    price
-                            }
-                    );
+                    medicineDetails.add(new String[]{name, price});
                 }
-            } catch (Exception ignored) {
+            } catch (Exception e) {
+                logger.debug("Unable to parse medicine details.", e);
             }
         }
-
         return medicineDetails;
     }
 
@@ -164,22 +154,23 @@ public class MedicinesPage {
     public boolean isMedicinePresentInResults(String expectedMedicineName) {
         try {
             waitForVisible(searchResultsBox);
-            waitUntil(driver -> medicineSuggestions.size() > 0);
-
+            waitUntil(
+                    driver ->
+                            medicineSuggestions.size() > 0);
             for (WebElement suggestion : medicineSuggestions) {
                 try {
                     String text = suggestion.getText().trim();
-
                     if (!text.isEmpty() && text.toLowerCase().contains(expectedMedicineName.toLowerCase())) {
                         return true;
                     }
-                } catch (Exception ignored) {
+                } catch (Exception e) {
+                    logger.debug("Error reading medicine suggestion.", e);
                 }
             }
         } catch (Exception e) {
+            logger.error("Error while verifying medicine search result.", e);
             return false;
         }
-
         return false;
     }
 
@@ -187,35 +178,34 @@ public class MedicinesPage {
         try {
             waitForVisible(searchResultsBox);
             waitUntil(driver -> medicineSuggestions.size() > 0);
-
             for (WebElement suggestion : medicineSuggestions) {
                 try {
                     String text = suggestion.getText().trim();
-
                     if (!text.isEmpty() && text.toLowerCase().contains(expectedMedicineName.toLowerCase())) {
                         String[] lines = text.split("\\R");
-
                         for (String line : lines) {
                             line = line.trim();
-
                             if (!line.isEmpty() && !line.equalsIgnoreCase("ADD")) {
                                 return line;
                             }
                         }
                     }
-                } catch (Exception ignored) {
+                } catch (Exception e) {
+                    logger.debug("Unable to process medicine suggestion.", e);
                 }
             }
         } catch (Exception e) {
-            return "";
+            logger.error("Failed to find matched medicine.", e);
+            return "MEDICINE_NOT_FOUND";
         }
-
-        return "";
+        logger.warn("No matching medicine found for: {}", expectedMedicineName);
+        return "MEDICINE_NOT_FOUND";
     }
 
     public void clickFirstMedicineFromResults() {
         waitUntil(driver -> medicineSuggestions.size() > 0);
         medicineSuggestions.get(0).click();
+        logger.info("Clicked first medicine from search results");
     }
 
     public void clickAddToCart() {
@@ -223,12 +213,10 @@ public class MedicinesPage {
             waitForVisible(firstAddToCartButton);
             scrollToElement(firstAddToCartButton);
             safeClick(firstAddToCartButton);
-            System.out.println("Clicked Add To Cart button");
+            logger.info("Clicked Add To Cart button");
         } catch (Exception e) {
-            throw new RuntimeException(
-                    "Unable to click Add To Cart button",
-                    e
-            );
+            logger.error("Unable to click Add To Cart button", e);
+            throw new RuntimeException("Unable to click Add To Cart button", e);
         }
     }
 
@@ -238,21 +226,16 @@ public class MedicinesPage {
 
     public void scrollToElement(WebElement element) {
         JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript(
-                "arguments[0].scrollIntoView({block:'center'});",
-                element
-        );
+        js.executeScript("arguments[0].scrollIntoView({block:'center'});", element);
     }
 
     private void scrollMedicineResultsDropdown() {
         try {
             waitForVisible(searchResultsBox);
             JavascriptExecutor js = (JavascriptExecutor) driver;
-            js.executeScript(
-                    "arguments[0].scrollTop = arguments[0].scrollTop + 300;",
-                    searchResultsBox
-            );
-        } catch (Exception ignored) {
+            js.executeScript("arguments[0].scrollTop = arguments[0].scrollTop + 300;", searchResultsBox);
+        } catch (Exception e) {
+            logger.debug("Unable to scroll medicine results dropdown.", e);
         }
     }
 }

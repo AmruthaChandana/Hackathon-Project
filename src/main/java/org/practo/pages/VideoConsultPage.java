@@ -1,5 +1,8 @@
 package org.practo.pages;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -16,6 +19,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class VideoConsultPage {
+
+    private static final Logger logger =
+            LogManager.getLogger(VideoConsultPage.class);
 
     private WebDriver driver;
     private WebDriverWait wait;
@@ -96,10 +102,13 @@ public class VideoConsultPage {
 
         try {
 
-            waitForClickable(
-                    element).click();
+            waitForClickable(element)
+                    .click();
 
         } catch (Exception e) {
+
+            logger.warn(
+                    "Regular click failed. Using JavaScript click.");
 
             JavascriptExecutor js =
                     (JavascriptExecutor) driver;
@@ -126,10 +135,13 @@ public class VideoConsultPage {
 
         try {
 
-            return waitForVisible(
-                    element).isDisplayed();
+            return waitForVisible(element)
+                    .isDisplayed();
 
         } catch (Exception e) {
+
+            logger.debug(
+                    "Element not displayed.");
 
             return false;
         }
@@ -158,11 +170,17 @@ public class VideoConsultPage {
 
     public void clickConsultNow() {
 
+        logger.info(
+                "Clicking Consult Now");
+
         safeClick(
                 consultNowButton);
     }
 
     public void clickConsultNowUsingJS() {
+
+        logger.info(
+                "Clicking Consult Now using JavaScript");
 
         clickUsingJS(
                 consultNowButton);
@@ -176,6 +194,10 @@ public class VideoConsultPage {
 
     public void enterSymptom(
             String symptom) {
+
+        logger.info(
+                "Entering symptom: {}",
+                symptom);
 
         waitForVisible(
                 symptomField);
@@ -193,6 +215,9 @@ public class VideoConsultPage {
     }
 
     public void selectFirstSpecialist() {
+
+        logger.info(
+                "Selecting first specialist");
 
         safeClick(
                 firstSpecialistOption);
@@ -213,6 +238,9 @@ public class VideoConsultPage {
     public void enterMobileNumber(
             String mobileNumber) {
 
+        logger.info(
+                "Entering mobile number");
+
         waitForVisible(
                 mobileNumberField);
 
@@ -229,6 +257,9 @@ public class VideoConsultPage {
     }
 
     public void clickContinue() {
+
+        logger.info(
+                "Clicking Continue button");
 
         safeClick(
                 continueButton);
@@ -268,11 +299,18 @@ public class VideoConsultPage {
 
         } catch (Exception e) {
 
-            return "";
+            logger.error(
+                    "Unable to retrieve invalid mobile validation message.",
+                    e);
+
+            return "VALIDATION_MESSAGE_NOT_FOUND";
         }
     }
 
     public void closeOtpPopup() {
+
+        logger.info(
+                "Closing OTP popup");
 
         safeClick(
                 closeOtpPopupButton);
@@ -303,7 +341,7 @@ public class VideoConsultPage {
     }
 
     // =====================================================
-    // TC_015 FAQ Methods
+    // FAQ Methods
     // =====================================================
 
     public boolean isFaqSectionPresent() {
@@ -313,6 +351,10 @@ public class VideoConsultPage {
             return !faqSections.isEmpty();
 
         } catch (Exception e) {
+
+            logger.error(
+                    "Unable to verify FAQ section presence.",
+                    e);
 
             return false;
         }
@@ -331,13 +373,21 @@ public class VideoConsultPage {
                         return true;
                     }
 
-                } catch (Exception ignored) {
+                } catch (Exception e) {
+
+                    logger.debug(
+                            "FAQ section visibility check failed.",
+                            e);
                 }
             }
 
             return getFaqCount() > 0;
 
         } catch (Exception e) {
+
+            logger.error(
+                    "Error validating FAQ section display.",
+                    e);
 
             return false;
         }
@@ -351,9 +401,16 @@ public class VideoConsultPage {
 
                 scrollToElement(
                         faqSections.get(0));
+
+                logger.info(
+                        "Scrolled to FAQ section");
             }
 
-        } catch (Exception ignored) {
+        } catch (Exception e) {
+
+            logger.error(
+                    "Unable to scroll to FAQ section.",
+                    e);
         }
     }
 
@@ -364,6 +421,10 @@ public class VideoConsultPage {
             return faqElements.size();
 
         } catch (Exception e) {
+
+            logger.error(
+                    "Unable to retrieve FAQ count.",
+                    e);
 
             return 0;
         }
@@ -390,7 +451,11 @@ public class VideoConsultPage {
                             faqText);
                 }
 
-            } catch (Exception ignored) {
+            } catch (Exception e) {
+
+                logger.debug(
+                        "Unable to process FAQ element.",
+                        e);
             }
         }
 

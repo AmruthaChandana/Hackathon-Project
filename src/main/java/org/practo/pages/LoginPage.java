@@ -1,5 +1,8 @@
 package org.practo.pages;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -15,6 +18,9 @@ import java.time.Duration;
 import java.util.List;
 
 public class LoginPage {
+
+    private static final Logger logger =
+            LogManager.getLogger(LoginPage.class);
 
     private WebDriver driver;
     private WebDriverWait wait;
@@ -33,7 +39,7 @@ public class LoginPage {
                 this);
     }
 
-    // Login form elements
+    // Login Form Elements
 
     @FindBy(xpath = "//input[contains(@placeholder,'Mobile') or contains(@name,'mobile')]")
     private WebElement mobileNumberField;
@@ -44,7 +50,7 @@ public class LoginPage {
     @FindBy(xpath = "//button[contains(text(),'Login') or contains(text(),'Continue')]")
     private WebElement loginSubmitButton;
 
-    // Profile elements
+    // Profile Elements
 
     @FindBy(xpath = "//span[contains(@class,'user_info_top')]")
     private WebElement headerUserName;
@@ -55,7 +61,7 @@ public class LoginPage {
     @FindBy(xpath = "//div[contains(@class,'nav-dropdown')]")
     private WebElement profileDropdownPanel;
 
-    // Error message
+    // Error Message
 
     @FindBy(xpath = "//*[contains(text(),'Invalid') or contains(text(),'incorrect') or contains(text(),'wrong') or contains(text(),'Try again')]")
     private WebElement errorMessage;
@@ -70,7 +76,6 @@ public class LoginPage {
                         + expectedProfileName
                         + "')]");
     }
-
 
     private WebElement waitForVisible(
             WebElement element) {
@@ -94,10 +99,12 @@ public class LoginPage {
         try {
 
             waitForClickable(
-                    element)
-                    .click();
+                    element).click();
 
         } catch (Exception e) {
+
+            logger.warn(
+                    "Regular click failed. Using JavaScript click.");
 
             JavascriptExecutor js =
                     (JavascriptExecutor) driver;
@@ -119,16 +126,22 @@ public class LoginPage {
 
         } catch (Exception e) {
 
+            logger.debug(
+                    "Element not displayed.");
+
             return false;
         }
     }
 
-    // =====================================================
-    // Actions
-    // =====================================================
+    // ===========================================
+    // Login Methods
+    // ===========================================
 
     public void enterMobile(
             String mobile) {
+
+        logger.info(
+                "Entering mobile number");
 
         waitForVisible(
                 mobileNumberField);
@@ -142,6 +155,9 @@ public class LoginPage {
     public void enterPassword(
             String password) {
 
+        logger.info(
+                "Entering password");
+
         waitForVisible(
                 passwordField);
 
@@ -153,6 +169,9 @@ public class LoginPage {
 
     public void clickLogin() {
 
+        logger.info(
+                "Clicking Login button");
+
         safeClick(
                 loginSubmitButton);
     }
@@ -161,12 +180,18 @@ public class LoginPage {
             String mobile,
             String password) {
 
-        enterMobile(mobile);
+        enterMobile(
+                mobile);
 
-        enterPassword(password);
+        enterPassword(
+                password);
 
         clickLogin();
     }
+
+    // ===========================================
+    // Verification Methods
+    // ===========================================
 
     public boolean isUserLoggedIn() {
 
@@ -217,6 +242,10 @@ public class LoginPage {
 
         } catch (Exception e) {
 
+            logger.error(
+                    "Error while validating profile name.",
+                    e);
+
             return false;
         }
     }
@@ -244,6 +273,10 @@ public class LoginPage {
                             && text.contains(
                             expectedProfileName)) {
 
+                        logger.info(
+                                "Profile name found: {}",
+                                text);
+
                         return text;
                     }
 
@@ -262,15 +295,48 @@ public class LoginPage {
             if (bodyText.contains(
                     expectedProfileName)) {
 
+                logger.info(
+                        "Profile name found in page body: {}",
+                        expectedProfileName);
+
                 return expectedProfileName;
             }
 
         } catch (Exception e) {
 
-            return "";
+            logger.error(
+                    "Exception while retrieving profile name.",
+                    e);
+
+            return "PROFILE_NAME_NOT_FOUND";
         }
 
-        return "";
+        logger.warn(
+                "Profile name not found: {}",
+                expectedProfileName);
+
+        return "PROFILE_NAME_NOT_FOUND";
     }
 
+    public String getErrorMessage() {
+
+        try {
+
+            if (isElementDisplayed(
+                    errorMessage)) {
+
+                return errorMessage
+                        .getText()
+                        .trim();
+            }
+
+        } catch (Exception e) {
+
+            logger.error(
+                    "Unable to read login error message.",
+                    e);
+        }
+
+        return "ERROR_MESSAGE_NOT_FOUND";
+    }
 }

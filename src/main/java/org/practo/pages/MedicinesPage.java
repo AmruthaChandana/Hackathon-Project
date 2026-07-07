@@ -1,5 +1,8 @@
 package org.practo.pages;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -15,6 +18,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MedicinesPage {
+
+    private static final Logger logger =
+            LogManager.getLogger(MedicinesPage.class);
 
     private WebDriver driver;
     private WebDriverWait wait;
@@ -45,16 +51,17 @@ public class MedicinesPage {
     private List<WebElement> medicineSuggestions;
 
     // Add To Cart Elements
+    //@FindBy(xpath = "//div[contains(@class,'product_add-cart')]//span[normalize-space()='ADD TO CART']")
+    //private WebElement firstAddToCartButton;
 
-    @FindBy(xpath = "(//*[self::button or self::div or self::span or self::a][contains(normalize-space(),'ADD') or contains(normalize-space(),'Add') or contains(normalize-space(),'ADD TO CART') or contains(normalize-space(),'Add to Cart')])[1]")
-    private WebElement firstAddToCartButton;
+   @FindBy(xpath = "(//*[self::button or self::div or self::span or self::a][contains(normalize-space(),'ADD') or contains(normalize-space(),'Add') or contains(normalize-space(),'ADD TO CART') or contains(normalize-space(),'Add to Cart')])[1]")
+   private WebElement firstAddToCartButton;
+
+   //@FindBy(xpath = "//div[contains(@class,'cart')]")
+   //private WebElement cartIcon;
 
     @FindBy(xpath = "//*[contains(normalize-space(),'Cart') or contains(normalize-space(),'Your Cart') or contains(@class,'cart') or contains(@class,'Cart')]")
     private WebElement cartIcon;
-
-    // =====================================================
-    // Helper Methods
-    // =====================================================
 
     private WebElement waitForVisible(
             WebElement element) {
@@ -83,6 +90,9 @@ public class MedicinesPage {
 
         } catch (Exception e) {
 
+            logger.warn(
+                    "Regular click failed. Using JavaScript click.");
+
             JavascriptExecutor js =
                     (JavascriptExecutor) driver;
 
@@ -103,6 +113,9 @@ public class MedicinesPage {
 
         } catch (Exception e) {
 
+            logger.debug(
+                    "Element is not displayed.");
+
             return false;
         }
     }
@@ -119,6 +132,10 @@ public class MedicinesPage {
 
     public void searchMedicine(
             String medicineName) {
+
+        logger.info(
+                "Searching medicine: {}",
+                medicineName);
 
         waitForVisible(
                 medicineSearchBox);
@@ -141,6 +158,10 @@ public class MedicinesPage {
     public void searchInvalidMedicine(
             String medicineName) {
 
+        logger.info(
+                "Searching invalid medicine: {}",
+                medicineName);
+
         waitForVisible(
                 medicineSearchBox);
 
@@ -161,13 +182,12 @@ public class MedicinesPage {
                 driver ->
                         medicineSuggestions.size() > 0);
 
-        System.out.println(
-                "Total Medicines Found : "
-                        + medicineSuggestions.size());
+        logger.info(
+                "Total Medicines Found : {}",
+                medicineSuggestions.size());
 
         return medicineSuggestions.size();
     }
-
 
     public void printFirstFiveMedicines() {
 
@@ -180,6 +200,7 @@ public class MedicinesPage {
                     getPricedMedicineDetails();
 
             if (medicines.size() >= 5) {
+
                 return true;
             }
 
@@ -191,8 +212,8 @@ public class MedicinesPage {
         List<String[]> medicines =
                 getPricedMedicineDetails();
 
-        System.out.println(
-                "\n========== FIRST 5 MEDICINES ==========");
+        logger.info(
+                "========== FIRST 5 MEDICINES ==========");
 
         int count =
                 Math.min(
@@ -204,16 +225,16 @@ public class MedicinesPage {
             String[] medicine =
                     medicines.get(i);
 
-            System.out.println(
+            logger.info(
                     "------------------------------------");
 
-            System.out.println(
-                    "Medicine Name : "
-                            + medicine[0]);
+            logger.info(
+                    "Medicine Name : {}",
+                    medicine[0]);
 
-            System.out.println(
-                    "Price         : "
-                            + medicine[1]);
+            logger.info(
+                    "Price : {}",
+                    medicine[1]);
         }
     }
 
@@ -242,14 +263,17 @@ public class MedicinesPage {
 
                     if (line.isEmpty()
                             || line.equalsIgnoreCase("ADD")) {
+
                         continue;
                     }
 
                     if (name.isEmpty()) {
+
                         name = line;
                     }
 
                     if (line.contains("₹")) {
+
                         price = line;
                     }
                 }
@@ -264,7 +288,11 @@ public class MedicinesPage {
                             });
                 }
 
-            } catch (Exception ignored) {
+            } catch (Exception e) {
+
+                logger.debug(
+                        "Unable to parse medicine details.",
+                        e);
             }
         }
 
@@ -305,11 +333,19 @@ public class MedicinesPage {
                         return true;
                     }
 
-                } catch (Exception ignored) {
+                } catch (Exception e) {
+
+                    logger.debug(
+                            "Error reading medicine suggestion.",
+                            e);
                 }
             }
 
         } catch (Exception e) {
+
+            logger.error(
+                    "Error while verifying medicine search result.",
+                    e);
 
             return false;
         }
@@ -360,18 +396,29 @@ public class MedicinesPage {
                         }
                     }
 
-                } catch (Exception ignored) {
+                } catch (Exception e) {
+
+                    logger.debug(
+                            "Unable to process medicine suggestion.",
+                            e);
                 }
             }
 
         } catch (Exception e) {
 
-            return "";
+            logger.error(
+                    "Failed to find matched medicine.",
+                    e);
+
+            return "MEDICINE_NOT_FOUND";
         }
 
-        return "";
-    }
+        logger.warn(
+                "No matching medicine found for: {}",
+                expectedMedicineName);
 
+        return "MEDICINE_NOT_FOUND";
+    }
 
     public void clickFirstMedicineFromResults() {
 
@@ -382,6 +429,9 @@ public class MedicinesPage {
         medicineSuggestions
                 .get(0)
                 .click();
+
+        logger.info(
+                "Clicked first medicine from search results");
     }
 
     public void clickAddToCart() {
@@ -397,10 +447,14 @@ public class MedicinesPage {
             safeClick(
                     firstAddToCartButton);
 
-            System.out.println(
+            logger.info(
                     "Clicked Add To Cart button");
 
         } catch (Exception e) {
+
+            logger.error(
+                    "Unable to click Add To Cart button",
+                    e);
 
             throw new RuntimeException(
                     "Unable to click Add To Cart button",
@@ -413,7 +467,6 @@ public class MedicinesPage {
         return isElementDisplayed(
                 cartIcon);
     }
-
 
     public void scrollToElement(
             WebElement element) {
@@ -440,7 +493,11 @@ public class MedicinesPage {
                     "arguments[0].scrollTop = arguments[0].scrollTop + 300;",
                     searchResultsBox);
 
-        } catch (Exception ignored) {
+        } catch (Exception e) {
+
+            logger.debug(
+                    "Unable to scroll medicine results dropdown.",
+                    e);
         }
     }
 }

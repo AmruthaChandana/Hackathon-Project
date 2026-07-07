@@ -1001,3 +1001,878 @@ Your search for hospital 24/7 in bangalore didn't match anything.
 2026-07-07 00:32:52 INFO  TC_012_VerifyNoResultsPageDoesNotCrash - TC_012 Passed: Site did not crash when result list was empty.
 2026-07-07 00:32:52 INFO  BaseTest - Test passed: verifySiteDoesNotCrashWhenResultListIsEmpty
 2026-07-07 00:32:55 INFO  BaseTest - Browser closed successfully
+2026-07-07 09:50:54 INFO  BaseTest - Configuration loaded successfully
+2026-07-07 09:50:54 INFO  BaseTest - Launching browser: chrome
+2026-07-07 09:51:15 INFO  BaseTest - Browser setup completed successfully
+2026-07-07 09:51:15 INFO  TC_001_LoginWithValidCredentials - Starting TC_001 - Verify Login With Valid Credentials
+2026-07-07 09:51:15 INFO  TC_001_LoginWithValidCredentials - Clicking Login button
+2026-07-07 09:51:20 INFO  TC_001_LoginWithValidCredentials - Logging in with valid credentials
+2026-07-07 09:51:25 INFO  TC_001_LoginWithValidCredentials - TC_001 Passed: User logged in successfully as: Find Doctors
+Video Consult
+Lab Tests
+Surgeries
+NEWFor Corporates
+For Providers
+Security & help
+Amrutha
+Instant Video Consultation
+Connect within 60 secs
+Find Doctors Near You
+Confirmed appointments
+Lab Tests
+Safe and trusted lab tests
+Surgeries
+Safe and trusted surgery centers
+Consult top doctors online for any health concern
+Private online consultations with verified doctors in all specialists
+View All Specialities
+Period doubts or Pregnancy
+CONSULT NOW
+Acne, pimple or skin issues
+CONSULT NOW
+Performance issues in bed
+CONSULT NOW
+Cold, cough or fever
+CONSULT NOW
+Child not feeling well
+CONSULT NOW
+Depression or anxiety
+CONSULT NOW
+Book an appointment for an in-clinic consultation
+Find experienced doctors across all specialties
+Previous
+Dentist
+Teething troubles? Schedule a dental checkup
+Gynecologist/Obstetrician
+Explore for women’s health, pregnancy and infertility treatments
+Dietitian/Nutrition
+Get guidance on eating right, weight management and sports nutrition
+Physiotherapist
+Pulled a muscle? Get it treated by a trained physiotherapist
+Read top articles from health experts
+Health articles that keep you informed about good health practices and achieve your goals.
+See all articles
+CORONAVIRUS
+12 Coronavirus Myths and Facts That You Should Be Aware Of
+Dr. Diana Borgio
+VITAMINS AND SUPPLEMENTS
+Eating Right to Build Immunity Against Cold and Viral Infections
+Dr. Diana Borgio
+What our users have to say
+Very helpful. Far easier than doing same things on computer. Allows quick and easy search with speedy booking. Even maintains history of doctors visited.
+Amit Sharma
+1
+2
+3
+Download the Practo app
+Access video consultation with India’s top doctors on the Practo app. Connect with doctors online, available 24/7, from the comfort of your home.
+Get the link to download the app
++91
+Send SMS
+Practo
+About
+Blog
+Careers
+Press
+Contact Us
+For patients
+Search for doctors
+Search for clinics
+Search for hospitals
+Surgery Costs
+Book Diagnostic Tests
+Practo Plus
+Read health articles
+Read about medicines
+Practo drive
+Health app
+For doctors
+Practo Profile
+For clinics
+Ray by Practo
+Practo Reach
+Ray Tab
+Practo Pro
+For hospitals
+Insta by Practo
+Qikwell by Practo
+Practo Profile
+Practo Reach
+Practo Drive
+For Corporates
+Wellness Plans
+More
+Help
+Developers
+Privacy Policy
+Terms & Conditions
+PCS T&C
+Healthcare Directory
+Practo Health Wiki
+Social
+Facebook
+Twitter
+LinkedIn
+Youtube
+Github
+Copyright © 2017, Practo. All rights reserved.
+2026-07-07 09:51:25 INFO  BaseTest - Test passed: verifyLoginWithValidCredentials
+2026-07-07 09:51:29 INFO  BaseTest - Browser closed successfully
+2026-07-07 09:51:30 INFO  BaseTest - Configuration loaded successfully
+2026-07-07 09:51:30 INFO  BaseTest - Launching browser: chrome
+2026-07-07 09:51:37 INFO  BaseTest - Browser setup completed successfully
+2026-07-07 09:51:37 INFO  TC_002_LoginWithInvalidPassword - Starting TC_002 - Login With Invalid Password
+2026-07-07 09:51:37 INFO  TC_002_LoginWithInvalidPassword - Clicking Login button
+2026-07-07 09:51:38 INFO  TC_002_LoginWithInvalidPassword - Entering invalid login credentials
+2026-07-07 09:51:41 INFO  TC_002_LoginWithInvalidPassword - Clicking Login button with invalid password
+2026-07-07 09:53:21 INFO  TC_002_LoginWithInvalidPassword - TC_002 Passed: Login unsuccessful as expected with invalid password
+2026-07-07 09:53:21 INFO  BaseTest - Test passed: verifyLoginWithInvalidPassword
+2026-07-07 09:53:26 INFO  BaseTest - Browser closed successfully
+2026-07-07 09:53:26 INFO  BaseTest - Configuration loaded successfully
+2026-07-07 09:53:26 INFO  BaseTest - Launching browser: chrome
+2026-07-07 09:53:31 INFO  BaseTest - Browser setup completed successfully
+2026-07-07 09:53:31 INFO  TC_003_FindTest - Starting TC_003 - Verify Diabetes Health Concern Navigation
+2026-07-07 09:53:31 INFO  TC_003_FindTest - Clicking Lab Tests menu
+2026-07-07 09:53:43 INFO  TC_003_FindTest - Selecting city: Bangalore
+2026-07-07 09:53:43 INFO  TC_003_FindTest - Clicking Diabetes Health Concern
+2026-07-07 09:53:50 INFO  TC_003_FindTest - Successfully navigated to Diabetes Checkup page
+2026-07-07 09:53:50 INFO  TC_003_FindTest - Current URL: https://www.practo.com/health-checkup-packages/diabetes-checkup?city=bangalore
+2026-07-07 09:53:50 INFO  TC_003_FindTest - TC_003 Passed: User navigated to Diabetes Checkup page successfully
+2026-07-07 09:53:50 INFO  BaseTest - Test passed: verifyDiabetesHealthConcernNavigation
+2026-07-07 09:53:54 INFO  BaseTest - Browser closed successfully
+2026-07-07 09:53:54 INFO  BaseTest - Configuration loaded successfully
+2026-07-07 09:53:54 INFO  BaseTest - Launching browser: chrome
+2026-07-07 09:54:01 INFO  BaseTest - Browser setup completed successfully
+2026-07-07 09:54:01 INFO  TC_004_AddToCart - Starting TC_004 - Verify Thyroid Profile Add To Cart
+2026-07-07 09:54:01 INFO  TC_004_AddToCart - Clicking Lab Tests menu
+2026-07-07 09:54:06 INFO  TC_004_AddToCart - Selecting city: Bangalore
+2026-07-07 09:54:06 INFO  TC_004_AddToCart - Successfully navigated to city page: Bangalore
+2026-07-07 09:54:06 INFO  TC_004_AddToCart - Adding Thyroid Profile to cart
+2026-07-07 09:54:08 INFO  TC_004_AddToCart - Thyroid Profile added successfully
+2026-07-07 09:54:08 INFO  TC_004_AddToCart - Current URL: https://www.practo.com/tests?city=bangalore
+2026-07-07 09:54:08 INFO  TC_004_AddToCart - TC_004 Passed: Thyroid Profile added to cart successfully in Bangalore
+2026-07-07 09:54:08 INFO  BaseTest - Test passed: verifyThyroidProfileAddedToCart
+2026-07-07 09:54:12 INFO  BaseTest - Browser closed successfully
+2026-07-07 09:54:12 INFO  BaseTest - Configuration loaded successfully
+2026-07-07 09:54:12 INFO  BaseTest - Launching browser: chrome
+2026-07-07 09:54:20 INFO  BaseTest - Browser setup completed successfully
+2026-07-07 09:54:20 INFO  TC_005_CitySearch - Starting TC_005 - Verify City Search
+2026-07-07 09:54:20 INFO  TC_005_CitySearch - Searching city: Bangalore
+2026-07-07 09:54:20 INFO  TC_005_CitySearch - Navigating to Lab Tests page
+2026-07-07 09:54:23 INFO  TC_005_CitySearch - Successfully navigated to Lab Tests page
+2026-07-07 09:54:23 INFO  TC_005_CitySearch - Searching city from dropdown: Bangalore
+2026-07-07 09:54:24 INFO  TC_005_CitySearch - City suggestion displayed successfully for Bangalore
+2026-07-07 09:54:24 INFO  TC_005_CitySearch - TC_005 Passed: City search is working successfully for Bangalore
+2026-07-07 09:54:24 INFO  BaseTest - Test passed: verifyCitySearchFromDropdown
+2026-07-07 09:54:28 INFO  BaseTest - Browser closed successfully
+2026-07-07 09:54:28 INFO  BaseTest - Configuration loaded successfully
+2026-07-07 09:54:28 INFO  BaseTest - Launching browser: chrome
+2026-07-07 09:54:38 INFO  BaseTest - Browser setup completed successfully
+2026-07-07 09:54:38 INFO  TC_006_Navigation - Starting TC_006 - Verify Navigation To Lab Tests Page
+2026-07-07 09:54:38 INFO  TC_006_Navigation - Clicking Lab Tests menu
+2026-07-07 09:54:42 INFO  TC_006_Navigation - Successfully navigated to Lab Tests page
+2026-07-07 09:54:42 INFO  TC_006_Navigation - TC_006 Passed: Successfully navigated to Lab Tests/Diagnostics page
+2026-07-07 09:54:42 INFO  TC_006_Navigation - Current URL : https://www.practo.com/tests
+2026-07-07 09:54:42 INFO  TC_006_Navigation - Page Title : Blood Tests | Book Diagnostic Tests from Home at Best Prices | Practo
+2026-07-07 09:54:42 INFO  BaseTest - Test passed: verifyNavigationToLabTestsPage
+2026-07-07 09:54:46 INFO  BaseTest - Browser closed successfully
+2026-07-07 09:54:46 INFO  BaseTest - Configuration loaded successfully
+2026-07-07 09:54:46 INFO  BaseTest - Launching browser: chrome
+2026-07-07 09:54:57 INFO  BaseTest - Browser setup completed successfully
+2026-07-07 09:54:57 INFO  TC_007_TopCitiesVisibility - Starting TC_007 - Verify Top Cities Visibility
+2026-07-07 09:54:57 INFO  TC_007_TopCitiesVisibility - Navigating to Lab Tests page
+2026-07-07 09:55:05 ERROR BaseTest - Test failed: verifyTopCitiesSectionVisible
+2026-07-07 09:55:05 ERROR BaseTest - Failure reason: org.openqa.selenium.StaleElementReferenceException: stale element reference: stale element not found in the current frame
+  (Session info: chrome=149.0.7827.103)
+For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception
+Build info: version: '4.23.0', revision: '4df0a231af'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [c12ea45c6d7d18a0d93d1a26f8fb7caf, getElementText {id=f.3D9B5715746319CD2947F211351882D6.d.347DD776F3C7494A89F13FE204E96CB3.e.86}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 149.0.7827.103, chrome: {chromedriverVersion: 149.0.7827.155 (07b52360cc1..., userDataDir: C:\Users\2497808\AppData\Lo...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:49693}, goog:processID: 16040, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:49693/devtoo..., se:cdpVersion: 149.0.7827.103, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Element: [[ChromeDriver: chrome on windows (c12ea45c6d7d18a0d93d1a26f8fb7caf)] -> xpath: //div[text()='TOP CITIES']/following::div[contains(@class,'o-f-color--primary')]]
+Session ID: c12ea45c6d7d18a0d93d1a26f8fb7caf
+2026-07-07 09:55:10 INFO  BaseTest - Browser closed successfully
+2026-07-07 09:55:10 INFO  BaseTest - Configuration loaded successfully
+2026-07-07 09:55:10 INFO  BaseTest - Launching browser: chrome
+2026-07-07 09:55:19 INFO  BaseTest - Browser setup completed successfully
+2026-07-07 09:55:19 INFO  TC_008_VerifySearchAndLocationBox - Starting TC_008 - Verify Search And Location Box
+2026-07-07 09:55:19 INFO  TC_008_VerifySearchAndLocationBox - Location: Bangalore
+2026-07-07 09:55:19 INFO  TC_008_VerifySearchAndLocationBox - Search Keyword: Hospital
+2026-07-07 09:55:19 INFO  TC_008_VerifySearchAndLocationBox - Previous Page Title: Practo | Video Consultation with Doctors, Book Doctor Appointments, Order Medicine, Diagnostic Tests
+2026-07-07 09:55:45 INFO  TC_008_VerifySearchAndLocationBox - Current Page Title: Best Hospitals Near Me in Bangalore | Practo. Book Appointments, View Fees, Reviews & Contact Details.
+2026-07-07 09:55:45 INFO  TC_008_VerifySearchAndLocationBox - TC_008 Passed: Location and search boxes are working successfully
+2026-07-07 09:55:45 INFO  BaseTest - Test passed: verifyLocationAndSearchBoxesAreWorking
+2026-07-07 09:55:51 INFO  BaseTest - Browser closed successfully
+2026-07-07 09:55:51 INFO  BaseTest - Configuration loaded successfully
+2026-07-07 09:55:51 INFO  BaseTest - Launching browser: chrome
+2026-07-07 09:55:56 INFO  BaseTest - Browser setup completed successfully
+2026-07-07 09:55:56 INFO  TC_009_VerifyHospitalAddress - Starting TC_009 - Verify Hospital Address
+2026-07-07 09:55:56 INFO  TC_009_VerifyHospitalAddress - Location: Bangalore
+2026-07-07 09:55:56 INFO  TC_009_VerifyHospitalAddress - Search Keyword: Hospital
+2026-07-07 09:56:13 INFO  TC_009_VerifyHospitalAddress - Hospital search results loaded successfully
+2026-07-07 09:56:14 INFO  TC_009_VerifyHospitalAddress - Selected Hospital: Manipal Hospital Varthur Road (formerly Columbia Asia Hospital)
+2026-07-07 09:56:14 INFO  TC_009_VerifyHospitalAddress - New hospital details window opened and switched successfully.
+2026-07-07 09:56:21 INFO  TC_009_VerifyHospitalAddress - Hospital Address Extracted Successfully
+2026-07-07 09:56:21 INFO  TC_009_VerifyHospitalAddress - Hospital Name: Manipal Hospital Varthur Road (formerly Columbia Asia Hospital)
+2026-07-07 09:56:21 INFO  TC_009_VerifyHospitalAddress - Hospital Address:
+Survey No. 10P & 12P, Whitefield Main Rd, Varthur Kodi, Ramagondanahalli
+Landmark: Opposite Forum Value Mall and Next to Virginia Mall
+Whitefield, Bangalore
+2026-07-07 09:56:21 INFO  TC_009_VerifyHospitalAddress - TC_009 Passed: Hospital address is visible and extracted successfully.
+2026-07-07 09:56:21 INFO  BaseTest - Test passed: verifyAddressIsVisibleAndCanBeExtracted
+2026-07-07 09:56:27 INFO  BaseTest - Browser closed successfully
+2026-07-07 09:56:27 INFO  BaseTest - Configuration loaded successfully
+2026-07-07 09:56:27 INFO  BaseTest - Launching browser: chrome
+2026-07-07 09:56:35 INFO  BaseTest - Browser setup completed successfully
+2026-07-07 09:56:35 INFO  TC_010_VerifyFirstNHospitals - Starting TC_010 - Verify First N Hospitals
+2026-07-07 09:56:35 INFO  TC_010_VerifyFirstNHospitals - Location: Bangalore
+2026-07-07 09:56:35 INFO  TC_010_VerifyFirstNHospitals - Search Keyword: Hospital
+2026-07-07 09:56:35 INFO  TC_010_VerifyFirstNHospitals - Required Match Count: 10
+2026-07-07 09:56:35 INFO  TC_010_VerifyFirstNHospitals - Minimum Rating: 3.5
+2026-07-07 09:56:50 INFO  TC_010_VerifyFirstNHospitals - Hospital search results loaded successfully
+2026-07-07 09:56:51 INFO  TC_010_VerifyFirstNHospitals - Matching Hospital Found: Manipal Hospital Varthur Road (formerly Columbia Asia Hospital) | Rating: 4.0
+2026-07-07 09:56:51 INFO  TC_010_VerifyFirstNHospitals - Matching Hospital Found: Manipal Hospitals | Rating: 4.5
+2026-07-07 09:56:51 INFO  TC_010_VerifyFirstNHospitals - Matching Hospital Found: Koshys Hospital | Rating: 4.0
+2026-07-07 09:56:52 INFO  TC_010_VerifyFirstNHospitals - Matching Hospital Found: Motherhood Hospital | Rating: 4.5
+2026-07-07 09:56:52 INFO  TC_010_VerifyFirstNHospitals - Matching Hospital Found: Motherhood Hospital | Rating: 4.5
+2026-07-07 09:56:52 INFO  TC_010_VerifyFirstNHospitals - Matching Hospital Found: Sagar Hospitals | Rating: 4.0
+2026-07-07 09:56:53 INFO  TC_010_VerifyFirstNHospitals - Matching Hospital Found: Apollo Cradle & Children’s Hospital | Rating: 4.5
+2026-07-07 09:56:54 INFO  TC_010_VerifyFirstNHospitals - Matching Hospital Found: Cloudnine Hospital - Old Airport Road | Rating: 4.5
+2026-07-07 09:57:34 INFO  TC_010_VerifyFirstNHospitals - No more hospital results available.
+2026-07-07 09:57:34 INFO  TC_010_VerifyFirstNHospitals - Total hospitals checked: 10
+2026-07-07 09:57:34 INFO  TC_010_VerifyFirstNHospitals - Matching hospitals stored in list: 8
+2026-07-07 09:57:34 INFO  TC_010_VerifyFirstNHospitals - Matching Hospital Details:
+2026-07-07 09:57:34 INFO  TC_010_VerifyFirstNHospitals - 1. Manipal Hospital Varthur Road (formerly Columbia Asia Hospital) - Rating: 4.0
+2026-07-07 09:57:35 INFO  TC_010_VerifyFirstNHospitals - 2. Manipal Hospitals - Rating: 4.5
+2026-07-07 09:57:35 INFO  TC_010_VerifyFirstNHospitals - 3. Koshys Hospital - Rating: 4.0
+2026-07-07 09:57:35 INFO  TC_010_VerifyFirstNHospitals - 4. Motherhood Hospital - Rating: 4.5
+2026-07-07 09:57:35 INFO  TC_010_VerifyFirstNHospitals - 5. Motherhood Hospital - Rating: 4.5
+2026-07-07 09:57:35 INFO  TC_010_VerifyFirstNHospitals - 6. Sagar Hospitals - Rating: 4.0
+2026-07-07 09:57:35 INFO  TC_010_VerifyFirstNHospitals - 7. Apollo Cradle & Children’s Hospital - Rating: 4.5
+2026-07-07 09:57:35 INFO  TC_010_VerifyFirstNHospitals - 8. Cloudnine Hospital - Old Airport Road - Rating: 4.5
+2026-07-07 09:57:35 INFO  TC_010_VerifyFirstNHospitals - TC_010 Passed: Hospitals were checked and matching hospitals were added to list.
+2026-07-07 09:57:35 INFO  BaseTest - Test passed: verifyFirstNHospitalsAreCheckedAndMatchingHospitalsAreAddedToList
+2026-07-07 09:57:41 INFO  BaseTest - Browser closed successfully
+2026-07-07 09:57:41 INFO  BaseTest - Configuration loaded successfully
+2026-07-07 09:57:41 INFO  BaseTest - Launching browser: chrome
+2026-07-07 09:57:51 INFO  BaseTest - Browser setup completed successfully
+2026-07-07 09:57:51 INFO  TC_011_VerifyBookHospitalVisitButton - Starting TC_011 - Verify Book Hospital Visit Button
+2026-07-07 09:57:51 INFO  TC_011_VerifyBookHospitalVisitButton - Location: Bangalore
+2026-07-07 09:57:51 INFO  TC_011_VerifyBookHospitalVisitButton - Search Keyword: Hospital
+2026-07-07 09:58:05 INFO  TC_011_VerifyBookHospitalVisitButton - Hospital search results loaded successfully
+2026-07-07 09:58:05 INFO  TC_011_VerifyBookHospitalVisitButton - Book Hospital Visit button is displayed
+2026-07-07 09:58:05 INFO  TC_011_VerifyBookHospitalVisitButton - Book Hospital Visit button is enabled
+2026-07-07 09:58:05 INFO  TC_011_VerifyBookHospitalVisitButton - Previous Page Title: Best Hospitals Near Me in Bangalore | Practo. Book Appointments, View Fees, Reviews & Contact Details.
+2026-07-07 09:58:05 INFO  TC_011_VerifyBookHospitalVisitButton - Previous Page URL: https://www.practo.com/search/hospitals?results_type=hospital&q=%5B%7B%22word%22%3A%22hospital%22%2C%22autocompleted%22%3Atrue%2C%22category%22%3A%22type%22%7D%5D&city=Bangalore
+2026-07-07 09:58:05 INFO  TC_011_VerifyBookHospitalVisitButton - Clicking Book Hospital Visit button
+2026-07-07 09:58:48 INFO  TC_011_VerifyBookHospitalVisitButton - No new window opened. Continuing in the same window.
+2026-07-07 09:58:48 INFO  TC_011_VerifyBookHospitalVisitButton - Current Page Title: 
+2026-07-07 09:58:48 INFO  TC_011_VerifyBookHospitalVisitButton - Current Page URL: https://www.practo.com/bangalore/hospital/columbia-asia-hospital1-whitefield/group/doctors?city=bangalore&page=1&fetch_locations=false&fetch_practice=true&fetch_doctors=true&category=type&query=doctor&source_context=estab_card&primary_practice_id=1131816&enable_prime_only_listing=true&filters%5Bpractice_ids%5D=1131816
+2026-07-07 09:58:48 INFO  TC_011_VerifyBookHospitalVisitButton - TC_011 Passed: Book Hospital Visit button is functional.
+2026-07-07 09:58:48 INFO  BaseTest - Test passed: verifyBookHospitalVisitButtonIsFunctional
+2026-07-07 09:58:53 INFO  BaseTest - Browser closed successfully
+2026-07-07 09:58:53 INFO  BaseTest - Configuration loaded successfully
+2026-07-07 09:58:53 INFO  BaseTest - Launching browser: chrome
+2026-07-07 09:59:04 INFO  BaseTest - Browser setup completed successfully
+2026-07-07 09:59:04 INFO  TC_012_VerifyNoResultsPageDoesNotCrash - Starting TC_012 - Verify No Results Page Does Not Crash
+2026-07-07 09:59:04 INFO  TC_012_VerifyNoResultsPageDoesNotCrash - Location: Bangalore
+2026-07-07 09:59:04 INFO  TC_012_VerifyNoResultsPageDoesNotCrash - Search Keyword: hospital 24/7
+2026-07-07 09:59:04 INFO  TC_012_VerifyNoResultsPageDoesNotCrash - Searching hospital with invalid keyword
+2026-07-07 09:59:14 INFO  TC_012_VerifyNoResultsPageDoesNotCrash - No Results Message: We couldn't find any doctors for you
+Your search for hospital 24/7 in bangalore didn't match anything.
+2026-07-07 09:59:14 INFO  TC_012_VerifyNoResultsPageDoesNotCrash - Verified that the application displayed a valid no-results message
+2026-07-07 09:59:14 INFO  TC_012_VerifyNoResultsPageDoesNotCrash - TC_012 Passed: Site did not crash when result list was empty.
+2026-07-07 09:59:14 INFO  BaseTest - Test passed: verifySiteDoesNotCrashWhenResultListIsEmpty
+2026-07-07 09:59:21 INFO  BaseTest - Browser closed successfully
+2026-07-07 09:59:21 INFO  BaseTest - Configuration loaded successfully
+2026-07-07 09:59:21 INFO  BaseTest - Launching browser: chrome
+2026-07-07 09:59:31 INFO  BaseTest - Browser setup completed successfully
+2026-07-07 09:59:31 INFO  TC_013_NavigateToSurgeryPage - Starting TC_013 - Navigate To Surgery Page
+2026-07-07 09:59:31 INFO  TC_013_NavigateToSurgeryPage - Clicking Surgeries button
+2026-07-07 10:00:11 WARN  TC_013_NavigateToSurgeryPage - Normal click failed. Using JavaScript click.
+2026-07-07 10:00:15 INFO  TC_013_NavigateToSurgeryPage - Navigated to Surgery page
+2026-07-07 10:00:15 INFO  TC_013_NavigateToSurgeryPage - Current URL: https://www.practo.com/care
+2026-07-07 10:00:15 INFO  TC_013_NavigateToSurgeryPage - Treatments Offered section found
+2026-07-07 10:00:16 INFO  TC_013_NavigateToSurgeryPage - Popular Treatments Offered:
+2026-07-07 10:00:16 INFO  TC_013_NavigateToSurgeryPage - 1. Piles
+2026-07-07 10:00:16 INFO  TC_013_NavigateToSurgeryPage - 2. Varicose Veins
+2026-07-07 10:00:16 INFO  TC_013_NavigateToSurgeryPage - 3. Hernia
+2026-07-07 10:00:16 INFO  TC_013_NavigateToSurgeryPage - 4. Lasik
+2026-07-07 10:00:16 INFO  TC_013_NavigateToSurgeryPage - 5. Gallstone
+2026-07-07 10:00:16 INFO  TC_013_NavigateToSurgeryPage - 6. Anal Fistula
+2026-07-07 10:00:16 INFO  TC_013_NavigateToSurgeryPage - 7. Cataract
+2026-07-07 10:00:16 INFO  TC_013_NavigateToSurgeryPage - 8. Kidney Stone
+2026-07-07 10:00:16 INFO  TC_013_NavigateToSurgeryPage - 9. Circumcision
+2026-07-07 10:00:16 INFO  TC_013_NavigateToSurgeryPage - 10. Anal Fissure
+2026-07-07 10:00:16 INFO  TC_013_NavigateToSurgeryPage - 11. Lipoma Removal
+2026-07-07 10:00:16 INFO  TC_013_NavigateToSurgeryPage - 12. Sebaceous Cyst
+2026-07-07 10:00:16 INFO  TC_013_NavigateToSurgeryPage - 13. Pilonidal Sinus
+2026-07-07 10:00:16 INFO  TC_013_NavigateToSurgeryPage - 14. Lump in Breast
+2026-07-07 10:00:16 INFO  TC_013_NavigateToSurgeryPage - 15. TURP
+2026-07-07 10:00:16 INFO  TC_013_NavigateToSurgeryPage - 16. Hydrocele
+2026-07-07 10:00:16 INFO  TC_013_NavigateToSurgeryPage - 17. Knee Replacement
+2026-07-07 10:00:16 INFO  TC_013_NavigateToSurgeryPage - 18. Hair Transplant
+2026-07-07 10:00:16 INFO  TC_013_NavigateToSurgeryPage - 19. Gynaecomastia
+2026-07-07 10:00:16 INFO  TC_013_NavigateToSurgeryPage - Total Popular Treatments Found: 19
+2026-07-07 10:00:16 INFO  TC_013_NavigateToSurgeryPage - Returned back from Surgery page
+2026-07-07 10:00:16 INFO  TC_013_NavigateToSurgeryPage - TC_013 Passed: Surgery page opened, popular treatments printed, and redirected back
+2026-07-07 10:00:16 INFO  BaseTest - Test passed: verifySurgeryPageAndPrintPopularTreatments
+2026-07-07 10:00:22 INFO  BaseTest - Browser closed successfully
+2026-07-07 10:00:22 INFO  BaseTest - Configuration loaded successfully
+2026-07-07 10:00:22 INFO  BaseTest - Launching browser: chrome
+2026-07-07 10:00:31 INFO  BaseTest - Browser setup completed successfully
+2026-07-07 10:00:31 INFO  TC_014_InvalidMobileVideoConsult - Starting TC_014 - Invalid Mobile Number Video Consult
+2026-07-07 10:00:31 INFO  TC_014_InvalidMobileVideoConsult - Symptom: Fever
+2026-07-07 10:00:31 INFO  TC_014_InvalidMobileVideoConsult - Invalid Mobile Number: 24355434
+2026-07-07 10:00:31 INFO  TC_014_InvalidMobileVideoConsult - Clicking Video Consult link
+2026-07-07 10:00:37 INFO  TC_014_InvalidMobileVideoConsult - Navigated to Video Consult page
+2026-07-07 10:00:37 INFO  TC_014_InvalidMobileVideoConsult - Current URL: https://www.practo.com/consult
+2026-07-07 10:00:37 INFO  TC_014_InvalidMobileVideoConsult - Clicking Consult Now button
+2026-07-07 10:00:42 INFO  TC_014_InvalidMobileVideoConsult - Consultation form opened
+2026-07-07 10:00:43 INFO  TC_014_InvalidMobileVideoConsult - Entered symptom: Fever
+2026-07-07 10:00:44 INFO  TC_014_InvalidMobileVideoConsult - Specialist selected successfully
+2026-07-07 10:00:44 INFO  TC_014_InvalidMobileVideoConsult - Entered invalid mobile number: 24355434
+2026-07-07 10:00:45 INFO  TC_014_InvalidMobileVideoConsult - Switching to login iframe
+2026-07-07 10:00:54 INFO  TC_014_InvalidMobileVideoConsult - Invalid mobile validation message: Log in
+×
+Not a valid mobile number.National number Eg: 081234 56789 International number Eg: +15107488230
++9124355434
+OTP
+Still not received OTP?  Get via call
+Resend OTP
+2026-07-07 10:00:54 INFO  TC_014_InvalidMobileVideoConsult - Capturing validation screenshot
+2026-07-07 10:00:55 INFO  TC_014_InvalidMobileVideoConsult - OTP/Login popup closed
+2026-07-07 10:00:55 INFO  TC_014_InvalidMobileVideoConsult - Switched back to default content
+2026-07-07 10:00:59 INFO  TC_014_InvalidMobileVideoConsult - TC_014 Passed: Invalid mobile number validation message captured successfully
+2026-07-07 10:00:59 INFO  BaseTest - Test passed: verifyInvalidMobileNumberInVideoConsultFlow
+2026-07-07 10:01:06 INFO  BaseTest - Browser closed successfully
+2026-07-07 10:01:06 INFO  BaseTest - Configuration loaded successfully
+2026-07-07 10:01:06 INFO  BaseTest - Launching browser: chrome
+2026-07-07 10:01:15 INFO  BaseTest - Browser setup completed successfully
+2026-07-07 10:01:15 INFO  TC_015_ExtractTop5FAQs - Starting TC_015 - Extract Top 5 FAQs
+2026-07-07 10:01:15 INFO  TC_015_ExtractTop5FAQs - Clicking Video Consult link
+2026-07-07 10:01:20 INFO  TC_015_ExtractTop5FAQs - Navigated to Video Consult page
+2026-07-07 10:01:20 INFO  TC_015_ExtractTop5FAQs - Current URL: https://www.practo.com/consult
+2026-07-07 10:01:20 INFO  TC_015_ExtractTop5FAQs - FAQ section found successfully
+2026-07-07 10:01:20 INFO  TC_015_ExtractTop5FAQs - FAQs loaded successfully
+2026-07-07 10:02:02 INFO  TC_015_ExtractTop5FAQs - Top 5 FAQs:
+2026-07-07 10:02:02 INFO  TC_015_ExtractTop5FAQs - 1. What is online doctor consultation?
+Online doctor consultation or online medical consultation is a method .... Read More
+2026-07-07 10:02:02 INFO  TC_015_ExtractTop5FAQs - 2. What is online doctor consultation?
+2026-07-07 10:02:02 INFO  TC_015_ExtractTop5FAQs - 3. How do I start online consultation with doctors on Practo?
+Starting an online doctor consultation is very simple on Practo. Follo.... Read More
+2026-07-07 10:02:02 INFO  TC_015_ExtractTop5FAQs - 4. How do I start online consultation with doctors on Practo?
+2026-07-07 10:02:02 INFO  TC_015_ExtractTop5FAQs - 5. Are your online doctors qualified?
+We follow a strict verification process for every doctor providing onl.... Read More
+2026-07-07 10:02:02 INFO  TC_015_ExtractTop5FAQs - Total FAQs Extracted: 5
+2026-07-07 10:02:02 INFO  TC_015_ExtractTop5FAQs - Returned from Video Consult page
+2026-07-07 10:02:02 INFO  TC_015_ExtractTop5FAQs - TC_015 Passed: Extracted 5 FAQs successfully
+2026-07-07 10:02:02 INFO  BaseTest - Test passed: verifyTop5FAQsExtraction
+2026-07-07 10:02:07 INFO  BaseTest - Browser closed successfully
+2026-07-07 10:02:07 INFO  BaseTest - Configuration loaded successfully
+2026-07-07 10:02:07 INFO  BaseTest - Launching browser: chrome
+2026-07-07 10:02:17 INFO  BaseTest - Browser setup completed successfully
+2026-07-07 10:02:17 INFO  TC_016_MedicineSearch - Starting TC_016 - Medicine Search
+2026-07-07 10:02:17 INFO  TC_016_MedicineSearch - Medicine Search : skin ointment
+2026-07-07 10:02:17 INFO  TC_016_MedicineSearch - Opening Medicines page
+2026-07-07 10:02:22 INFO  TC_016_MedicineSearch - Navigated to Medicines page
+2026-07-07 10:02:23 INFO  TC_016_MedicineSearch - Current URL: https://www.practo.com/order
+2026-07-07 10:02:23 INFO  TC_016_MedicineSearch - Searching medicine: skin ointment
+2026-07-07 10:02:24 INFO  TC_016_MedicineSearch - Medicine found in results: Flutibact Skin Ointment
+2026-07-07 10:02:25 INFO  TC_016_MedicineSearch - Total medicines found: 18
+2026-07-07 10:02:25 INFO  TC_016_MedicineSearch - Printing first five medicines
+2026-07-07 10:02:26 INFO  TC_016_MedicineSearch - TC_016 Passed: Medicine search completed successfully
+2026-07-07 10:02:26 INFO  BaseTest - Test passed: verifyMedicineSearch
+2026-07-07 10:02:30 INFO  BaseTest - Browser closed successfully
+2026-07-07 10:02:30 INFO  BaseTest - Configuration loaded successfully
+2026-07-07 10:02:30 INFO  BaseTest - Launching browser: chrome
+2026-07-07 10:02:42 INFO  BaseTest - Browser setup completed successfully
+2026-07-07 10:02:42 INFO  TC_017_MedicineAddToCart - Starting TC_017 - Medicine Add To Cart
+2026-07-07 10:02:42 INFO  TC_017_MedicineAddToCart - Medicine Search : skin ointment
+2026-07-07 10:02:42 INFO  TC_017_MedicineAddToCart - Opening Medicines page
+2026-07-07 10:02:44 INFO  TC_017_MedicineAddToCart - Navigated to Medicines page
+2026-07-07 10:02:44 INFO  TC_017_MedicineAddToCart - Current URL: https://www.practo.com/order
+2026-07-07 10:02:44 INFO  TC_017_MedicineAddToCart - Searching medicine: skin ointment
+2026-07-07 10:02:46 INFO  TC_017_MedicineAddToCart - Medicines found: 18
+2026-07-07 10:02:47 INFO  TC_017_MedicineAddToCart - Clicked first medicine from search results
+2026-07-07 10:02:47 INFO  TC_017_MedicineAddToCart - Medicine product page opened
+2026-07-07 10:02:47 INFO  TC_017_MedicineAddToCart - Clicked Add To Cart button
+2026-07-07 10:02:47 INFO  TC_017_MedicineAddToCart - Cart displayed successfully
+2026-07-07 10:02:47 INFO  TC_017_MedicineAddToCart - TC_017 Passed: Add To Cart button is functioning properly
+2026-07-07 10:02:47 INFO  BaseTest - Test passed: verifyMedicineAddToCart
+2026-07-07 10:02:52 INFO  BaseTest - Browser closed successfully
+2026-07-07 10:02:52 INFO  BaseTest - Configuration loaded successfully
+2026-07-07 10:02:52 INFO  BaseTest - Launching browser: chrome
+2026-07-07 10:02:59 INFO  BaseTest - Browser setup completed successfully
+2026-07-07 10:02:59 INFO  TC_018_MedicineSearchInvalid - Starting TC_018 - Invalid Medicine Search
+2026-07-07 10:02:59 INFO  TC_018_MedicineSearchInvalid - Searching Invalid Medicine : xyzinvalidmedicine123
+2026-07-07 10:02:59 INFO  TC_018_MedicineSearchInvalid - Opening Medicines page
+2026-07-07 10:03:01 INFO  TC_018_MedicineSearchInvalid - Navigated to Medicines page
+2026-07-07 10:03:01 INFO  TC_018_MedicineSearchInvalid - Current URL: https://www.practo.com/order
+2026-07-07 10:03:01 INFO  TC_018_MedicineSearchInvalid - Searching invalid medicine: xyzinvalidmedicine123
+2026-07-07 10:03:03 INFO  TC_018_MedicineSearchInvalid - No matching medicine found for invalid search keyword
+2026-07-07 10:03:03 INFO  TC_018_MedicineSearchInvalid - TC_018 Passed: No matching medicine found for invalid medicine.
+2026-07-07 10:03:03 INFO  BaseTest - Test passed: verifyInvalidMedicineSearch
+2026-07-07 10:03:07 INFO  BaseTest - Browser closed successfully
+2026-07-07 10:03:07 INFO  BaseTest - Configuration loaded successfully
+2026-07-07 10:03:07 INFO  BaseTest - Launching browser: chrome
+2026-07-07 10:03:17 INFO  BaseTest - Browser setup completed successfully
+2026-07-07 10:03:17 INFO  TC_019_CorporateDisableButton - Starting TC_019 - Verify Corporate Disable Button
+2026-07-07 10:03:17 INFO  TC_019_CorporateDisableButton - Name : Test User
+2026-07-07 10:03:17 INFO  TC_019_CorporateDisableButton - Organization : Cognizant
+2026-07-07 10:03:17 INFO  TC_019_CorporateDisableButton - Email : Cognizant.com
+2026-07-07 10:03:17 INFO  TC_019_CorporateDisableButton - Mobile : 987654323
+2026-07-07 10:03:17 INFO  TC_019_CorporateDisableButton - Organization Size : <500
+2026-07-07 10:03:17 INFO  TC_019_CorporateDisableButton - Interested In : Taking a demo
+2026-07-07 10:03:17 INFO  TC_019_CorporateDisableButton - Clicking For Corporates option
+2026-07-07 10:03:18 INFO  TC_019_CorporateDisableButton - Clicking Health & Wellness Plans
+2026-07-07 10:03:27 INFO  TC_019_CorporateDisableButton - Navigated to Corporate Wellness page
+2026-07-07 10:03:27 INFO  TC_019_CorporateDisableButton - Current URL : https://www.practo.com/plus/corporate
+2026-07-07 10:03:27 INFO  TC_019_CorporateDisableButton - Corporate wellness form is displayed
+2026-07-07 10:03:28 INFO  TC_019_CorporateDisableButton - Filling Corporate Wellness form
+2026-07-07 10:04:04 INFO  TC_019_CorporateDisableButton - Verified Schedule Demo button remains disabled
+2026-07-07 10:04:04 INFO  TC_019_CorporateDisableButton - TC_019 Passed: Schedule Demo button remains disabled for invalid data.
+2026-07-07 10:04:04 INFO  BaseTest - Test passed: verifyCorporateDisableButton
+2026-07-07 10:04:10 INFO  BaseTest - Browser closed successfully
+2026-07-07 10:04:10 INFO  BaseTest - Configuration loaded successfully
+2026-07-07 10:04:10 INFO  BaseTest - Launching browser: chrome
+2026-07-07 10:04:14 INFO  BaseTest - Browser setup completed successfully
+2026-07-07 10:04:14 INFO  TC_020_CorporateMenuOptions - Starting TC_020 - Verify Corporate Menu Options
+2026-07-07 10:04:14 INFO  TC_020_CorporateMenuOptions - Clicking For Corporates menu
+2026-07-07 10:04:20 INFO  TC_020_CorporateMenuOptions - Clicking Health & Wellness Plans
+2026-07-07 10:04:25 INFO  TC_020_CorporateMenuOptions - Navigated to Corporate Wellness page
+2026-07-07 10:04:25 INFO  TC_020_CorporateMenuOptions - Current URL : https://www.practo.com/plus/corporate
+2026-07-07 10:04:25 INFO  TC_020_CorporateMenuOptions - Clicked Our Services
+2026-07-07 10:04:26 INFO  TC_020_CorporateMenuOptions - Clicked Practo Ecosystem
+2026-07-07 10:04:26 INFO  TC_020_CorporateMenuOptions - Clicked Product Capabilities
+2026-07-07 10:04:27 INFO  TC_020_CorporateMenuOptions - Clicked Testimonials
+2026-07-07 10:04:27 INFO  TC_020_CorporateMenuOptions - Clicked FAQs
+2026-07-07 10:04:27 INFO  TC_020_CorporateMenuOptions - Verified user remains on Corporate Wellness page
+2026-07-07 10:04:27 INFO  TC_020_CorporateMenuOptions - TC_020 Passed: Corporate menu options are functioning properly.
+2026-07-07 10:04:27 INFO  BaseTest - Test passed: verifyCorporateMenuOptions
+2026-07-07 10:04:32 INFO  BaseTest - Browser closed successfully
+2026-07-07 10:04:54 INFO  BaseTest - Configuration loaded successfully
+2026-07-07 10:04:54 INFO  BaseTest - Launching browser: chrome
+2026-07-07 10:05:05 INFO  BaseTest - Browser setup completed successfully
+2026-07-07 10:05:05 INFO  TC_007_TopCitiesVisibility - Starting TC_007 - Verify Top Cities Visibility
+2026-07-07 10:05:05 INFO  TC_007_TopCitiesVisibility - Navigating to Lab Tests page
+2026-07-07 10:05:09 INFO  TC_007_TopCitiesVisibility - Top Cities section is visible
+2026-07-07 10:05:10 INFO  TC_007_TopCitiesVisibility - Top Cities:
+2026-07-07 10:05:10 INFO  TC_007_TopCitiesVisibility - Bangalore
+2026-07-07 10:05:10 INFO  TC_007_TopCitiesVisibility - Delhi
+2026-07-07 10:05:10 INFO  TC_007_TopCitiesVisibility - Mumbai
+2026-07-07 10:05:10 INFO  TC_007_TopCitiesVisibility - Chennai
+2026-07-07 10:05:10 INFO  TC_007_TopCitiesVisibility - Hyderabad
+2026-07-07 10:05:10 INFO  TC_007_TopCitiesVisibility - Kolkata
+2026-07-07 10:05:10 INFO  TC_007_TopCitiesVisibility - Pune
+2026-07-07 10:05:10 INFO  TC_007_TopCitiesVisibility - Ahmedabad
+2026-07-07 10:05:10 INFO  TC_007_TopCitiesVisibility - Total Cities Found: 8
+2026-07-07 10:05:10 INFO  TC_007_TopCitiesVisibility - TC_007 Passed: Top Cities section is visible
+2026-07-07 10:05:10 INFO  BaseTest - Test passed: verifyTopCitiesSectionVisible
+2026-07-07 10:05:14 INFO  BaseTest - Browser closed successfully
+2026-07-07 10:36:09 INFO  ExcelUtils - Excel loaded successfully. Sheet: PractoData
+2026-07-07 10:36:09 INFO  BaseTest - Configuration loaded successfully
+2026-07-07 10:36:09 INFO  BaseTest - Launching browser: chrome
+2026-07-07 10:36:23 INFO  BaseTest - Browser setup completed successfully
+2026-07-07 10:36:23 INFO  TC_017_MedicineAddToCart - Starting TC_017 - Medicine Add To Cart
+2026-07-07 10:36:23 INFO  ExcelUtils - Excel loaded successfully. Sheet: MedicineData
+2026-07-07 10:36:23 INFO  TC_017_MedicineAddToCart - Medicine Search : skin ointment
+2026-07-07 10:36:24 INFO  TC_017_MedicineAddToCart - Opening Medicines page
+2026-07-07 10:36:27 INFO  TC_017_MedicineAddToCart - Navigated to Medicines page
+2026-07-07 10:36:27 INFO  TC_017_MedicineAddToCart - Current URL: https://www.practo.com/order
+2026-07-07 10:36:27 INFO  TC_017_MedicineAddToCart - Searching medicine: skin ointment
+2026-07-07 10:36:27 INFO  MedicinesPage - Searching medicine: skin ointment
+2026-07-07 10:36:29 INFO  MedicinesPage - Total Medicines Found : 18
+2026-07-07 10:36:29 INFO  TC_017_MedicineAddToCart - Medicines found: 18
+2026-07-07 10:36:30 INFO  MedicinesPage - Clicked first medicine from search results
+2026-07-07 10:36:30 INFO  TC_017_MedicineAddToCart - Clicked first medicine from search results
+2026-07-07 10:36:30 INFO  TC_017_MedicineAddToCart - Medicine product page opened
+2026-07-07 10:36:30 INFO  MedicinesPage - Clicked Add To Cart button
+2026-07-07 10:36:30 INFO  TC_017_MedicineAddToCart - Clicked Add To Cart button
+2026-07-07 10:37:19 ERROR BaseTest - Test failed: verifyMedicineAddToCart
+2026-07-07 10:37:19 ERROR BaseTest - Failure reason: java.lang.AssertionError: Cart is not displayed after adding medicine expected [true] but found [false]
+2026-07-07 10:37:28 INFO  BaseTest - Browser closed successfully
+2026-07-07 10:37:52 INFO  ExcelUtils - Excel loaded successfully. Sheet: PractoData
+2026-07-07 10:37:52 INFO  BaseTest - Configuration loaded successfully
+2026-07-07 10:37:52 INFO  BaseTest - Launching browser: chrome
+2026-07-07 10:37:59 INFO  BaseTest - Browser setup completed successfully
+2026-07-07 10:37:59 INFO  TC_017_MedicineAddToCart - Starting TC_017 - Medicine Add To Cart
+2026-07-07 10:38:00 INFO  ExcelUtils - Excel loaded successfully. Sheet: MedicineData
+2026-07-07 10:38:00 INFO  TC_017_MedicineAddToCart - Medicine Search : skin ointment
+2026-07-07 10:38:00 INFO  TC_017_MedicineAddToCart - Opening Medicines page
+2026-07-07 10:38:09 INFO  TC_017_MedicineAddToCart - Navigated to Medicines page
+2026-07-07 10:38:09 INFO  TC_017_MedicineAddToCart - Current URL: https://www.practo.com/order
+2026-07-07 10:38:09 INFO  TC_017_MedicineAddToCart - Searching medicine: skin ointment
+2026-07-07 10:38:09 INFO  MedicinesPage - Searching medicine: skin ointment
+2026-07-07 10:38:11 INFO  MedicinesPage - Total Medicines Found : 18
+2026-07-07 10:38:11 INFO  TC_017_MedicineAddToCart - Medicines found: 18
+2026-07-07 10:38:12 INFO  MedicinesPage - Clicked first medicine from search results
+2026-07-07 10:38:12 INFO  TC_017_MedicineAddToCart - Clicked first medicine from search results
+2026-07-07 10:38:12 INFO  TC_017_MedicineAddToCart - Medicine product page opened
+2026-07-07 10:38:13 INFO  MedicinesPage - Clicked Add To Cart button
+2026-07-07 10:38:13 INFO  TC_017_MedicineAddToCart - Clicked Add To Cart button
+2026-07-07 10:39:02 ERROR BaseTest - Test failed: verifyMedicineAddToCart
+2026-07-07 10:39:02 ERROR BaseTest - Failure reason: java.lang.AssertionError: Cart is not displayed after adding medicine expected [true] but found [false]
+2026-07-07 10:39:09 INFO  BaseTest - Browser closed successfully
+2026-07-07 10:39:42 INFO  ExcelUtils - Excel loaded successfully. Sheet: PractoData
+2026-07-07 10:39:42 INFO  BaseTest - Configuration loaded successfully
+2026-07-07 10:39:42 INFO  BaseTest - Launching browser: chrome
+2026-07-07 10:40:06 INFO  BaseTest - Browser setup completed successfully
+2026-07-07 10:40:06 INFO  TC_017_MedicineAddToCart - Starting TC_017 - Medicine Add To Cart
+2026-07-07 10:40:06 INFO  ExcelUtils - Excel loaded successfully. Sheet: MedicineData
+2026-07-07 10:40:06 INFO  TC_017_MedicineAddToCart - Medicine Search : skin ointment
+2026-07-07 10:40:06 INFO  TC_017_MedicineAddToCart - Opening Medicines page
+2026-07-07 10:40:14 INFO  TC_017_MedicineAddToCart - Navigated to Medicines page
+2026-07-07 10:40:14 INFO  TC_017_MedicineAddToCart - Current URL: https://www.practo.com/order
+2026-07-07 10:40:14 INFO  TC_017_MedicineAddToCart - Searching medicine: skin ointment
+2026-07-07 10:40:14 INFO  MedicinesPage - Searching medicine: skin ointment
+2026-07-07 10:40:15 INFO  MedicinesPage - Total Medicines Found : 18
+2026-07-07 10:40:15 INFO  TC_017_MedicineAddToCart - Medicines found: 18
+2026-07-07 10:40:17 INFO  MedicinesPage - Clicked first medicine from search results
+2026-07-07 10:40:17 INFO  TC_017_MedicineAddToCart - Clicked first medicine from search results
+2026-07-07 10:40:17 INFO  TC_017_MedicineAddToCart - Medicine product page opened
+2026-07-07 10:40:17 INFO  MedicinesPage - Clicked Add To Cart button
+2026-07-07 10:40:17 INFO  TC_017_MedicineAddToCart - Clicked Add To Cart button
+2026-07-07 10:41:06 ERROR BaseTest - Test failed: verifyMedicineAddToCart
+2026-07-07 10:41:06 ERROR BaseTest - Failure reason: java.lang.AssertionError: Cart is not displayed after adding medicine expected [true] but found [false]
+2026-07-07 10:41:12 INFO  BaseTest - Browser closed successfully
+2026-07-07 10:43:29 INFO  ExcelUtils - Excel loaded successfully. Sheet: PractoData
+2026-07-07 10:43:29 INFO  BaseTest - Configuration loaded successfully
+2026-07-07 10:43:29 INFO  BaseTest - Launching browser: chrome
+2026-07-07 10:43:48 INFO  BaseTest - Browser setup completed successfully
+2026-07-07 10:43:48 INFO  TC_017_MedicineAddToCart - Starting TC_017 - Medicine Add To Cart
+2026-07-07 10:43:48 INFO  ExcelUtils - Excel loaded successfully. Sheet: MedicineData
+2026-07-07 10:43:48 INFO  TC_017_MedicineAddToCart - Medicine Search : skin ointment
+2026-07-07 10:43:48 INFO  TC_017_MedicineAddToCart - Opening Medicines page
+2026-07-07 10:44:01 INFO  TC_017_MedicineAddToCart - Navigated to Medicines page
+2026-07-07 10:44:01 INFO  TC_017_MedicineAddToCart - Current URL: https://www.practo.com/order
+2026-07-07 10:44:01 INFO  TC_017_MedicineAddToCart - Searching medicine: skin ointment
+2026-07-07 10:44:01 INFO  MedicinesPage - Searching medicine: skin ointment
+2026-07-07 10:44:02 INFO  MedicinesPage - Total Medicines Found : 18
+2026-07-07 10:44:02 INFO  TC_017_MedicineAddToCart - Medicines found: 18
+2026-07-07 10:44:07 INFO  MedicinesPage - Clicked first medicine from search results
+2026-07-07 10:44:07 INFO  TC_017_MedicineAddToCart - Clicked first medicine from search results
+2026-07-07 10:44:07 INFO  TC_017_MedicineAddToCart - Medicine product page opened
+2026-07-07 10:44:07 INFO  MedicinesPage - Clicked Add To Cart button
+2026-07-07 10:44:07 INFO  TC_017_MedicineAddToCart - Clicked Add To Cart button
+2026-07-07 10:44:07 INFO  TC_017_MedicineAddToCart - Cart displayed successfully
+2026-07-07 10:44:07 INFO  TC_017_MedicineAddToCart - TC_017 Passed: Add To Cart button is functioning properly
+2026-07-07 10:44:07 INFO  BaseTest - Test passed: verifyMedicineAddToCart
+2026-07-07 10:44:11 INFO  BaseTest - Browser closed successfully
+2026-07-07 10:54:52 INFO  ExcelUtils - Excel loaded successfully. Sheet: PractoData
+2026-07-07 10:54:52 INFO  BaseTest - Configuration loaded successfully
+2026-07-07 10:54:52 INFO  BaseTest - Launching browser: chrome
+2026-07-07 10:55:05 INFO  BaseTest - Browser setup completed successfully
+2026-07-07 10:55:05 INFO  TC_001_LoginWithValidCredentials - Starting TC_001 - Verify Login With Valid Credentials
+2026-07-07 10:55:05 INFO  TC_001_LoginWithValidCredentials - Clicking Login button
+2026-07-07 10:55:05 INFO  TC_001_LoginWithValidCredentials - Logging in with valid credentials
+2026-07-07 10:55:05 INFO  LoginPage - Entering mobile number
+2026-07-07 10:55:17 INFO  LoginPage - Entering password
+2026-07-07 10:55:17 INFO  LoginPage - Clicking Login button
+2026-07-07 10:55:28 INFO  LoginPage - Profile name found: Find Doctors
+Video Consult
+Lab Tests
+Surgeries
+NEWFor Corporates
+For Providers
+Security & help
+Amrutha
+Instant Video Consultation
+Connect within 60 secs
+Find Doctors Near You
+Confirmed appointments
+Lab Tests
+Safe and trusted lab tests
+Surgeries
+Safe and trusted surgery centers
+Consult top doctors online for any health concern
+Private online consultations with verified doctors in all specialists
+View All Specialities
+Period doubts or Pregnancy
+CONSULT NOW
+Acne, pimple or skin issues
+CONSULT NOW
+Performance issues in bed
+CONSULT NOW
+Cold, cough or fever
+CONSULT NOW
+Child not feeling well
+CONSULT NOW
+Depression or anxiety
+CONSULT NOW
+Book an appointment for an in-clinic consultation
+Find experienced doctors across all specialties
+Previous
+Dentist
+Teething troubles? Schedule a dental checkup
+Gynecologist/Obstetrician
+Explore for women’s health, pregnancy and infertility treatments
+Dietitian/Nutrition
+Get guidance on eating right, weight management and sports nutrition
+Physiotherapist
+Pulled a muscle? Get it treated by a trained physiotherapist
+Read top articles from health experts
+Health articles that keep you informed about good health practices and achieve your goals.
+See all articles
+CORONAVIRUS
+12 Coronavirus Myths and Facts That You Should Be Aware Of
+Dr. Diana Borgio
+VITAMINS AND SUPPLEMENTS
+Eating Right to Build Immunity Against Cold and Viral Infections
+Dr. Diana Borgio
+What our users have to say
+Very good app. Well thought out about booking/rescheduling/canceling an appointment. Also, Doctor's feedback mechanism is good and describes all the basics in a good way
+Avinash Kumar
+1
+2
+3
+Download the Practo app
+Access video consultation with India’s top doctors on the Practo app. Connect with doctors online, available 24/7, from the comfort of your home.
+Get the link to download the app
++91
+Send SMS
+Practo
+About
+Blog
+Careers
+Press
+Contact Us
+For patients
+Search for doctors
+Search for clinics
+Search for hospitals
+Surgery Costs
+Book Diagnostic Tests
+Practo Plus
+Read health articles
+Read about medicines
+Practo drive
+Health app
+For doctors
+Practo Profile
+For clinics
+Ray by Practo
+Practo Reach
+Ray Tab
+Practo Pro
+For hospitals
+Insta by Practo
+Qikwell by Practo
+Practo Profile
+Practo Reach
+Practo Drive
+For Corporates
+Wellness Plans
+More
+Help
+Developers
+Privacy Policy
+Terms & Conditions
+PCS T&C
+Healthcare Directory
+Practo Health Wiki
+Social
+Facebook
+Twitter
+LinkedIn
+Youtube
+Github
+Copyright © 2017, Practo. All rights reserved.
+2026-07-07 10:55:28 INFO  TC_001_LoginWithValidCredentials - TC_001 Passed: User logged in successfully as: Find Doctors
+Video Consult
+Lab Tests
+Surgeries
+NEWFor Corporates
+For Providers
+Security & help
+Amrutha
+Instant Video Consultation
+Connect within 60 secs
+Find Doctors Near You
+Confirmed appointments
+Lab Tests
+Safe and trusted lab tests
+Surgeries
+Safe and trusted surgery centers
+Consult top doctors online for any health concern
+Private online consultations with verified doctors in all specialists
+View All Specialities
+Period doubts or Pregnancy
+CONSULT NOW
+Acne, pimple or skin issues
+CONSULT NOW
+Performance issues in bed
+CONSULT NOW
+Cold, cough or fever
+CONSULT NOW
+Child not feeling well
+CONSULT NOW
+Depression or anxiety
+CONSULT NOW
+Book an appointment for an in-clinic consultation
+Find experienced doctors across all specialties
+Previous
+Dentist
+Teething troubles? Schedule a dental checkup
+Gynecologist/Obstetrician
+Explore for women’s health, pregnancy and infertility treatments
+Dietitian/Nutrition
+Get guidance on eating right, weight management and sports nutrition
+Physiotherapist
+Pulled a muscle? Get it treated by a trained physiotherapist
+Read top articles from health experts
+Health articles that keep you informed about good health practices and achieve your goals.
+See all articles
+CORONAVIRUS
+12 Coronavirus Myths and Facts That You Should Be Aware Of
+Dr. Diana Borgio
+VITAMINS AND SUPPLEMENTS
+Eating Right to Build Immunity Against Cold and Viral Infections
+Dr. Diana Borgio
+What our users have to say
+Very good app. Well thought out about booking/rescheduling/canceling an appointment. Also, Doctor's feedback mechanism is good and describes all the basics in a good way
+Avinash Kumar
+1
+2
+3
+Download the Practo app
+Access video consultation with India’s top doctors on the Practo app. Connect with doctors online, available 24/7, from the comfort of your home.
+Get the link to download the app
++91
+Send SMS
+Practo
+About
+Blog
+Careers
+Press
+Contact Us
+For patients
+Search for doctors
+Search for clinics
+Search for hospitals
+Surgery Costs
+Book Diagnostic Tests
+Practo Plus
+Read health articles
+Read about medicines
+Practo drive
+Health app
+For doctors
+Practo Profile
+For clinics
+Ray by Practo
+Practo Reach
+Ray Tab
+Practo Pro
+For hospitals
+Insta by Practo
+Qikwell by Practo
+Practo Profile
+Practo Reach
+Practo Drive
+For Corporates
+Wellness Plans
+More
+Help
+Developers
+Privacy Policy
+Terms & Conditions
+PCS T&C
+Healthcare Directory
+Practo Health Wiki
+Social
+Facebook
+Twitter
+LinkedIn
+Youtube
+Github
+Copyright © 2017, Practo. All rights reserved.
+2026-07-07 10:55:29 INFO  BaseTest - Test passed: verifyLoginWithValidCredentials
+2026-07-07 10:55:32 INFO  BaseTest - Browser closed successfully
+2026-07-07 10:55:33 INFO  ExcelUtils - Excel loaded successfully. Sheet: PractoData
+2026-07-07 10:55:33 INFO  BaseTest - Configuration loaded successfully
+2026-07-07 10:55:33 INFO  BaseTest - Launching browser: chrome
+2026-07-07 10:55:48 INFO  BaseTest - Browser setup completed successfully
+2026-07-07 10:55:48 INFO  TC_002_LoginWithInvalidPassword - Starting TC_002 - Login With Invalid Password
+2026-07-07 10:55:48 INFO  TC_002_LoginWithInvalidPassword - Clicking Login button
+2026-07-07 10:55:51 INFO  TC_002_LoginWithInvalidPassword - Entering invalid login credentials
+2026-07-07 10:55:51 INFO  LoginPage - Entering mobile number
+2026-07-07 10:55:52 INFO  LoginPage - Entering password
+2026-07-07 10:55:53 INFO  TC_002_LoginWithInvalidPassword - Clicking Login button with invalid password
+2026-07-07 10:55:53 INFO  LoginPage - Clicking Login button
+2026-07-07 10:57:34 INFO  TC_002_LoginWithInvalidPassword - TC_002 Passed: Login unsuccessful as expected with invalid password
+2026-07-07 10:57:34 INFO  BaseTest - Test passed: verifyLoginWithInvalidPassword
+2026-07-07 10:57:39 INFO  BaseTest - Browser closed successfully
+2026-07-07 10:57:39 INFO  ExcelUtils - Excel loaded successfully. Sheet: PractoData
+2026-07-07 10:57:39 INFO  BaseTest - Configuration loaded successfully
+2026-07-07 10:57:39 INFO  BaseTest - Launching browser: chrome
+2026-07-07 10:57:50 INFO  BaseTest - Browser setup completed successfully
+2026-07-07 10:57:50 INFO  TC_003_FindTest - Starting TC_003 - Verify Diabetes Health Concern Navigation
+2026-07-07 10:57:50 INFO  TC_003_FindTest - Clicking Lab Tests menu
+2026-07-07 10:57:54 INFO  TC_003_FindTest - Selecting city: Bangalore
+2026-07-07 10:57:54 INFO  TC_003_FindTest - Clicking Diabetes Health Concern
+2026-07-07 10:57:56 INFO  TC_003_FindTest - Successfully navigated to Diabetes Checkup page
+2026-07-07 10:57:56 INFO  TC_003_FindTest - Current URL: https://www.practo.com/health-checkup-packages/diabetes-checkup?city=bangalore
+2026-07-07 10:57:56 INFO  TC_003_FindTest - TC_003 Passed: User navigated to Diabetes Checkup page successfully
+2026-07-07 10:57:56 INFO  BaseTest - Test passed: verifyDiabetesHealthConcernNavigation
+2026-07-07 10:57:59 INFO  BaseTest - Browser closed successfully
+2026-07-07 10:57:59 INFO  ExcelUtils - Excel loaded successfully. Sheet: PractoData
+2026-07-07 10:57:59 INFO  BaseTest - Configuration loaded successfully
+2026-07-07 10:57:59 INFO  BaseTest - Launching browser: chrome
+2026-07-07 10:58:06 INFO  BaseTest - Browser setup completed successfully
+2026-07-07 10:58:06 INFO  TC_004_AddToCart - Starting TC_004 - Verify Thyroid Profile Add To Cart
+2026-07-07 10:58:06 INFO  TC_004_AddToCart - Clicking Lab Tests menu
+2026-07-07 10:58:11 INFO  TC_004_AddToCart - Selecting city: Bangalore
+2026-07-07 10:58:12 INFO  TC_004_AddToCart - Successfully navigated to city page: Bangalore
+2026-07-07 10:58:12 INFO  TC_004_AddToCart - Adding Thyroid Profile to cart
+2026-07-07 10:58:14 INFO  TC_004_AddToCart - Thyroid Profile added successfully
+2026-07-07 10:58:14 INFO  TC_004_AddToCart - Current URL: https://www.practo.com/tests?city=bangalore
+2026-07-07 10:58:14 INFO  TC_004_AddToCart - TC_004 Passed: Thyroid Profile added to cart successfully in Bangalore
+2026-07-07 10:58:14 INFO  BaseTest - Test passed: verifyThyroidProfileAddedToCart
+2026-07-07 10:58:17 INFO  BaseTest - Browser closed successfully
+2026-07-07 10:58:17 INFO  ExcelUtils - Excel loaded successfully. Sheet: PractoData
+2026-07-07 10:58:17 INFO  BaseTest - Configuration loaded successfully
+2026-07-07 10:58:17 INFO  BaseTest - Launching browser: chrome
+2026-07-07 10:58:25 INFO  BaseTest - Browser setup completed successfully
+2026-07-07 10:58:25 INFO  TC_005_CitySearch - Starting TC_005 - Verify City Search
+2026-07-07 10:58:25 INFO  ExcelUtils - Excel loaded successfully. Sheet: CitySearch
+2026-07-07 10:58:25 INFO  TC_005_CitySearch - Searching city: Bangalore
+2026-07-07 10:58:25 INFO  TC_005_CitySearch - Navigating to Lab Tests page
+2026-07-07 10:58:32 INFO  TC_005_CitySearch - Successfully navigated to Lab Tests page
+2026-07-07 10:58:32 INFO  TC_005_CitySearch - Searching city from dropdown: Bangalore
+2026-07-07 10:58:33 INFO  TC_005_CitySearch - City suggestion displayed successfully for Bangalore
+2026-07-07 10:58:33 INFO  TC_005_CitySearch - TC_005 Passed: City search is working successfully for Bangalore
+2026-07-07 10:58:33 INFO  BaseTest - Test passed: verifyCitySearchFromDropdown
+2026-07-07 10:58:36 INFO  BaseTest - Browser closed successfully
+2026-07-07 10:58:36 INFO  ExcelUtils - Excel loaded successfully. Sheet: PractoData
+2026-07-07 10:58:36 INFO  BaseTest - Configuration loaded successfully
+2026-07-07 10:58:36 INFO  BaseTest - Launching browser: chrome
+2026-07-07 10:58:46 INFO  BaseTest - Browser setup completed successfully
+2026-07-07 10:58:46 INFO  TC_006_Navigation - Starting TC_006 - Verify Navigation To Lab Tests Page
+2026-07-07 10:58:46 INFO  TC_006_Navigation - Clicking Lab Tests menu
+2026-07-07 10:58:49 INFO  TC_006_Navigation - Successfully navigated to Lab Tests page
+2026-07-07 10:58:49 INFO  TC_006_Navigation - TC_006 Passed: Successfully navigated to Lab Tests/Diagnostics page
+2026-07-07 10:58:49 INFO  TC_006_Navigation - Current URL : https://www.practo.com/tests
+2026-07-07 10:58:49 INFO  TC_006_Navigation - Page Title : Blood Tests | Book Diagnostic Tests from Home at Best Prices | Practo
+2026-07-07 10:58:49 INFO  BaseTest - Test passed: verifyNavigationToLabTestsPage
+2026-07-07 10:58:52 INFO  BaseTest - Browser closed successfully
+2026-07-07 10:58:52 INFO  ExcelUtils - Excel loaded successfully. Sheet: PractoData
+2026-07-07 10:58:52 INFO  BaseTest - Configuration loaded successfully
+2026-07-07 10:58:52 INFO  BaseTest - Launching browser: chrome
+2026-07-07 10:58:57 INFO  BaseTest - Browser setup completed successfully
+2026-07-07 10:58:57 INFO  TC_007_TopCitiesVisibility - Starting TC_007 - Verify Top Cities Visibility
+2026-07-07 10:58:57 INFO  TC_007_TopCitiesVisibility - Navigating to Lab Tests page
+2026-07-07 10:59:01 INFO  TC_007_TopCitiesVisibility - Top Cities section is visible
+2026-07-07 10:59:01 INFO  TC_007_TopCitiesVisibility - Top Cities:
+2026-07-07 10:59:01 INFO  TC_007_TopCitiesVisibility - Bangalore
+2026-07-07 10:59:01 INFO  TC_007_TopCitiesVisibility - Delhi
+2026-07-07 10:59:01 INFO  TC_007_TopCitiesVisibility - Mumbai
+2026-07-07 10:59:01 INFO  TC_007_TopCitiesVisibility - Chennai
+2026-07-07 10:59:01 INFO  TC_007_TopCitiesVisibility - Hyderabad
+2026-07-07 10:59:01 INFO  TC_007_TopCitiesVisibility - Kolkata
+2026-07-07 10:59:01 INFO  TC_007_TopCitiesVisibility - Pune
+2026-07-07 10:59:01 INFO  TC_007_TopCitiesVisibility - Ahmedabad
+2026-07-07 10:59:01 INFO  TC_007_TopCitiesVisibility - Total Cities Found: 8
+2026-07-07 10:59:01 INFO  TC_007_TopCitiesVisibility - TC_007 Passed: Top Cities section is visible
+2026-07-07 10:59:01 INFO  BaseTest - Test passed: verifyTopCitiesSectionVisible

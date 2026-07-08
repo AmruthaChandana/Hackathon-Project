@@ -17,25 +17,6 @@ public class HospitalPage {
         PageFactory.initElements(driver, this);
     }
 
-    // Hospital listing elements
-    //@FindBy(xpath = "//div[contains(@class,'listing') or contains(@class,'card')]")
-    //private List<WebElement> hospitalCards;
-
-    //@FindBy(xpath = "//h2 | //h3 | //div[contains(@class,'name')]")
-    //private List<WebElement> hospitalNames;
-
-    //@FindBy(xpath = "//*[contains(@class,'rating')]")
-    //private List<WebElement> hospitalRatings;
-
-    //@FindBy(xpath = "//*[contains(text(),'Open 24') or contains(text(),'24/7') or contains(text(),'Open now')]")
-    //private WebElement open247Filter;
-
-    //@FindBy(xpath = "(//div[contains(@class,'listing') or contains(@class,'card')])[1]")
-    //private WebElement firstHospitalCard;
-
-    //@FindBy(xpath = "//*[contains(text(),'Address')]/following::*[1] | //*[contains(@class,'address')]")
-    //private WebElement addressSection;
-
     // Hospital search result elements
     @FindBy(xpath = "//h2[contains(@class,'line-1')]")
     private List<WebElement> hospitalNamesForSearchResultsElements;
@@ -108,10 +89,10 @@ public class HospitalPage {
         try {
             JavascriptExecutor js = (JavascriptExecutor) driver;
             Object ratingText = js.executeScript(
-                            "var rating = arguments[0].querySelector('.c-feedback .u-bold');"
-                                    + "return rating ? rating.textContent.trim() : null;",
-                            hospitalCard
-                    );
+                    "var rating = arguments[0].querySelector('.c-feedback .u-bold');"
+                            + "return rating ? rating.textContent.trim() : null;",
+                    hospitalCard
+            );
 
             if (ratingText == null) {
                 logger.warn("Rating not available for hospital card.");

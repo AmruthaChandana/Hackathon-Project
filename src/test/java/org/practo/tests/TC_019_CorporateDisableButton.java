@@ -86,8 +86,8 @@ public class TC_019_CorporateDisableButton extends BaseTest {
 
         // Step 3: Validate Corporate Wellness Page Opened
         commonCode.waitUntil(driver ->
-                        commonCode.getCurrentUrl()
-                                .contains("/plus/corporate")
+                commonCode.getCurrentUrl()
+                        .contains("/plus/corporate")
         );
 
         Assert.assertTrue(
@@ -111,13 +111,22 @@ public class TC_019_CorporateDisableButton extends BaseTest {
 
         // Step 5: Fill Corporate Wellness Form
         logger.info("Filling Corporate Wellness form");
-
         corporatePage.fillCorporateWellnessForm(
                 name,
                 organization,
                 email,
                 mobile,
                 organizationSize,
+                interestedIn
+        );
+
+        Assert.assertEquals(
+                corporatePage.getSelectedOrganizationSize(),
+                organizationSize
+        );
+
+        Assert.assertEquals(
+                corporatePage.getSelectedInterestedIn(),
                 interestedIn
         );
 
@@ -128,7 +137,6 @@ public class TC_019_CorporateDisableButton extends BaseTest {
         );
 
         logger.info("Verified Schedule Demo button remains disabled");
-
         logger.info("TC_019 Passed: Schedule Demo button remains disabled for invalid data.");
     }
 }

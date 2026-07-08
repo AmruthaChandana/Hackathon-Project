@@ -1,6 +1,7 @@
 package org.practo.pages;
 
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -8,7 +9,6 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
-import java.util.List;
 
 public class CorporateWellnessPage {
     private WebDriver driver;
@@ -20,49 +20,43 @@ public class CorporateWellnessPage {
         PageFactory.initElements(driver, this);
     }
 
-    @FindBy(xpath = "//*[@id='header']/div[2]/div | //div[contains(@class,'corporate-form')]")
+    @FindBy(xpath = "//div[contains(@class,'corporate-form')]")
     private WebElement corporateForm;
 
-    @FindBy(xpath = "//input[@placeholder='Name' or contains(@placeholder,'Name')]")
+    @FindBy(xpath = "//input[@placeholder='Name' and @id='name']")
     private WebElement nameField;
 
-    @FindBy(xpath = "//input[@placeholder='Organization Name' or contains(@placeholder,'Organization')]")
+    @FindBy(xpath = "//input[@placeholder='Organization Name' and @id='organizationName']")
     private WebElement organizationField;
 
-    @FindBy(xpath = "//input[@placeholder='Contact Number' or contains(@placeholder,'Contact')]")
+    @FindBy(xpath = "//input[@placeholder='Contact Number' and @id='contactNumber']")
     private WebElement mobileField;
 
-    @FindBy(xpath = "//input[@placeholder='Official Email ID' or contains(@placeholder,'Email')]")
+    @FindBy(xpath = "//input[@placeholder='Official Email ID' and @id='officialEmailId']")
     private WebElement emailField;
 
-    @FindBy(xpath = "//*[contains(normalize-space(),'Organization Size')]")
+    @FindBy(xpath = "//select[@id='organizationSize']")
     private WebElement organizationSizeDropdown;
 
-    @FindBy(xpath = "//*[contains(normalize-space(),'Interested In')]")
+    @FindBy(xpath = "//select[@id='interestedIn']")
     private WebElement interestedInDropdown;
 
     @FindBy(xpath = "//button[contains(normalize-space(),'Schedule a demo')]")
     private WebElement scheduleDemoButton;
 
-    @FindBy(xpath = "//*[contains(normalize-space(),'valid') or contains(normalize-space(),'Invalid') or contains(normalize-space(),'required') or contains(normalize-space(),'Please')]")
-    private WebElement validationMessage;
-
-    @FindBy(xpath = "//*[self::div or self::li or self::span][normalize-space()!='']")
-    private List<WebElement> dropdownOptions;
-
-    @FindBy(xpath = "//*[contains(normalize-space(),'Our Services')]")
+    @FindBy(xpath = "//li[@role='presentation' and contains(normalize-space(),'Our Services')]")
     private WebElement ourServices;
 
-    @FindBy(xpath = "//*[contains(normalize-space(),'Practo Ecosystem')]")
+    @FindBy(xpath = "//li[@role='presentation' and contains(normalize-space(),'Practo Ecosystem')]")
     private WebElement practoEcosystem;
 
-    @FindBy(xpath = "//*[contains(normalize-space(),'Product Capabilities')]")
+    @FindBy(xpath = "//li[@role='presentation' and contains(normalize-space(),'Product Capabilities')]")
     private WebElement productCapabilities;
 
-    @FindBy(xpath = "//*[contains(normalize-space(),'Testimonials')]")
+    @FindBy(xpath = "//li[@role='presentation' and contains(normalize-space(),'Testimonials')]")
     private WebElement testimonials;
 
-    @FindBy(xpath = "//*[contains(normalize-space(),'FAQs')]")
+    @FindBy(xpath = "//li[@role='presentation' and contains(normalize-space(),'FAQs')]")
     private WebElement faqs;
 
     private WebElement waitForVisible(WebElement element) {
@@ -123,48 +117,23 @@ public class CorporateWellnessPage {
     }
 
     public void selectOrganizationSize(String organizationSize) {
-        safeClick(organizationSizeDropdown);
-        selectDropdownOption(organizationSize);
+        Select select = new Select(organizationSizeDropdown);
+        select.selectByVisibleText(organizationSize);
     }
 
     public void selectInterestedIn(String interestedIn) {
-        safeClick(interestedInDropdown);
-        selectDropdownOption(interestedIn);
+        Select select = new Select(interestedInDropdown);
+        select.selectByVisibleText(interestedIn);
     }
 
-    private void selectDropdownOption(String expectedOption) {
-        boolean optionClicked = false;
-        for (WebElement option : dropdownOptions) {
-            try {
-                String optionText = option.getText().trim();
-                if (option.isDisplayed()
-                        && !optionText.isEmpty()
-                        && optionText.equalsIgnoreCase(expectedOption.trim())) {
-                    option.click();
-                    optionClicked = true;
-                    break;
-                }
-            } catch (Exception ignored) {
-            }
-        }
-        if (!optionClicked) {
-            for (WebElement option : dropdownOptions) {
-                try {
-                    String optionText = option.getText().trim();
-                    if (option.isDisplayed()
-                            && !optionText.isEmpty()
-                            && optionText.toLowerCase().contains(expectedOption.trim().toLowerCase())) {
-                        option.click();
-                        optionClicked = true;
-                        break;
-                    }
-                } catch (Exception ignored) {
-                }
-            }
-        }
-        if (!optionClicked) {
-            throw new RuntimeException("Dropdown option not found: " + expectedOption);
-        }
+    public String getSelectedOrganizationSize() {
+        Select select = new Select(organizationSizeDropdown);
+        return select.getFirstSelectedOption().getText().trim();
+    }
+
+    public String getSelectedInterestedIn() {
+        Select select = new Select(interestedInDropdown);
+        return select.getFirstSelectedOption().getText().trim();
     }
 
     public void fillCorporateWellnessForm(
@@ -201,6 +170,7 @@ public class CorporateWellnessPage {
             if (classValue != null && classValue.toLowerCase().contains("disabled")) {
                 return false;
             }
+
             return scheduleDemoButton.isEnabled();
         } catch (Exception e) {
             return false;
